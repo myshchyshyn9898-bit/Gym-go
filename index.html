@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Gym Go">
+    <meta name="theme-color" content="#0d0d0f">
+    
+    <link rel="apple-touch-icon" href="https://img.icons8.com/nolan/256/dumbbell.png">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/nolan/256/dumbbell.png">
+
+    <link rel="manifest" href='data:application/manifest+json,{"name":"Gym Go Pro","short_name":"Gym Go","display":"standalone","background_color":"#0d0d0f","theme_color":"#D0FD3E","icons":[{"src":"https://img.icons8.com/nolan/256/dumbbell.png","sizes":"256x256","type":"image/png"}]}'>
+
+    <title>Gym Go - Live Sync</title>
+    
+    <style>
+        :root {
+            --bg-color: #0d0d0f; --card-bg: #1c1c1e;
+            --neon-green: #D0FD3E; --neon-pink: #FF2442;
+            --neon-cyan: #50AFAD; --neon-yellow: #FFD60A;
+            --text-main: #ffffff; --text-muted: #8E8E93;
+        }
+
+        body {
+            background-color: var(--bg-color); color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0; padding: 20px; padding-bottom: 90px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        #splash-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--bg-color); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.4s ease-out; }
+        .splash-logo { font-size: 42px; font-weight: 900; color: var(--text-main); letter-spacing: 2px; text-transform: uppercase; text-shadow: 0 0 20px rgba(208, 253, 62, 0.5); display: flex; align-items: center; gap: 10px; }
+        .splash-logo span { color: var(--neon-green); }
+        .splash-loader { width: 40px; height: 4px; background: #2c2c2e; margin-top: 20px; border-radius: 2px; overflow: hidden; }
+        .splash-loader-bar { width: 0%; height: 100%; background: var(--neon-green); animation: load 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        @keyframes load { 100% { width: 100%; box-shadow: 0 0 10px var(--neon-green); } }
+
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; margin-top: 15px; }
+        h1 { font-size: 22px; font-weight: 800; margin: 0; letter-spacing: 0.5px; }
+        h1 span { color: var(--text-muted); font-weight: 500; }
+        .live-dot { width: 8px; height: 8px; background: #FF453A; border-radius: 50%; box-shadow: 0 0 8px #FF453A; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        .progress-section { display: flex; justify-content: space-between; margin-bottom: 30px; gap: 5px; }
+        .ring-container { display: flex; flex-direction: column; align-items: center; width: 14%; }
+        .circular-chart { max-width: 40px; max-height: 40px; }
+        .circle-bg { fill: none; stroke: #2c2c2e; stroke-width: 3.8; }
+        .circle { fill: none; stroke-width: 2.8; stroke-linecap: round; transition: stroke-dasharray 0.5s ease, stroke 0.3s; }
+        .green-ring .circle { stroke: var(--neon-green); filter: drop-shadow(0 0 4px rgba(208, 253, 62, 0.4)); }
+        .pink-ring .circle { stroke: var(--neon-pink); filter: drop-shadow(0 0 4px rgba(255, 36, 66, 0.4)); }
+        .cyan-ring .circle { stroke: var(--neon-cyan); filter: drop-shadow(0 0 4px rgba(80, 175, 173, 0.4)); }
+        .yellow-ring .circle { stroke: var(--neon-yellow); filter: drop-shadow(0 0 4px rgba(255, 214, 10, 0.4)); }
+        .ring-label { font-size: 10px; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
+
+        .card { background: var(--card-bg); border-radius: 20px; padding: 20px; margin-bottom: 15px; display: flex; align-items: center; position: relative; overflow: hidden; cursor: pointer; }
+        .card:active { transform: scale(0.96); }
+        .card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+        .card.push::before { background: var(--neon-green); box-shadow: 0 0 15px var(--neon-green); }
+        .card.pull::before { background: var(--neon-pink); box-shadow: 0 0 15px var(--neon-pink); }
+        .card.legs::before { background: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); }
+        .card.full::before { background: var(--neon-yellow); box-shadow: 0 0 15px var(--neon-yellow); }
+        .card.rest::before { background: var(--text-muted); }
+
+        .date-col { text-align: center; margin-right: 20px; min-width: 45px; }
+        .day-name { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
+        .card.push .day-name { color: var(--neon-green); }
+        .card.pull .day-name { color: var(--neon-pink); }
+        .card.legs .day-name { color: var(--neon-cyan); }
+        .card.full .day-name { color: var(--neon-yellow); }
+        .card.rest .day-name { color: var(--text-muted); }
+        .day-num { font-size: 26px; font-weight: 800; margin: 2px 0; }
+        .month-name { font-size: 10px; color: var(--text-muted); text-transform: uppercase;}
+
+        .info-col { flex-grow: 1; }
+        .title { font-size: 18px; font-weight: 800; margin-bottom: 4px; text-transform: uppercase; }
+        .subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+
+        .supps-container { display: flex; flex-wrap: wrap; gap: 8px; }
+        .supps-pill { display: inline-flex; align-items: center; background: #2c2c2e; border-radius: 12px; padding: 6px 12px; font-size: 12px; font-weight: 600; gap: 6px; }
+        .supps-pill span { color: var(--text-muted); font-weight: 400; font-size: 10px; display: block;}
+
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: flex-end; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-content { background: #1c1c1e; width: 100%; border-radius: 30px 30px 0 0; padding: 30px 25px 40px; box-sizing: border-box; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-height: 85vh; overflow-y: auto; position: relative; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .close-btn { position: absolute; top: 15px; right: 20px; background: #2c2c2e; border-radius: 50%; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; font-size: 14px; cursor: pointer; z-index: 10; }
+        .modal-title { font-size: 24px; font-weight: 800; margin-bottom: 5px; }
+        .modal-subtitle { color: var(--text-muted); margin-bottom: 25px; font-size: 14px; }
+        .section-title { font-size: 12px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; }
+        .exercise-item { background: #2c2c2e; padding: 15px; border-radius: 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .ex-name { font-size: 15px; font-weight: 600; }
+        .ex-sets { background: #3a3a3c; padding: 5px 10px; border-radius: 8px; font-size: 13px; font-weight: 700; color: var(--neon-green); }
+        .supp-box { background: rgba(208, 253, 62, 0.1); border: 1px solid rgba(208, 253, 62, 0.3); padding: 15px; border-radius: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 15px; }
+        .supp-box.rest-box { background: rgba(142, 142, 147, 0.1); border: 1px solid rgba(142, 142, 147, 0.3); }
+        .supp-time { font-size: 12px; color: var(--text-muted); margin-bottom: 3px;}
+        .supp-desc { font-size: 15px; font-weight: 600;}
+        .complete-btn { background: var(--text-main); color: #000; width: 100%; padding: 18px; border-radius: 16px; font-weight: 800; border: none; font-size: 16px; margin-top: 30px; cursor: pointer; }
+        .complete-btn.btn-push { background: var(--neon-green); }
+        .complete-btn.btn-pull { background: var(--neon-pink); color: white; }
+        .complete-btn.btn-legs { background: var(--neon-cyan); color: #000; }
+        .complete-btn.btn-full { background: var(--neon-yellow); color: #000; }
+
+        .tab-view { display: none; animation: fadeIn 0.3s ease; }
+        .tab-view.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(28, 28, 30, 0.95); backdrop-filter: blur(20px); border-top: 1px solid #2c2c2e; display: flex; justify-content: space-around; padding: 10px 0 20px; z-index: 900; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: var(--text-muted); font-size: 10px; font-weight: 700; cursor: pointer; text-transform: uppercase; transition: color 0.2s; width: 33%;}
+        .nav-item.active { color: var(--neon-green); }
+        .nav-icon { height: 24px; width: 24px; display: flex; justify-content: center; align-items: center; }
+        .nav-icon svg { width: 100%; height: 100%; fill: currentColor; }
+
+        input, select { background: #2c2c2e; border: 1px solid #3a3a3c; color: white; padding: 14px; border-radius: 12px; width: 100%; box-sizing: border-box; margin-bottom: 12px; font-family: inherit; font-size: 15px; font-weight: 600; }
+        input:focus, select:focus { outline: none; border-color: var(--neon-green); }
+
+        .muscle-hero { text-align: center; margin: 10px 0 30px; }
+        .muscle-hero svg { width: 80px; height: 80px; fill: var(--neon-green); filter: drop-shadow(0 0 15px rgba(208, 253, 62, 0.4)); }
+        
+        .edit-list-item { background: #2c2c2e; padding: 15px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .edit-info-title { font-size: 15px; font-weight: 700; }
+        .edit-info-sub { font-size: 13px; color: var(--neon-green); margin-top: 4px; font-weight: 600;}
+        .edit-info-sub.supp { color: var(--text-muted); font-weight: 400; }
+        .edit-actions { display: flex; gap: 15px; }
+        .action-btn { background: none; border: none; font-size: 18px; cursor: pointer; padding: 0; color: white; opacity: 0.7; transition: opacity 0.2s;}
+        .action-btn:active { opacity: 1; transform: scale(0.9); }
+        .add-btn-small { background: rgba(208, 253, 62, 0.1); color: var(--neon-green); border: 1px dashed var(--neon-green); width: 100%; padding: 12px; border-radius: 12px; font-weight: 700; cursor: pointer; margin-bottom: 20px; font-size: 14px;}
+
+        /* 🔥 НОВІ СТИЛІ ПРОГРЕСУ (Як на фото Apple Watch) 🔥 */
+        .stats-grid { display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; margin-bottom: 25px; }
+        .stat-ring-card { background: #1c1c1e; border-radius: 24px; padding: 25px 15px; width: calc(50% - 7.5px); display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; position: relative;}
+        .large-circular-chart { display: block; margin: 0 auto; max-width: 150px; max-height: 150px; width: 100%; }
+        
+        /* Пунктирне кільце на фоні (як на фото) */
+        .large-circular-chart .circle-bg-dashed { fill: none; stroke: #2c2c2e; stroke-width: 1.5; stroke-dasharray: 2, 3; }
+        
+        /* Основне неонове кільце */
+        .large-circular-chart .circle { fill: none; stroke-width: 3.5; stroke-linecap: round; stroke: var(--neon-green); filter: drop-shadow(0 0 6px rgba(208, 253, 62, 0.6)); transition: stroke-dasharray 1s ease-out; }
+        
+        /* Тонкий і великий шрифт відсотків */
+        .large-circular-chart .percentage { fill: #ffffff; font-size: 9px; font-weight: 300; text-anchor: middle; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; letter-spacing: -0.5px;}
+        
+        /* Текст назви показника (як "Pwr" або "Charging" на фото) */
+        .large-circular-chart .stat-name-text { fill: var(--neon-green); font-size: 3.5px; font-weight: 600; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.5px;}
+        .large-circular-chart .stat-val-text { fill: #8E8E93; font-size: 2.5px; font-weight: 500; text-anchor: middle; }
+    </style>
+</head>
+<body>
+
+    <div id="splash-screen">
+        <div class="splash-logo">GYM <span>GO</span></div>
+        <div class="splash-loader"><div class="splash-loader-bar"></div></div>
+    </div>
+
+    <header>
+        <h1>GYM GO <span><div class="live-dot" style="display:inline-block; margin: 0 4px;"></div> LIVE SYNC</span></h1>
+    </header>
+
+    <div id="tab-home" class="tab-view active">
+        <div class="progress-section">
+            <div class="ring-container"><svg viewBox="0 0 36 36" class="circular-chart green-ring"><path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="circle" id="ring-mon" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg><div class="ring-label">ПН</div></div>
+            <div class="ring-container"><svg viewBox="0 0 36 36" class="circular-chart"><path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="circle" id="ring-tue" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg><div class="ring-label">ВТ</div></div>
+            <div class="ring-container"><svg viewBox="0 0 36 36" class="circular-chart pink-ring"><path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="circle" id="ring-wed" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg><div class="ring-label">СР</div></div>
+            <div class="ring-container"><svg viewBox="0 0 36 36" class="circular-chart"><path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="circle" id="ring-thu" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg><div class="ring-label">ЧТ</div></div>
+            <div class="ring-container"><svg viewBox="0 0 36 36" class="circular-chart cyan-ring"><path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="circle" id="ring-fri" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg><div class="ring-label">ПТ</div></div>
+            <div class="ring-container"><svg viewBox="0 0 36 36" class="circular-chart yellow-ring"><path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="circle" id="ring-sat" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg><div class="ring-label">СБ</div></div>
+            <div class="ring-container"><svg viewBox="0 0 36 36" class="circular-chart"><path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path class="circle" id="ring-sun" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg><div class="ring-label">НД</div></div>
+        </div>
+
+        <div id="workout-cards-container"></div>
+    </div>
+
+    <div id="tab-stats" class="tab-view">
+        <div class="muscle-hero">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C10.3431 2 9 3.34315 9 5C9 6.65685 10.3431 8 12 8C13.6569 8 15 6.65685 15 5C15 3.34315 13.6569 2 12 2ZM6.44917 10.1582C5.99017 9.87878 5.39169 10.0245 5.11226 10.4835C4.5501 11.4074 4.09908 12.3968 3.77443 13.4357L2.23466 18.3631C2.07153 18.8853 2.36214 19.4414 2.8843 19.6045C3.40645 19.7676 3.96261 19.477 4.12574 18.9548L5.47466 14.6382C5.74836 13.7844 6.12154 12.9697 6.58431 12.2136C6.86375 11.7546 6.71802 11.1561 6.25902 10.8767L6.44917 10.1582ZM17.5508 10.1582C17.741 10.8767 17.282 11.1561 17.5614 11.7546C18.0242 12.5107 18.3974 13.3253 18.6711 14.1791L20.0196 18.4952C20.1827 19.0173 20.7389 19.308 21.261 19.1448C21.7832 18.9817 22.0738 18.4255 21.9107 17.9034L20.3709 12.976C20.0463 11.9372 19.5952 10.9477 19.0331 10.0238C18.7537 9.56481 18.1552 9.41908 17.6962 9.69852C17.5273 9.80145 17.4086 9.96024 17.3627 10.1436L17.5508 10.1582ZM11 10C8.23858 10 6 12.2386 6 15V21C6 21.5523 6.44772 22 7 22H17C17.5523 22 18 21.5523 18 21V15C18 12.2386 15.7614 10 13 10H11Z"/>
+            </svg>
+        </div>
+
+        <div class="section-title" style="margin-bottom: 15px;">📊 Твій Прогрес (Редагований)</div>
+        <div id="stats-rings-container" class="stats-grid">
+            </div>
+
+        <div class="section-title" style="margin-top: 30px; margin-bottom: 15px;">✏️ Налаштувати показники</div>
+        <div id="stats-edit-list">
+            </div>
+        <button class="add-btn-small" onclick="window.addStat()">+ ДОДАТИ ПОКАЗНИК</button>
+    </div>
+
+    <div id="tab-edit" class="tab-view">
+        <div class="section-title" style="margin-bottom: 15px;">⚙️ Редагування плану</div>
+        
+        <select id="edit-day-select" onchange="window.loadDayForEdit()">
+            <option value="mon">Понеділок (Push)</option>
+            <option value="tue">Вівторок (Відпочинок)</option>
+            <option value="wed">Середа (Pull)</option>
+            <option value="thu">Четвер (Відпочинок)</option>
+            <option value="fri">П'ятниця (Legs)</option>
+            <option value="sat">Субота (Upper Focus)</option>
+            <option value="sun">Неділя (Відпочинок)</option>
+        </select>
+
+        <div style="background: #1c1c1e; padding: 20px; border-radius: 20px; margin-bottom: 20px;">
+            <div class="section-title" style="margin-bottom: 10px;">Назва та фокус дня</div>
+            <input type="text" id="edit-title" placeholder="Назва тренування" onchange="window.quickSaveHeader()">
+            <input type="text" id="edit-sub" placeholder="Підзаголовок" style="margin-bottom: 0;" onchange="window.quickSaveHeader()">
+        </div>
+
+        <div class="section-title">💊 Добавки на цей день</div>
+        <div id="edit-supps-list"></div>
+        <button class="add-btn-small" onclick="window.addSupp()">+ ДОДАТИ ДОБАВКУ</button>
+
+        <div class="section-title" style="margin-top: 25px;">🏋️ Вправи на цей день</div>
+        <div id="edit-exercises-list"></div>
+        <button class="add-btn-small" onclick="window.addExercise()">+ ДОДАТИ ВПРАВУ</button>
+    </div>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="window.switchTab('home', this)">
+            <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
+            Тренування
+        </div>
+        <div class="nav-item" onclick="window.switchTab('stats', this)">
+            <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg></div>
+            Прогрес
+        </div>
+        <div class="nav-item" onclick="window.switchTab('edit', this)">
+            <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></div>
+            Редактор
+        </div>
+    </nav>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <div class="close-btn" onclick="window.closeModal()">✕</div>
+            <div id="modal-header"><div class="modal-title" id="m-title">Title</div><div class="modal-subtitle" id="m-subtitle">Subtitle</div></div>
+            <div class="section-title">💊 Протокол добавок</div>
+            <div id="m-supps"></div>
+            <div class="section-title" id="ex-title" style="margin-top: 25px;">🏋️ Вправи на сьогодні</div>
+            <div id="m-exercises"></div>
+            <button id="m-btn" class="complete-btn" onclick="window.markDone()">ЗАВЕРШИТИ ДЕНЬ</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBRSU_3_0pueE5kQfY_3jr1TNCozF1lOsw",
+            authDomain: "go-gym-e604f.firebaseapp.com",
+            projectId: "go-gym-e604f",
+            storageBucket: "go-gym-e604f.firebasestorage.app",
+            messagingSenderId: "284048669638",
+            appId: "1:284048669638:web:c89a7d67b9be64298750c7",
+            databaseURL: "https://go-gym-e604f-default-rtdb.europe-west1.firebasedatabase.app" 
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const rootRef = ref(db, '/');
+
+        let savedProgress = {};
+        let myStatsArray = []; 
+        const daysKeys = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+        const daysMap = { 'mon':'ПН', 'tue':'ВТ', 'wed':'СР', 'thu':'ЧТ', 'fri':'ПТ', 'sat':'СБ', 'sun':'НД' };
+        const baseClasses = { 'mon':'push', 'tue':'rest', 'wed':'pull', 'thu':'rest', 'fri':'legs', 'sat':'full', 'sun':'rest' };
+        const months = ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сер', 'Вер', 'Жов', 'Лис', 'Гру'];
+
+        let workoutData = {
+            'mon': { title: 'Тренування Push', sub: 'Понеділок • Груди, Плечі, Тріцепс', btnClass: 'btn-push', ring: 'mon', supps: [{ time: '☀️ ЗРАНКУ', text: '1 порція Протеїну' }, { time: '💪 ПІСЛЯ ТРЕНУВАННЯ', text: 'Протеїн (1 порція) + Креатин (5г)' }], exercises: [{ name: 'Жим штанги лежачи', sets: '4 × 8-10' }, { name: 'Жим гантелей під кутом', sets: '3 × 10-12' }, { name: 'Жим сидячи (Плечі)', sets: '3 × 10-12' }, { name: 'Махи гантелями', sets: '3 × 15' }, { name: 'Французький жим', sets: '3 × 10-12' }] },
+            'tue': { title: 'Відпочинок', sub: 'Вівторок • Відновлення', btnClass: '', ring: 'tue', supps: [{ time: '☀️ ЗРАНКУ', text: 'Креатин (5г)' }], exercises: [] },
+            'wed': { title: 'Тренування Pull', sub: 'Середа • Спина, Біцепс', btnClass: 'btn-pull', ring: 'wed', supps: [{ time: '☀️ ЗРАНКУ', text: '1 порція Протеїну' }, { time: '💪 ПІСЛЯ ТРЕНУВАННЯ', text: 'Протеїн (1 порція) + Креатин (5г)' }], exercises: [{ name: 'Підтягування', sets: '4 × Max' }, { name: 'Тяга штанги', sets: '4 × 8-10' }, { name: 'Тяга блоку', sets: '3 × 10-12' }, { name: 'Підйом на біцепс', sets: '3 × 10-12' }] },
+            'thu': { title: 'Відпочинок', sub: 'Четвер • Ріст м\'язів', btnClass: '', ring: 'thu', supps: [{ time: '☀️ ЗРАНКУ', text: 'Креатин (5г)' }], exercises: [] },
+            'fri': { title: 'Тренування Legs', sub: 'П\'ятниця • Ноги та Прес', btnClass: 'btn-legs', ring: 'fri', supps: [{ time: '☀️ ЗРАНКУ', text: '1 порція Протеїну' }, { time: '💪 ПІСЛЯ ТРЕНУВАННЯ', text: 'Протеїн (1 порція) + Креатин (5г)' }], exercises: [{ name: 'Присідання', sets: '4 × 8-10' }, { name: 'Жим ногами', sets: '3 × 10-12' }, { name: 'Скручування', sets: '4 × 20' }] },
+            'sat': { title: 'Upper Focus', sub: 'Субота • Плечі, Руки', btnClass: 'btn-full', ring: 'sat', supps: [{ time: '☀️ ЗРАНКУ', text: '1 порція Протеїну' }, { time: '💪 ПІСЛЯ ТРЕНУВАННЯ', text: 'Протеїн (1 порція) + Креатин (5г)' }], exercises: [{ name: 'Армійський жим', sets: '4 × 8-10' }, { name: 'Махи в сторони', sets: '4 × 15' }] },
+            'sun': { title: 'Відпочинок', sub: 'Неділя • Відновлення', btnClass: '', ring: 'sun', supps: [{ time: '☀️ ЗРАНКУ', text: 'Креатин (5г)' }], exercises: [] }
+        };
+
+        let currentActiveDay = '';
+        let currentDates = {};
+
+        function getMondayID() {
+            let curr = new Date(); let day = curr.getDay(); let diff = curr.getDate() - day + (day === 0 ? -6 : 1);
+            return new Date(curr.setDate(diff)).toDateString(); 
+        }
+
+        function renderMainCards() {
+            const container = document.getElementById('workout-cards-container');
+            let html = '';
+            daysKeys.forEach(day => {
+                const d = workoutData[day];
+                const dateNum = currentDates[day] ? currentDates[day].num : '--';
+                const dateMonth = currentDates[day] ? currentDates[day].month : '--';
+                
+                let suppsHTML = '';
+                if(d.supps && d.supps.length > 0) {
+                    suppsHTML = `<div class="supps-pill">🥤 <div>Добавки <span>${d.supps.length} шт.</span></div></div>`;
+                }
+
+                html += `
+                <div class="card ${baseClasses[day]}" onclick="window.openModal('${day}')">
+                    <div class="date-col">
+                        <div class="day-name">${daysMap[day]}</div>
+                        <div class="day-num" id="date-${day}">${dateNum}</div>
+                        <div class="month-name" id="month-${day}">${dateMonth}</div>
+                    </div>
+                    <div class="info-col">
+                        <div class="title">${d.title}</div>
+                        <div class="subtitle">${d.sub}</div>
+                        <div class="supps-container">${suppsHTML}</div>
+                    </div>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        // --- FIREBASE СИНХРОНІЗАЦІЯ ---
+        onValue(rootRef, (snapshot) => {
+            const dataVal = snapshot.val() || {};
+            
+            if(dataVal.workout_plan) workoutData = dataVal.workout_plan;
+            else set(ref(db, 'workout_plan'), workoutData);
+
+            if(dataVal.stats_array) {
+                myStatsArray = dataVal.stats_array;
+            } else {
+                myStatsArray = [];
+            }
+            renderStatsTab();
+
+            const currentWeekID = getMondayID();
+            if (dataVal.last_reset_id !== currentWeekID) {
+                set(ref(db, 'shared_week_progress'), {});
+                set(ref(db, 'last_reset_id'), currentWeekID);
+                savedProgress = {};
+            } else {
+                savedProgress = dataVal.shared_week_progress || {};
+            }
+            
+            updateRingsVisuals();
+            renderMainCards();
+            
+            if(document.getElementById('tab-edit').classList.contains('active')){
+                window.loadDayForEdit();
+            }
+        });
+
+        function setWeekDates() {
+            let curr = new Date(); let day = curr.getDay(); let diff = curr.getDate() - day + (day === 0 ? -6 : 1); 
+            let monday = new Date(curr.setDate(diff));
+            for(let i = 0; i < 7; i++) {
+                let loopDate = new Date(monday); loopDate.setDate(monday.getDate() + i);
+                currentDates[daysKeys[i]] = { num: ('0' + loopDate.getDate()).slice(-2), month: months[loopDate.getMonth()] };
+            }
+        }
+        setWeekDates();
+
+        function updateRingsVisuals() {
+            daysKeys.forEach(day => {
+                const ring = document.getElementById(`ring-${day}`);
+                if(!ring) return;
+                if (savedProgress[day]) {
+                    ring.style.strokeDasharray = `100, 100`;
+                    if(day === 'tue' || day === 'thu' || day === 'sun') { ring.style.stroke = '#ffffff'; ring.style.filter = 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.4))'; }
+                } else {
+                    ring.style.strokeDasharray = `0, 100`;
+                    if(day === 'tue' || day === 'thu' || day === 'sun') { ring.style.stroke = ''; ring.style.filter = ''; }
+                }
+            });
+        }
+
+        window.switchTab = function(tabId, el) {
+            document.querySelectorAll('.tab-view').forEach(t => t.classList.remove('active'));
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            el.classList.add('active');
+            
+            if(tabId === 'edit') window.loadDayForEdit();
+        }
+
+        // --- ДИНАМІЧНИЙ ПРОГРЕС ТА КІЛЬЦЯ (В СТИЛІ ФОТО) ---
+        function renderStatsTab() {
+            const ringsContainer = document.getElementById('stats-rings-container');
+            const editList = document.getElementById('stats-edit-list');
+            let ringsHTML = '';
+            let editHTML = '';
+
+            if (myStatsArray && myStatsArray.length > 0) {
+                myStatsArray.forEach((stat, idx) => {
+                    let curr = parseFloat(stat.current) || 0;
+                    let goal = parseFloat(stat.goal) || 1;
+                    let percent = Math.round((curr / goal) * 100);
+                    if (percent > 100) percent = 100;
+
+                    // Кільця (дизайн точно як на фото: пунктир ззаду, неон, тонкі відсотки)
+                    ringsHTML += `
+                    <div class="stat-ring-card">
+                        <svg viewBox="0 0 36 36" class="large-circular-chart">
+                            <path class="circle-bg-dashed" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle" stroke-dasharray="${percent}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <text x="18" y="14" class="stat-name-text">${stat.name}</text>
+                            <text x="18" y="21.5" class="percentage">${percent}%</text>
+                            <text x="18" y="26" class="stat-val-text">${stat.current} / ${stat.goal}</text>
+                        </svg>
+                    </div>`;
+
+                    // Список для редагування (безлімітний, кастомний)
+                    editHTML += `
+                    <div class="edit-list-item">
+                        <div>
+                            <div class="edit-info-title">${stat.name}</div>
+                            <div class="edit-info-sub">Зараз: ${stat.current} | Ціль: ${stat.goal}</div>
+                        </div>
+                        <div class="edit-actions">
+                            <button class="action-btn" onclick="window.editStat(${idx})">✏️</button>
+                            <button class="action-btn" onclick="window.deleteStat(${idx})">🗑️</button>
+                        </div>
+                    </div>`;
+                });
+            } else {
+                ringsHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); font-size:14px;">Показників ще немає. Додай їх нижче!</div>`;
+            }
+
+            ringsContainer.innerHTML = ringsHTML;
+            editList.innerHTML = editHTML;
+        }
+
+        // Додати БУДЬ-ЯКИЙ показник
+        window.addStat = function() {
+            const name = prompt("Назва (напр. Жим, Вага тіла, Біцепс, Кроки):", "Новий показник");
+            if(!name) return;
+            const current = prompt("Поточне значення:", "0");
+            const goal = prompt("Цільове значення:", "100");
+            
+            if(!myStatsArray) myStatsArray = [];
+            myStatsArray.push({ name, current, goal });
+            set(ref(db, 'stats_array'), myStatsArray);
+        }
+
+        window.editStat = function(idx) {
+            const stat = myStatsArray[idx];
+            const name = prompt("Назва показника:", stat.name);
+            if(!name) return;
+            const current = prompt("Поточне значення:", stat.current);
+            const goal = prompt("Цільове значення:", stat.goal);
+            
+            myStatsArray[idx] = { name, current, goal };
+            set(ref(db, 'stats_array'), myStatsArray);
+        }
+
+        window.deleteStat = function(idx) {
+            if(confirm("Видалити цей показник?")) {
+                myStatsArray.splice(idx, 1);
+                set(ref(db, 'stats_array'), myStatsArray);
+            }
+        }
+
+        // --- ЛОГІКА РЕДАКТОРА ТРЕНУВАНЬ ---
+        window.loadDayForEdit = function() {
+            const day = document.getElementById('edit-day-select').value;
+            const d = workoutData[day];
+            document.getElementById('edit-title').value = d.title || '';
+            document.getElementById('edit-sub').value = d.sub || '';
+            
+            const suppsContainer = document.getElementById('edit-supps-list');
+            let sHTML = '';
+            if(d.supps) {
+                d.supps.forEach((s, idx) => {
+                    sHTML += `<div class="edit-list-item"><div><div class="edit-info-title">${s.text}</div><div class="edit-info-sub supp">🕒 ${s.time}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.editSupp(${idx})">✏️</button><button class="action-btn" onclick="window.deleteSupp(${idx})">🗑️</button></div></div>`;
+                });
+            }
+            suppsContainer.innerHTML = sHTML;
+
+            const exContainer = document.getElementById('edit-exercises-list');
+            let eHTML = '';
+            if(d.exercises) {
+                d.exercises.forEach((ex, idx) => {
+                    eHTML += `<div class="edit-list-item"><div><div class="edit-info-title">${ex.name}</div><div class="edit-info-sub">${ex.sets}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.editExercise(${idx})">✏️</button><button class="action-btn" onclick="window.deleteExercise(${idx})">🗑️</button></div></div>`;
+                });
+            }
+            exContainer.innerHTML = eHTML;
+        }
+
+        window.quickSaveHeader = function() {
+            const day = document.getElementById('edit-day-select').value;
+            workoutData[day].title = document.getElementById('edit-title').value;
+            workoutData[day].sub = document.getElementById('edit-sub').value;
+            set(ref(db, 'workout_plan'), workoutData);
+        }
+
+        window.addExercise = function() {
+            const name = prompt("Назва вправи:", "Нова вправа");
+            if(!name) return;
+            const sets = prompt("Кількість підходів:", "3 × 10");
+            const day = document.getElementById('edit-day-select').value;
+            if(!workoutData[day].exercises) workoutData[day].exercises = [];
+            workoutData[day].exercises.push({ name, sets });
+            set(ref(db, 'workout_plan'), workoutData);
+        }
+        window.editExercise = function(idx) {
+            const day = document.getElementById('edit-day-select').value;
+            const ex = workoutData[day].exercises[idx];
+            const name = prompt("Назва вправи:", ex.name);
+            if(!name) return;
+            const sets = prompt("Кількість підходів:", ex.sets);
+            workoutData[day].exercises[idx] = { name, sets };
+            set(ref(db, 'workout_plan'), workoutData);
+        }
+        window.deleteExercise = function(idx) {
+            if(confirm("Видалити цю вправу?")) {
+                const day = document.getElementById('edit-day-select').value;
+                workoutData[day].exercises.splice(idx, 1);
+                set(ref(db, 'workout_plan'), workoutData);
+            }
+        }
+
+        window.addSupp = function() {
+            const text = prompt("Що п'ємо?", "Протеїн");
+            if(!text) return;
+            const time = prompt("Коли?", "💪 ПІСЛЯ ТРЕНУВАННЯ");
+            const day = document.getElementById('edit-day-select').value;
+            if(!workoutData[day].supps) workoutData[day].supps = [];
+            workoutData[day].supps.push({ time, text });
+            set(ref(db, 'workout_plan'), workoutData);
+        }
+        window.editSupp = function(idx) {
+            const day = document.getElementById('edit-day-select').value;
+            const s = workoutData[day].supps[idx];
+            const text = prompt("Що п'ємо?", s.text);
+            if(!text) return;
+            const time = prompt("Коли?", s.time);
+            workoutData[day].supps[idx] = { time, text };
+            set(ref(db, 'workout_plan'), workoutData);
+        }
+        window.deleteSupp = function(idx) {
+            if(confirm("Видалити цю добавку?")) {
+                const day = document.getElementById('edit-day-select').value;
+                workoutData[day].supps.splice(idx, 1);
+                set(ref(db, 'workout_plan'), workoutData);
+            }
+        }
+
+        // МОДАЛКА
+        window.openModal = function(dayKey) {
+            const d = workoutData[dayKey]; currentActiveDay = dayKey;
+            document.getElementById('m-title').innerText = d.title; document.getElementById('m-subtitle').innerText = d.sub;
+            
+            let suppsHTML = ''; 
+            if(d.supps) {
+                d.supps.forEach(s => { suppsHTML += `<div class="supp-box ${(!d.exercises || d.exercises.length === 0) ? 'rest-box' : ''}" style="cursor: pointer; transition: opacity 0.2s;" onclick="this.style.opacity = this.style.opacity === '0.3' ? '1' : '0.3'"><div><div class="supp-time">${s.time}</div><div class="supp-desc">${s.text}</div></div></div>`; });
+            }
+            document.getElementById('m-supps').innerHTML = suppsHTML;
+
+            let exHTML = '';
+            if(d.exercises && d.exercises.length > 0) {
+                document.getElementById('ex-title').style.display = 'block';
+                d.exercises.forEach(e => { 
+                    exHTML += `<div class="exercise-item" style="cursor: pointer; transition: opacity 0.2s;" onclick="this.style.opacity = this.style.opacity === '0.3' ? '1' : '0.3'"><div class="ex-name">${e.name}</div><div class="ex-sets" style="color:var(--neon-green)">${e.sets}</div></div>`; 
+                });
+            } else { 
+                document.getElementById('ex-title').style.display = 'none'; 
+                exHTML = `<div style="text-align:center; padding: 20px; color:#8E8E93;">Сьогодні м'язи відпочивають. 😴</div>`; 
+            }
+            document.getElementById('m-exercises').innerHTML = exHTML;
+            
+            const btn = document.getElementById('m-btn'); btn.className = `complete-btn ${d.btnClass || ''}`;
+            btn.innerText = savedProgress[currentActiveDay] ? '✅ ВИКОНАНО (ДЛЯ ОБОХ)' : ((d.exercises && d.exercises.length > 0) ? 'ЗАВЕРШИТИ ТРЕНУВАННЯ' : 'ВІДМІТИТИ ВІДПОЧИНОК');
+            document.getElementById('modal').classList.add('active'); if (navigator.vibrate) navigator.vibrate(10);
+        }
+
+        window.closeModal = function() { document.getElementById('modal').classList.remove('active'); }
+
+        window.markDone = function() {
+            if(savedProgress[currentActiveDay]) { window.closeModal(); return; } 
+            savedProgress[currentActiveDay] = true;
+            set(ref(db, 'shared_week_progress'), savedProgress);
+            if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
+            window.closeModal();
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splash-screen');
+                splash.style.opacity = '0';
+                setTimeout(() => splash.style.display = 'none', 400);
+            }, 1000);
+        });
+
+        document.getElementById('modal').addEventListener('click', function(e) { if(e.target === this) window.closeModal(); });
+    </script>
+</body>
+</html>
