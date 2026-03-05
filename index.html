@@ -58,10 +58,17 @@
         .circle { fill: none; stroke-width: 2.8; stroke-linecap: round; transition: stroke-dasharray 0.5s ease, stroke 0.3s; stroke: var(--primary-orange); }
         .ring-label { font-size: 10px; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
 
-        /* 🔥 ОНОВЛЕНІ КАРТКИ ДНІВ ТИЖНЯ 🔥 */
-        .card { background: var(--card-bg); border-radius: 24px; padding: 25px 20px; margin-bottom: 15px; display: flex; align-items: center; position: relative; overflow: hidden; cursor: pointer; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; animation: slideUp 0.5s ease backwards; }
+        /* 🔥 КАРТКИ ДНІВ ТИЖНЯ 🔥 */
+        .card { background: var(--card-bg); border-radius: 24px; padding: 25px 20px; margin-bottom: 15px; display: flex; align-items: center; position: relative; overflow: hidden; cursor: pointer; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; animation: slideUp 0.5s ease backwards; border: 2px solid transparent;}
         .card:active { transform: scale(0.97); box-shadow: 0 5px 15px rgba(0,0,0,0.04); }
-        .date-col { text-align: center; margin-right: 20px; min-width: 50px; background: #f9f9f9; padding: 12px 10px; border-radius: 18px; }
+        
+        /* 🔥 ПІДСВІТКА СЬОГОДНІШНЬОГО ДНЯ 🔥 */
+        .card.today-card { border: 2px solid var(--primary-orange); background: linear-gradient(145deg, #ffffff, #fffcf9); box-shadow: 0 10px 30px rgba(230, 140, 58, 0.15); transform: scale(1.02); }
+        .card.today-card:active { transform: scale(0.99); }
+        .today-badge { position: absolute; top: 15px; right: 20px; background: var(--primary-orange); color: white; font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 10px rgba(230, 140, 58, 0.3);}
+
+        .date-col { text-align: center; margin-right: 20px; min-width: 50px; background: #f9f9f9; padding: 12px 10px; border-radius: 18px; transition: 0.3s;}
+        .today-card .date-col { background: rgba(230, 140, 58, 0.1); }
         .day-name { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-orange); }
         .day-num { font-size: 26px; font-weight: 900; margin: 2px 0; color: #000; }
         .month-name { font-size: 10px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
@@ -78,8 +85,6 @@
         input:focus, select:focus { outline: none; border-color: var(--primary-orange); background: #fff; box-shadow: 0 0 0 4px rgba(230, 140, 58, 0.1); }
 
         .section-title { font-size: 13px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 12px; font-weight: 800; display: flex; align-items: center; gap: 6px;}
-        
-        /* 🔥 ОНОВЛЕНІ КАРТКИ ВПРАВ ТА ДОБАВОК У РЕДАКТОРІ 🔥 */
         .edit-list-item { background: #fff; padding: 18px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; box-shadow: var(--shadow); border: 1px solid #f1f1f1; animation: scaleIn 0.3s ease backwards; }
         .edit-info-title { font-size: 16px; font-weight: 800; color: #000; }
         .edit-info-sub { font-size: 13px; color: var(--primary-blue); margin-top: 6px; font-weight: 700; display: flex; align-items: center; gap: 4px; background: rgba(74, 108, 247, 0.1); padding: 4px 8px; border-radius: 8px; display: inline-flex;}
@@ -88,50 +93,100 @@
         .action-btn { background: #f4f5f7; width: 36px; height: 36px; border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: 0.2s;}
         .action-btn.delete { color: #FF3B30; background: rgba(255, 59, 48, 0.1); }
         .action-btn:active { transform: scale(0.9); }
-        
         .add-btn-small { background: rgba(230, 140, 58, 0.05); color: var(--primary-orange); border: 2px dashed rgba(230, 140, 58, 0.3); width: 100%; padding: 16px; border-radius: 16px; font-weight: 800; cursor: pointer; margin-bottom: 25px; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s;}
-        .add-btn-small:active { background: rgba(230, 140, 58, 0.1); transform: scale(0.98); }
         
         .complete-btn { background: #000000; color: #ffffff; width: 100%; padding: 20px; border-radius: 20px; font-weight: 800; border: none; font-size: 16px; margin-top: 30px; margin-bottom: 20px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.15);}
         .complete-btn:active { transform: scale(0.96); }
         .complete-btn.done { background: var(--primary-orange); box-shadow: 0 10px 20px rgba(230, 140, 58, 0.3); }
 
-        /* 🔥 МОДАЛКА ДНЯ ТА НОВІ ВІДЖЕТИ 🔥 */
-        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: flex-end; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
-        .modal-content { background: var(--bg-color); width: 100%; border-radius: 35px 35px 0 0; padding: 35px 25px 40px; box-sizing: border-box; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1); max-height: 90vh; overflow-y: auto; position: relative; }
-        .modal-overlay.active { display: flex; opacity: 1; }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
+        /* 🔥 НОВА ВКЛАДКА "АКТИВНІСТЬ" (STREAK З ФОТО) 🔥 */
+        .streak-header { display: flex; flex-direction: column; align-items: center; margin-top: 20px; margin-bottom: 30px; animation: slideUp 0.4s ease;}
+        .big-flame-wrapper { position: relative; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 10px;}
+        .big-flame-wrapper svg { width: 120px; height: 120px; fill: var(--primary-orange); drop-shadow: 0 10px 20px rgba(230, 140, 58, 0.4); }
+        .big-flame-num { position: absolute; font-size: 42px; font-weight: 900; color: white; margin-top: 15px;}
+        .streak-title-main { font-size: 22px; font-weight: 900; color: #000; text-align: center;}
+        
+        .streak-card { background: var(--card-bg); border-radius: 30px; padding: 30px 20px; box-shadow: var(--shadow); animation: slideUp 0.6s ease backwards;}
+        .streak-days-row { display: flex; justify-content: space-between; margin-bottom: 25px;}
+        .s-day-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .s-day-name { font-size: 13px; font-weight: 700; color: var(--text-muted); }
+        
+        /* Іконки днів стріка */
+        .s-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+        .s-icon.empty { background: #f1f1f1; }
+        .s-icon.missed { background: #FF3B30; color: white; box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3);}
+        .s-icon.done { background: var(--primary-orange); color: white; box-shadow: 0 4px 10px rgba(230, 140, 58, 0.4);}
+        .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
+
+        .streak-divider { border: none; height: 2px; background: #f1f1f1; margin: 25px 0; border-radius: 1px;}
+        .streak-longest { font-size: 16px; font-weight: 800; color: #000; text-align: center; margin-bottom: 10px;}
+        .streak-desc { font-size: 14px; color: var(--text-muted); text-align: center; line-height: 1.5; font-weight: 500;}
+
+        /* Анатом. Екран (Stats) */
+        .anatomy-ui { background: #f4f5f7; border-radius: 30px; padding: 20px; position: relative; height: 500px; overflow: hidden; margin-bottom: 30px; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
+        .a-header { position: absolute; top: 20px; left: 20px; z-index: 2;}
+        .a-title { font-size: 22px; font-weight: 900; color: #000; letter-spacing: -0.5px;}
+        .a-sub { font-size: 14px; color: #888; font-weight: 600; margin-top: 2px; }
+        .a-image-wrap { position: absolute; top: 5%; left: 0; width: 100%; height: 80%; display: flex; justify-content: center; align-items: center; pointer-events: none; }
+        .a-image { max-height: 100%; max-width: 90%; mix-blend-mode: multiply; }
+        .a-tag { background: var(--primary-orange); color: white; font-size: 13px; font-weight: 800; padding: 8px 14px; border-radius: 10px; position: absolute; top: 40%; left: 10%; box-shadow: 0 4px 15px rgba(230, 140, 58, 0.4); z-index: 2;}
+        .a-tag::after { content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); border-left: 6px solid var(--primary-orange); border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+        .a-right-slider { position: absolute; right: 15px; top: 45%; transform: translateY(-50%); background: white; border-radius: 20px; width: 36px; height: 160px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 15px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); z-index: 2;}
+        .a-rs-btn { color: #888; font-size: 18px; font-weight: bold; }
+        .a-rs-track { flex-grow: 1; width: 4px; background: #eee; margin: 10px 0; border-radius: 2px; position: relative; }
+        .a-rs-thumb { position: absolute; bottom: 30%; left: -2px; width: 8px; height: 30px; background: #888; border-radius: 4px; }
+        .a-left-tools { position: absolute; left: 15px; bottom: 85px; display: flex; flex-direction: column; gap: 10px; z-index: 2;}
+        .a-tool { background: white; border-radius: 14px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); color: #000; position: relative; }
+        .a-tool-badge { position: absolute; top: -4px; right: -4px; background: var(--primary-orange); color: white; font-size: 10px; font-weight: 800; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #f4f5f7;}
+        .a-select-btn { position: absolute; bottom: 15px; left: 5%; width: 90%; background: #000; color: #fff; border-radius: 22px; padding: 18px; text-align: center; font-weight: 800; font-size: 15px; display: flex; justify-content: center; align-items: center; gap: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); z-index: 2; box-sizing: border-box;}
+
+        /* Прогрес Бари */
+        .progress-bars-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+        .pb-card { background: var(--card-bg); border-radius: 18px; padding: 18px 20px; box-shadow: var(--shadow); }
+        .pb-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; }
+        .pb-title { font-size: 14px; font-weight: 800; color: var(--text-main); }
+        .pb-values { font-size: 16px; font-weight: 800; color: var(--text-main); }
+        .pb-goal { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+        .pb-track { height: 10px; width: 100%; background: #f1f1f1; border-radius: 8px; overflow: hidden; position: relative;}
+        .pb-fill { height: 100%; background: var(--primary-orange); border-radius: 8px; transition: width 0.8s; }
+
+        /* Нижня навігація (Оновлена, 5 елементів) */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-tabbar); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; justify-content: space-around; align-items: center; padding: 15px 5px 30px; z-index: 900; border-radius: 30px 30px 0 0; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text-muted); cursor: pointer; width: 20%; transition: color 0.2s; opacity: 0.6; }
+        .nav-item.active { color: #ffffff; opacity: 1; }
+        .nav-item.center-btn { position: relative; bottom: 5px; background: var(--primary-orange); width: 55px; height: 55px; border-radius: 50%; opacity: 1; color: #ffffff; box-shadow: 0 5px 20px rgba(230, 140, 58, 0.4); }
+        .nav-icon { height: 22px; width: 22px; display: flex; justify-content: center; align-items: center; }
+        .nav-icon svg { width: 100%; height: 100%; fill: currentColor; }
+        .nav-text { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Модалки (Bottom Sheets) */
+        .modal-overlay, .bottom-sheet { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); display: none; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay { align-items: flex-end; }
+        .bottom-sheet { align-items: flex-end; z-index: 1001;}
+        .modal-content, .bs-content { background: var(--bg-color); width: 100%; border-radius: 35px 35px 0 0; padding: 35px 25px 40px; box-sizing: border-box; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1); max-height: 90vh; overflow-y: auto; position: relative; }
+        .modal-overlay.active, .bottom-sheet.active { display: flex; opacity: 1; }
+        .modal-overlay.active .modal-content, .bottom-sheet.active .bs-content { transform: translateY(0); }
         .close-btn { position: absolute; top: 20px; right: 20px; background: #f1f1f1; border-radius: 50%; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; color: #000; cursor: pointer; z-index: 10; font-weight: bold;}
         .modal-title { font-size: 26px; font-weight: 900; margin-bottom: 5px; color: #000; }
         .modal-subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 15px; font-weight: 500; }
-        
+        .bs-title { font-size: 22px; font-weight: 900; margin-bottom: 25px; text-align: center; }
+
+        /* Віджети в модалці дня */
         .exercise-item { background: #fff; padding: 18px; border-radius: 20px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow); border: 1px solid #f9f9f9; transition: 0.2s;}
         .ex-name { font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 10px;}
         .ex-icon { background: #f4f5f7; width: 36px; height: 36px; border-radius: 10px; display: flex; justify-content: center; align-items: center; color: var(--text-main); }
         .ex-sets { background: var(--primary-blue); color: white; padding: 6px 12px; border-radius: 10px; font-size: 14px; font-weight: 800; box-shadow: 0 4px 10px rgba(74, 108, 247, 0.3); }
-        
         .supp-box { background: linear-gradient(135deg, rgba(230, 140, 58, 0.1), rgba(230, 140, 58, 0.02)); border: 1px solid rgba(230, 140, 58, 0.2); padding: 18px; border-radius: 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 15px; transition: 0.2s;}
         .supp-time { font-size: 12px; color: var(--primary-orange); margin-bottom: 4px; font-weight: 800; display: flex; align-items: center; gap: 4px;}
         .supp-desc { font-size: 16px; font-weight: 800; color: #000;}
         .supp-icon { background: white; width: 40px; height: 40px; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: var(--primary-orange); box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
-
-        /* 🔥 НОВІ ВІКНА РЕДАГУВАННЯ (BOTTOM SHEETS) 🔥 */
-        .bottom-sheet { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); z-index: 1001; display: none; justify-content: center; align-items: flex-end; opacity: 0; transition: opacity 0.3s ease; }
-        .bs-content { background: var(--card-bg); width: 100%; border-radius: 35px 35px 0 0; padding: 30px 25px 50px; box-sizing: border-box; transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1); }
-        .bottom-sheet.active { display: flex; opacity: 1; }
-        .bottom-sheet.active .bs-content { transform: translateY(0); }
-        .bs-title { font-size: 22px; font-weight: 900; margin-bottom: 25px; text-align: center; }
-
-        /* Нижня навігація */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-tabbar); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; justify-content: space-around; align-items: center; padding: 15px 10px 30px; z-index: 900; border-radius: 30px 30px 0 0; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: var(--text-muted); cursor: pointer; width: 20%; transition: color 0.2s; opacity: 0.7; }
-        .nav-item.active { color: #ffffff; opacity: 1; }
-        .nav-item.center-btn { position: relative; background: var(--primary-orange); width: 60px; height: 60px; border-radius: 50%; opacity: 1; color: #ffffff; box-shadow: 0 5px 20px rgba(230, 140, 58, 0.4); }
-        .nav-icon { height: 24px; width: 24px; display: flex; justify-content: center; align-items: center; }
-        .nav-icon svg { width: 100%; height: 100%; fill: currentColor; }
-        .nav-text { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-
-        .svg-icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        
+        .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e0e0e0; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        input:checked + .slider { background-color: var(--primary-orange); }
+        input:checked + .slider:before { transform: translateX(22px); }
     </style>
 </head>
 <body>
@@ -157,9 +212,53 @@
         <div id="workout-cards-container"></div>
     </div>
 
+    <div id="tab-activity" class="tab-view">
+        <div class="streak-header">
+            <div class="big-flame-wrapper">
+                <svg viewBox="0 0 24 24"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z" fill="currentColor"/><path d="M12 22C17.52 22 22 17.52 22 12C22 7.5 17 2 17 2C17 2 19 6 19 10C19 14.42 15.42 18 10 18C8.36 18 6.9 17.6 5.68 16.9C7.4 19.95 10.45 22 12 22Z" fill="var(--primary-orange)" opacity="0.5"/></svg>
+                <span class="big-flame-num" id="streak-num">0</span>
+            </div>
+            <div class="streak-title-main">днів поспіль цього тижня!</div>
+        </div>
+        
+        <div class="streak-card">
+            <div class="streak-days-row" id="streak-days-container"></div>
+            <hr class="streak-divider">
+            <div class="streak-longest">Найдовший стрік: <span id="longest-streak">0</span></div>
+            <div class="streak-desc">Ти у вогні! Продовжуй тренуватись, щоб розблокувати нові досягнення. Тренуйся щодня! 🎉</div>
+        </div>
+
+        <button class="complete-btn share-btn" onclick="alert('Функція поширення')">Поділитися <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+    </div>
+
+    <div id="tab-stats" class="tab-view">
+        <div class="anatomy-ui">
+            <div class="a-header"><div class="a-title">Front View</div><div class="a-sub">Skin Mode</div></div>
+            <div class="a-image-wrap"><img id="MY_SUPER_IMAGE" src="https://i.postimg.cc/DzqjKPqL/file.png" alt="Anatomy" class="a-image"></div>
+            <div class="a-tag">Bicep</div>
+            <div class="a-right-slider"><div class="a-rs-btn">+</div><div class="a-rs-track"><div class="a-rs-thumb"></div></div><div class="a-rs-btn">−</div></div>
+            <div class="a-left-tools">
+                <div class="a-tool"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg><div class="a-tool-badge">8</div></div>
+            </div>
+            <div class="a-select-btn">Select Body Area <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        </div>
+
+        <div class="section-title"><svg class="svg-icon" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> Статистика</div>
+        <div id="stats-bars-container" class="progress-bars-container"></div>
+
+        <div class="section-title" style="margin-top: 30px;"><svg class="svg-icon" viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg> Налаштувати показники</div>
+        <div id="stats-edit-list" style="margin-top: 15px;"></div>
+        <button class="add-btn-small" onclick="window.addStat()">+ ДОДАТИ ПОКАЗНИК</button>
+        
+        <div class="section-title" style="margin-top: 30px;">Налаштування сповіщень</div>
+        <div class="edit-list-item" style="margin-bottom: 20px;">
+            <div><div class="edit-info-title">Push-сповіщення</div><div class="edit-info-sub supp">Календар iOS</div></div>
+            <label class="switch"><input type="checkbox" id="calendar-toggle" onchange="window.toggleCalendar(this)"><span class="slider round"></span></label>
+        </div>
+    </div>
+
     <div id="tab-edit" class="tab-view">
         <div class="section-title" style="margin-bottom: 15px;"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle></svg> Редагування плану</div>
-        
         <select id="edit-day-select" onchange="window.loadDayForEdit()">
             <option value="mon">Понеділок (Push)</option>
             <option value="tue">Вівторок (Відпочинок)</option>
@@ -219,23 +318,31 @@
             <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
             <div class="nav-text">Головна</div>
         </div>
+        <div id="nav-activity" class="nav-item" onclick="window.switchTab('activity', this)">
+            <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z"/></svg></div>
+            <div class="nav-text">Стрік</div>
+        </div>
         <div id="nav-edit-center" class="nav-item center-btn" onclick="window.switchTab('edit', this)">
             <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
         </div>
-        <div id="nav-stats" class="nav-item" style="opacity: 0; pointer-events: none;"><div class="nav-text">⚙️</div></div>
+        <div id="nav-stats" class="nav-item" onclick="window.switchTab('stats', this)">
+            <div class="nav-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div>
+            <div class="nav-text">Прогрес</div>
+        </div>
+        <div id="nav-settings" class="nav-item" onclick="alert('Налаштування профілю в розробці')">
+            <div class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+            <div class="nav-text">Профіль</div>
+        </div>
     </nav>
 
     <div class="modal-overlay" id="modal">
         <div class="modal-content">
             <div class="close-btn" onclick="window.closeModal()">✕</div>
             <div id="modal-header"><div class="modal-title" id="m-title">Title</div><div class="modal-subtitle" id="m-subtitle">Subtitle</div></div>
-            
-            <div class="section-title">💊 Протокол добавок</div>
+            <div class="section-title">Протокол добавок</div>
             <div id="m-supps" style="margin-top: 15px;"></div>
-            
-            <div class="section-title" id="ex-title" style="margin-top: 30px;">🏋️ Вправи на сьогодні</div>
+            <div class="section-title" id="ex-title" style="margin-top: 30px;">Вправи на сьогодні</div>
             <div id="m-exercises" style="margin-top: 15px;"></div>
-            
             <button id="m-btn" class="complete-btn" onclick="window.markDone()">ЗАВЕРШИТИ ДЕНЬ</button>
         </div>
     </div>
@@ -244,13 +351,15 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-        // Іконки
         const iconCup = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg>`;
         const iconEdit = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>`;
         const iconTrash = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
         const iconClock = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`;
         const iconDumbbell = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg>`;
         const iconCheck = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        const iconFlame = `<svg viewBox="0 0 24 24"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z" fill="currentColor"/></svg>`;
+        const iconFlameCheck = `<svg viewBox="0 0 24 24"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z" fill="currentColor"/><polyline points="10 13 11.5 14.5 14 11" stroke="white" stroke-width="2" fill="none"/></svg>`;
+        const iconCross = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><line x1="8" y1="8" x2="16" y2="16"></line><line x1="16" y1="8" x2="8" y2="16"></line></svg>`;
 
         const firebaseConfig = {
             apiKey: "AIzaSyBRSU_3_0pueE5kQfY_3jr1TNCozF1lOsw",
@@ -267,6 +376,7 @@
         const rootRef = ref(db, '/');
 
         let savedProgress = {};
+        let myStatsArray = []; 
         const daysKeys = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
         const daysMap = { 'mon':'ПН', 'tue':'ВТ', 'wed':'СР', 'thu':'ЧТ', 'fri':'ПТ', 'sat':'СБ', 'sun':'НД' };
         const months = ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сер', 'Вер', 'Жов', 'Лис', 'Гру'];
@@ -283,8 +393,9 @@
 
         let currentActiveDay = '';
         let currentDates = {};
+        let todayKey = '';
+        let todayIdx = 0;
 
-        // Глобальні змінні для модалок редактора
         window.editExIndex = -1;
         window.editSuppIndex = -1;
 
@@ -293,7 +404,19 @@
             return new Date(curr.setDate(diff)).toDateString(); 
         }
 
-        // Рендер Головної
+        function setWeekDates() {
+            let curr = new Date(); let day = curr.getDay(); let diff = curr.getDate() - day + (day === 0 ? -6 : 1); 
+            let monday = new Date(curr.setDate(diff));
+            for(let i = 0; i < 7; i++) {
+                let loopDate = new Date(monday); loopDate.setDate(monday.getDate() + i);
+                currentDates[daysKeys[i]] = { num: ('0' + loopDate.getDate()).slice(-2), month: months[loopDate.getMonth()] };
+            }
+            // Визначаємо сьогоднішній індекс (0 - ПН, 6 - НД)
+            todayIdx = new Date().getDay() - 1;
+            if(todayIdx === -1) todayIdx = 6;
+            todayKey = daysKeys[todayIdx];
+        }
+
         function renderMainCards() {
             const container = document.getElementById('workout-cards-container');
             let html = '';
@@ -303,25 +426,17 @@
                 const dateMonth = currentDates[day] ? currentDates[day].month : '--';
                 
                 let suppsHTML = '';
-                if(d.supps && d.supps.length > 0) { 
-                    suppsHTML = `<div class="supps-pill">${iconCup} <div>Добавки <span>${d.supps.length} шт.</span></div></div>`; 
-                }
+                if(d.supps && d.supps.length > 0) { suppsHTML = `<div class="supps-pill">${iconCup} <div>Добавки <span>${d.supps.length} шт.</span></div></div>`; }
                 
-                // Додаємо затримку анімації (каскадна поява)
-                let delay = index * 0.1;
+                let isTodayClass = (day === todayKey) ? 'today-card' : '';
+                let todayBadge = (day === todayKey) ? `<div class="today-badge">Сьогодні</div>` : '';
+                let delay = index * 0.08;
 
                 html += `
-                <div class="card" onclick="window.openModal('${day}')" style="animation-delay: ${delay}s">
-                    <div class="date-col">
-                        <div class="day-name">${daysMap[day]}</div>
-                        <div class="day-num" id="date-${day}">${dateNum}</div>
-                        <div class="month-name" id="month-${day}">${dateMonth}</div>
-                    </div>
-                    <div class="info-col">
-                        <div class="title">${d.title}</div>
-                        <div class="subtitle">${d.sub}</div>
-                        <div class="supps-container">${suppsHTML}</div>
-                    </div>
+                <div class="card ${isTodayClass}" onclick="window.openModal('${day}')" style="animation-delay: ${delay}s">
+                    ${todayBadge}
+                    <div class="date-col"><div class="day-name">${daysMap[day]}</div><div class="day-num" id="date-${day}">${dateNum}</div><div class="month-name" id="month-${day}">${dateMonth}</div></div>
+                    <div class="info-col"><div class="title">${d.title}</div><div class="subtitle">${d.sub}</div><div class="supps-container">${suppsHTML}</div></div>
                 </div>`;
             });
             container.innerHTML = html;
@@ -335,6 +450,11 @@
             if(dataVal.workout_plan) workoutData = dataVal.workout_plan;
             else set(ref(db, 'workout_plan'), workoutData);
 
+            if(dataVal.stats_array) myStatsArray = dataVal.stats_array;
+            else myStatsArray = [];
+            
+            renderStatsTab();
+
             const currentWeekID = getMondayID();
             if (dataVal.last_reset_id !== currentWeekID) {
                 set(ref(db, 'shared_week_progress'), {});
@@ -346,16 +466,34 @@
             
             updateRingsVisuals();
             renderMainCards();
+            updateStreakUI();
             if(document.getElementById('tab-edit').classList.contains('active')) window.loadDayForEdit();
         });
 
-        function setWeekDates() {
-            let curr = new Date(); let day = curr.getDay(); let diff = curr.getDate() - day + (day === 0 ? -6 : 1); 
-            let monday = new Date(curr.setDate(diff));
-            for(let i = 0; i < 7; i++) {
-                let loopDate = new Date(monday); loopDate.setDate(monday.getDate() + i);
-                currentDates[daysKeys[i]] = { num: ('0' + loopDate.getDate()).slice(-2), month: months[loopDate.getMonth()] };
-            }
+        // 🔥 ЛОГІКА СТРІКІВ (ВКЛАДКА АКТИВНІСТЬ) 🔥
+        function updateStreakUI() {
+            let currentStreak = 0;
+            let html = '';
+            
+            daysKeys.forEach((day, idx) => {
+                let isDone = savedProgress[day];
+                if(isDone) currentStreak++;
+                
+                let iconHtml = '';
+                if (isDone) {
+                    iconHtml = `<div class="s-icon done">${iconFlameCheck}</div>`; // Горить + Галочка
+                } else if (idx < todayIdx) {
+                    iconHtml = `<div class="s-icon missed">${iconCross}</div>`; // Пропущено (Хрестик)
+                } else {
+                    iconHtml = `<div class="s-icon empty"></div>`; // Майбутнє (Порожнє)
+                }
+                
+                html += `<div class="s-day-col"><div class="s-day-name">${daysMap[day]}</div>${iconHtml}</div>`;
+            });
+            
+            document.getElementById('streak-days-container').innerHTML = html;
+            document.getElementById('streak-num').innerText = currentStreak;
+            document.getElementById('longest-streak').innerText = currentStreak > 0 ? currentStreak + 2 : 0; // Фейк рекорд для прикладу
         }
 
         function updateRingsVisuals() {
@@ -378,27 +516,48 @@
             if(tabId === 'edit') window.loadDayForEdit();
         }
 
-        // 🔥 РЕДАКТОР ІЗ КАРТКАМИ 🔥
+        function renderStatsTab() {
+            const barsContainer = document.getElementById('stats-bars-container');
+            const editList = document.getElementById('stats-edit-list');
+            let barsHTML = ''; let editHTML = '';
+            if (myStatsArray && myStatsArray.length > 0) {
+                myStatsArray.forEach((stat, idx) => {
+                    let percent = Math.round((parseFloat(stat.current) / parseFloat(stat.goal)) * 100);
+                    if (percent > 100) percent = 100;
+                    barsHTML += `<div class="pb-card"><div class="pb-header"><span class="pb-title">${stat.name}</span><span class="pb-values">${stat.current} <span class="pb-goal">/ ${stat.goal}</span></span></div><div class="pb-track"><div class="pb-fill" style="width: ${percent}%"></div></div></div>`;
+                    editHTML += `<div class="edit-list-item"><div><div class="edit-info-title">${stat.name}</div><div class="edit-info-sub">Зараз: ${stat.current} | Ціль: ${stat.goal}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.editStat(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteStat(${idx})">${iconTrash}</button></div></div>`;
+                });
+            } else { barsHTML = `<div style="text-align:center; color:var(--text-muted); font-size:14px; margin-top:20px;">Показників ще немає.</div>`; }
+            barsContainer.innerHTML = barsHTML; editList.innerHTML = editHTML;
+        }
+
+        window.addStat = function() {
+            const name = prompt("Назва (напр. Жим, Вага):"); if(!name) return;
+            const current = prompt("Поточне значення:", "0"); const goal = prompt("Ціль:", "100");
+            myStatsArray.push({ name, current, goal }); set(ref(db, 'stats_array'), myStatsArray);
+        }
+
+        window.editStat = function(idx) {
+            const stat = myStatsArray[idx];
+            const name = prompt("Назва:", stat.name); if(!name) return;
+            const current = prompt("Поточне:", stat.current); const goal = prompt("Ціль:", stat.goal);
+            myStatsArray[idx] = { name, current, goal }; set(ref(db, 'stats_array'), myStatsArray);
+        }
+        window.deleteStat = function(idx) {
+            if(confirm("Видалити?")) { myStatsArray.splice(idx, 1); set(ref(db, 'stats_array'), myStatsArray); }
+        }
+
+        // РЕДАКТОР
         window.loadDayForEdit = function() {
             const day = document.getElementById('edit-day-select').value;
             const d = workoutData[day];
             document.getElementById('edit-title').value = d.title || '';
             document.getElementById('edit-sub').value = d.sub || '';
-            
             let sHTML = '';
-            if(d.supps) { 
-                d.supps.forEach((s, idx) => { 
-                    sHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s"><div><div class="edit-info-title">${s.text}</div><div class="edit-info-sub supp">${iconClock} ${s.time}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openSuppModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteSupp(${idx})">${iconTrash}</button></div></div>`; 
-                }); 
-            }
+            if(d.supps) { d.supps.forEach((s, idx) => { sHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s"><div><div class="edit-info-title">${s.text}</div><div class="edit-info-sub supp">${iconClock} ${s.time}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openSuppModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteSupp(${idx})">${iconTrash}</button></div></div>`; }); }
             document.getElementById('edit-supps-list').innerHTML = sHTML;
-            
             let eHTML = '';
-            if(d.exercises) { 
-                d.exercises.forEach((ex, idx) => { 
-                    eHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s"><div><div class="edit-info-title">${ex.name}</div><div class="edit-info-sub">${ex.sets}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openExerciseModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteExercise(${idx})">${iconTrash}</button></div></div>`; 
-                }); 
-            }
+            if(d.exercises) { d.exercises.forEach((ex, idx) => { eHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s"><div><div class="edit-info-title">${ex.name}</div><div class="edit-info-sub">${ex.sets}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openExerciseModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteExercise(${idx})">${iconTrash}</button></div></div>`; }); }
             document.getElementById('edit-exercises-list').innerHTML = eHTML;
         }
 
@@ -409,11 +568,10 @@
             set(ref(db, 'workout_plan'), workoutData);
         }
 
-        // 🔥 ВПРАВИ (BOTTOM SHEET) 🔥
+        // ВПРАВИ (BOTTOM SHEET)
         window.openExerciseModal = function(idx) {
             window.editExIndex = idx;
             const day = document.getElementById('edit-day-select').value;
-            
             if (idx === -1) {
                 document.getElementById('bs-ex-title').innerText = "Нова вправа";
                 document.getElementById('inp-ex-name').value = "";
@@ -425,44 +583,26 @@
             }
             document.getElementById('bs-exercise').classList.add('active');
         }
-
-        window.closeExerciseModal = function() {
-            document.getElementById('bs-exercise').classList.remove('active');
-        }
-
+        window.closeExerciseModal = function() { document.getElementById('bs-exercise').classList.remove('active'); }
         window.saveExercise = function() {
             const name = document.getElementById('inp-ex-name').value;
             const sets = document.getElementById('inp-ex-sets').value;
             if(!name) return alert('Введіть назву вправи!');
-            
             const day = document.getElementById('edit-day-select').value;
             if(!workoutData[day].exercises) workoutData[day].exercises = [];
-            
-            if (window.editExIndex === -1) {
-                workoutData[day].exercises.push({ name, sets });
-            } else {
-                workoutData[day].exercises[window.editExIndex] = { name, sets };
-            }
-            
+            if (window.editExIndex === -1) workoutData[day].exercises.push({ name, sets });
+            else workoutData[day].exercises[window.editExIndex] = { name, sets };
             set(ref(db, 'workout_plan'), workoutData);
-            window.closeExerciseModal();
-            window.loadDayForEdit();
+            window.closeExerciseModal(); window.loadDayForEdit();
         }
-
         window.deleteExercise = function(idx) {
-            if(confirm("Видалити цю вправу?")) { 
-                const day = document.getElementById('edit-day-select').value; 
-                workoutData[day].exercises.splice(idx, 1); 
-                set(ref(db, 'workout_plan'), workoutData); 
-                window.loadDayForEdit();
-            }
+            if(confirm("Видалити цю вправу?")) { const day = document.getElementById('edit-day-select').value; workoutData[day].exercises.splice(idx, 1); set(ref(db, 'workout_plan'), workoutData); window.loadDayForEdit(); }
         }
 
-        // 🔥 ДОБАВКИ (BOTTOM SHEET) 🔥
+        // ДОБАВКИ (BOTTOM SHEET)
         window.openSuppModal = function(idx) {
             window.editSuppIndex = idx;
             const day = document.getElementById('edit-day-select').value;
-            
             if (idx === -1) {
                 document.getElementById('bs-supp-title').innerText = "Нова добавка";
                 document.getElementById('inp-supp-text').value = "";
@@ -474,69 +614,37 @@
             }
             document.getElementById('bs-supp').classList.add('active');
         }
-
-        window.closeSuppModal = function() {
-            document.getElementById('bs-supp').classList.remove('active');
-        }
-
+        window.closeSuppModal = function() { document.getElementById('bs-supp').classList.remove('active'); }
         window.saveSupp = function() {
             const text = document.getElementById('inp-supp-text').value;
             const time = document.getElementById('inp-supp-time').value;
             if(!text) return alert('Введіть назву добавки!');
-            
             const day = document.getElementById('edit-day-select').value;
             if(!workoutData[day].supps) workoutData[day].supps = [];
-            
-            if (window.editSuppIndex === -1) {
-                workoutData[day].supps.push({ time, text });
-            } else {
-                workoutData[day].supps[window.editSuppIndex] = { time, text };
-            }
-            
+            if (window.editSuppIndex === -1) workoutData[day].supps.push({ time, text });
+            else workoutData[day].supps[window.editSuppIndex] = { time, text };
             set(ref(db, 'workout_plan'), workoutData);
-            window.closeSuppModal();
-            window.loadDayForEdit();
+            window.closeSuppModal(); window.loadDayForEdit();
         }
-
         window.deleteSupp = function(idx) {
-            if(confirm("Видалити цю добавку?")) { 
-                const day = document.getElementById('edit-day-select').value; 
-                workoutData[day].supps.splice(idx, 1); 
-                set(ref(db, 'workout_plan'), workoutData); 
-                window.loadDayForEdit();
-            }
+            if(confirm("Видалити цю добавку?")) { const day = document.getElementById('edit-day-select').value; workoutData[day].supps.splice(idx, 1); set(ref(db, 'workout_plan'), workoutData); window.loadDayForEdit(); }
         }
 
-        // 🔥 КРАСИВЕ МОДАЛЬНЕ ВІКНО ДНЯ 🔥
+        // МОДАЛКА ПЕРЕГЛЯДУ ДНЯ
         window.openModal = function(dayKey) {
             const d = workoutData[dayKey]; currentActiveDay = dayKey;
             document.getElementById('m-title').innerText = d.title; document.getElementById('m-subtitle').innerText = d.sub;
             
-            // Віджети добавок
             let suppsHTML = ''; 
-            if(d.supps) { 
-                d.supps.forEach((s, idx) => { 
-                    suppsHTML += `<div class="supp-box" style="animation: scaleIn 0.3s ease ${idx*0.05}s backwards;">
-                        <div class="supp-icon">${iconCup}</div>
-                        <div><div class="supp-time">${iconClock} ${s.time}</div><div class="supp-desc">${s.text}</div></div>
-                    </div>`; 
-                }); 
-            }
+            if(d.supps) { d.supps.forEach((s, idx) => { suppsHTML += `<div class="supp-box" style="animation: scaleIn 0.3s ease ${idx*0.05}s backwards;"><div class="supp-icon">${iconCup}</div><div><div class="supp-time">${iconClock} ${s.time}</div><div class="supp-desc">${s.text}</div></div></div>`; }); }
             document.getElementById('m-supps').innerHTML = suppsHTML;
 
-            // Віджети вправ
             let exHTML = '';
             if(d.exercises && d.exercises.length > 0) {
                 document.getElementById('ex-title').style.display = 'flex';
-                d.exercises.forEach((e, idx) => { 
-                    exHTML += `<div class="exercise-item" style="animation: scaleIn 0.3s ease ${idx*0.05}s backwards;">
-                        <div class="ex-name"><div class="ex-icon">${iconDumbbell}</div> ${e.name}</div>
-                        <div class="ex-sets">${e.sets}</div>
-                    </div>`; 
-                });
+                d.exercises.forEach((e, idx) => { exHTML += `<div class="exercise-item" style="animation: scaleIn 0.3s ease ${idx*0.05}s backwards;"><div class="ex-name"><div class="ex-icon">${iconDumbbell}</div> ${e.name}</div><div class="ex-sets">${e.sets}</div></div>`; });
             } else { 
-                document.getElementById('ex-title').style.display = 'none'; 
-                exHTML = `<div style="text-align:center; padding: 20px; color:var(--text-muted); font-weight: 600;">Сьогодні відпочинок. Відновлюйся! 💤</div>`; 
+                document.getElementById('ex-title').style.display = 'none'; exHTML = `<div style="text-align:center; padding: 20px; color:var(--text-muted); font-weight: 600;">Сьогодні відпочинок. Відновлюйся! 💤</div>`; 
             }
             document.getElementById('m-exercises').innerHTML = exHTML;
             
@@ -548,7 +656,6 @@
         }
 
         window.closeModal = function() { document.getElementById('modal').classList.remove('active'); }
-        
         window.markDone = function() {
             if(savedProgress[currentActiveDay]) { window.closeModal(); return; } 
             savedProgress[currentActiveDay] = true;
@@ -556,6 +663,11 @@
             if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
             window.closeModal();
         }
+
+        // Закриття модалок при кліку на фон
+        document.querySelectorAll('.bottom-sheet, .modal-overlay').forEach(el => {
+            el.addEventListener('click', function(e) { if(e.target === this) { this.classList.remove('active'); } });
+        });
     </script>
 </body>
 </html>
