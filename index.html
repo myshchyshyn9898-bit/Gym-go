@@ -83,6 +83,7 @@
         .live-dot { width: 8px; height: 8px; background: #FF453A; border-radius: 50%; box-shadow: 0 0 8px #FF453A; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
 
+        /* Головна */
         .progress-section { display: flex; justify-content: space-between; margin-bottom: 30px; gap: 5px; animation: slideUp 0.6s ease; }
         .ring-container { display: flex; flex-direction: column; align-items: center; width: 14%; }
         .circular-chart { max-width: 40px; max-height: 40px; }
@@ -194,7 +195,7 @@
         .ch-val { font-size: 16px; font-weight: 900; color: var(--text-main); display: flex; align-items: center; gap: 4px;}
         .ch-val svg { width: 16px; height: 16px; fill: var(--primary-blue);}
 
-        /* 🔥 РОЗУМНА АНАТОМІЯ (Smart Heatmap) 🔥 */
+        /* РОЗУМНА АНАТОМІЯ (Smart Heatmap) */
         .anatomy-ui { background: var(--surface-1); border-radius: 30px; padding: 20px; position: relative; height: 500px; overflow: hidden; margin-bottom: 30px; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
         .a-header { position: absolute; top: 20px; left: 20px; z-index: 2;}
         .a-title { font-size: 22px; font-weight: 900; color: var(--text-main); letter-spacing: -0.5px;}
@@ -209,7 +210,6 @@
         .a-rs-track { flex-grow: 1; width: 4px; background: var(--surface-1); margin: 10px 0; border-radius: 2px; position: relative; }
         .a-rs-thumb { position: absolute; bottom: 30%; left: -2px; width: 8px; height: 30px; background: var(--text-muted); border-radius: 4px; }
         
-        /* Смарт-теги для м'язів */
         .smart-tag { position: absolute; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 800; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 2; transition: 0.3s; backdrop-filter: blur(5px); display: flex; align-items: center; gap: 5px; border: 1px solid rgba(255,255,255,0.2);}
         .tag-fresh { background: rgba(52, 199, 89, 0.85); }
         .tag-worked { background: rgba(216, 137, 68, 0.85); }
@@ -262,6 +262,8 @@
         .nav-icon svg { width: 100%; height: 100%; fill: currentColor; }
         .nav-text { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
+        .svg-icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
         /* Модалки */
         .modal-overlay, .bottom-sheet { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); display: none; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
         .modal-overlay { align-items: flex-end; }
@@ -274,7 +276,6 @@
         .modal-subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 15px; font-weight: 500; }
         .bs-title { font-size: 22px; font-weight: 900; margin-bottom: 25px; text-align: center; color: var(--text-main); }
 
-        /* Віджети в модалці дня */
         .exercise-item { background: var(--card-bg); padding: 18px; border-radius: 20px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow); border: 1px solid var(--border-color); transition: 0.3s ease; cursor: pointer; position: relative;}
         .ex-name { font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 10px; color: var(--text-main);}
         .ex-icon { background: var(--surface-1); width: 36px; height: 36px; border-radius: 10px; display: flex; justify-content: center; align-items: center; color: var(--text-main); }
@@ -285,10 +286,9 @@
         .supp-desc { font-size: 16px; font-weight: 800; color: var(--text-main);}
         .supp-icon { background: var(--card-bg); width: 40px; height: 40px; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: var(--primary-orange); box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
 
-        /* КЛАС ДЛЯ "ВИКОНАНО" (Fade-out effect) */
         .item-completed { opacity: 0.3; transform: scale(0.97); filter: grayscale(100%); }
 
-        /* 🔥 СМАРТ ТАЙМЕР 🔥 */
+        /* СМАРТ ТАЙМЕР */
         .rest-timer { position: fixed; bottom: 120px; left: 50%; transform: translateX(-50%) translateY(200px); background: rgba(28, 28, 30, 0.95); backdrop-filter: blur(10px); color: white; padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); z-index: 2000; opacity: 0; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: none; border: 1px solid rgba(255,255,255,0.1); }
         .rest-timer.active { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
         .rt-time { font-size: 22px; font-weight: 900; font-variant-numeric: tabular-nums; color: var(--primary-orange); display: flex; align-items: center; gap: 6px;}
@@ -390,9 +390,7 @@
         <div class="anatomy-ui" style="margin-top: 30px;">
             <div class="a-header"><div class="a-title">Muscle Heatmap</div><div class="a-sub">Аналіз виконаних вправ</div></div>
             <div class="a-image-wrap"><img src="https://i.postimg.cc/DzqjKPqL/file.png" alt="Anatomy" class="a-image"></div>
-            
             <div id="anatomy-tags-container"></div>
-            
             <div class="a-right-slider"><div class="a-rs-btn">+</div><div class="a-rs-track"><div class="a-rs-thumb"></div></div><div class="a-rs-btn">−</div></div>
         </div>
     </div>
@@ -434,7 +432,7 @@
     <div id="tab-settings" class="tab-view">
         <div class="editor-banner" style="background: linear-gradient(135deg, var(--text-main), var(--text-muted));">
             <div class="eb-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
-            <div class="eb-text"><div class="eb-title">Налаштування</div><div class="eb-sub">Керуй виглядом та сповіщеннями</div></div>
+            <div class="eb-text"><div class="eb-title">Налаштування</div><div class="eb-sub">Керуй виглядом та даними додатку</div></div>
         </div>
 
         <div class="section-title">🎨 Вибір теми</div>
@@ -455,6 +453,13 @@
             <div class="set-item">
                 <div><div class="edit-info-title">Push-сповіщення</div><div class="edit-info-sub">Календар iOS</div></div>
                 <label class="switch"><input type="checkbox" id="calendar-toggle" onchange="window.toggleCalendar(this)"><span class="slider round"></span></label>
+            </div>
+            
+            <div class="set-item" style="cursor: pointer;" onclick="window.resetAppData()">
+                <div><div class="edit-info-title" style="color: var(--primary-red);">Скинути весь прогрес</div><div class="edit-info-sub">Обнулити статистику та стрік</div></div>
+                <div class="action-btn delete">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                </div>
             </div>
         </div>
     </div>
@@ -583,17 +588,6 @@
         window.editExIndex = -1;
         window.editSuppIndex = -1;
 
-        window.setTheme = function(themeName) {
-            document.documentElement.setAttribute('data-theme', themeName);
-            localStorage.setItem('gymgo_theme', themeName);
-            document.querySelectorAll('.theme-card').forEach(el => el.classList.remove('active'));
-            document.getElementById('tc-' + themeName).classList.add('active');
-        }
-        setTimeout(() => {
-            const currentT = localStorage.getItem('gymgo_theme') || 'premium';
-            if(document.getElementById('tc-' + currentT)) document.getElementById('tc-' + currentT).classList.add('active');
-        }, 100);
-
         function getMondayID() {
             let curr = new Date(); let day = curr.getDay(); let diff = curr.getDate() - day + (day === 0 ? -6 : 1);
             return new Date(curr.setDate(diff)).toDateString(); 
@@ -658,27 +652,21 @@
             if(document.getElementById('tab-edit').classList.contains('active')) window.loadDayForEdit();
         });
 
-        window.shareStreak = function() {
-            const streak = document.getElementById('streak-num').innerText;
-            const shareData = {
-                title: 'Gym Go Прогрес',
-                text: `🔥 Мій стрік у Gym Go: ${streak} дні(в) поспіль цього тижня! Тренуйся зі мною! 🚀`,
-                url: window.location.href
-            };
-            if (navigator.share) { navigator.share(shareData).catch(console.error); } 
-            else { navigator.clipboard.writeText(shareData.text + " " + shareData.url); alert('Текст скопійовано! Відправ другу.'); }
-        }
-
-        window.toggleCalendar = function(el) {
-            if (el.checked) {
-                localStorage.setItem('gymgo_push', 'true');
-                alert("⏳ Генеруємо розклад...\n\nКоли запитає, натисни 'Додати всі події'.");
-            } else {
-                localStorage.setItem('gymgo_push', 'false');
+        // 🔥 КНОПКА СКИНУТИ ПРОГРЕС 🔥
+        window.resetAppData = function() {
+            if(confirm("🚨 Увага! Ви дійсно хочете безповоротно видалити всю статистику, виконані дні та стрік? (План тренувань залишиться)")) {
+                savedProgress = {};
+                
+                set(ref(db, 'shared_week_progress'), savedProgress);
+                set(ref(db, 'last_reset_id'), getMondayID());
+                
+                updateStreakUI();
+                updateRingsVisuals();
+                calculateAndRenderDashboard();
+                
+                alert("✅ Дані успішно обнулено!");
+                window.switchTab('home', document.getElementById('nav-home'));
             }
-        }
-        if(localStorage.getItem('gymgo_push') === 'true') {
-            document.getElementById('calendar-toggle').checked = true;
         }
 
         function updateStreakUI() {
@@ -715,7 +703,6 @@
             if(tabId === 'edit') window.loadDayForEdit();
         }
 
-        // 🔥 РОЗУМНИЙ ПІДРАХУНОК ТА АНАТОМІЯ 🔥
         function calculateAndRenderDashboard() {
             let totalProtein = 0; let totalCreatine = 0; let totalSets = 0; let totalWorkouts = 0; let chartHtml = '';
             let vol = { Chest: 0, Back: 0, Legs: 0, Arms: 0 };
@@ -746,7 +733,6 @@
                             let setsNum = parseInt(e.sets.charAt(0)); 
                             if(!isNaN(setsNum)) {
                                 totalSets += setsNum; 
-                                // Рахуємо об'єм для м'язів
                                 let name = e.name.toLowerCase();
                                 if (kwChest.some(k => name.includes(k))) vol.Chest += setsNum;
                                 else if (kwBack.some(k => name.includes(k))) vol.Back += setsNum;
@@ -772,7 +758,6 @@
             document.getElementById('val-sets').innerHTML = `${totalSets} <span style="font-size:12px; color:var(--text-muted)">підходів</span>`;
             document.getElementById('val-kcal').innerHTML = `${totalWorkouts * 400} <svg viewBox="0 0 24 24" width="16" height="16" fill="var(--primary-blue)"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z"/></svg>`;
 
-            // Рендер Смарт-Анамтомії
             function getTagData(name, sets) {
                 if (sets === 0) return { class: 'tag-fresh', text: `🟢 ${name}: Відновився` };
                 if (sets <= 10) return { class: 'tag-worked', text: `🟠 ${name}: У тонусі` };
@@ -787,7 +772,6 @@
             document.getElementById('anatomy-tags-container').innerHTML = tagsHtml;
         }
 
-        // РЕДАКТОР
         window.loadDayForEdit = function() {
             const day = document.getElementById('edit-day-select').value;
             const d = workoutData[day];
@@ -846,55 +830,32 @@
             if(confirm("Видалити цю добавку?")) { const day = document.getElementById('edit-day-select').value; workoutData[day].supps.splice(idx, 1); set(ref(db, 'workout_plan'), workoutData); window.loadDayForEdit(); }
         }
 
-        // 🔥 ЛОГІКА ТАЙМЕРА 🔥
-        let restInterval;
-        let restTimeRemaining = 0;
-        
+        let restInterval; let restTimeRemaining = 0;
         window.startTimer = function(seconds) {
-            clearInterval(restInterval);
-            restTimeRemaining = seconds;
-            document.getElementById('rest-timer').classList.add('active');
-            updateTimerUI();
-            
+            clearInterval(restInterval); restTimeRemaining = seconds;
+            document.getElementById('rest-timer').classList.add('active'); updateTimerUI();
             restInterval = setInterval(() => {
-                restTimeRemaining--;
-                updateTimerUI();
+                restTimeRemaining--; updateTimerUI();
                 if(restTimeRemaining <= 0) {
                     clearInterval(restInterval);
-                    if(navigator.vibrate) navigator.vibrate([500, 200, 500, 200, 1000]); // Потужна вібрація
+                    if(navigator.vibrate) navigator.vibrate([500, 200, 500, 200, 1000]); 
                     setTimeout(() => window.stopTimer(), 2000);
                 }
             }, 1000);
         }
-        
-        window.stopTimer = function() {
-            clearInterval(restInterval);
-            document.getElementById('rest-timer').classList.remove('active');
-        }
-
-        window.adjustTimer = function(sec) {
-            restTimeRemaining += sec;
-            if(restTimeRemaining < 0) restTimeRemaining = 0;
-            updateTimerUI();
-        }
-
+        window.stopTimer = function() { clearInterval(restInterval); document.getElementById('rest-timer').classList.remove('active'); }
+        window.adjustTimer = function(sec) { restTimeRemaining += sec; if(restTimeRemaining < 0) restTimeRemaining = 0; updateTimerUI(); }
         function updateTimerUI() {
             let m = Math.floor(restTimeRemaining / 60).toString().padStart(2, '0');
             let s = (restTimeRemaining % 60).toString().padStart(2, '0');
             document.getElementById('rt-display').innerText = `${m}:${s}`;
         }
 
-        // КЛІКИ ТА СВАЙПИ В МОДАЛЦІ ДНЯ
-        window.swipeStartX = 0;
-        window.swipeEndX = 0;
-
+        window.swipeStartX = 0; window.swipeEndX = 0;
         window.handleExClick = function(el) {
-            // Перевіряємо чи це був просто тап (не свайп)
             if(Math.abs(window.swipeStartX - (window.swipeEndX || window.swipeStartX)) < 20) {
                 let isDone = el.classList.toggle('item-completed');
-                if(isDone) {
-                    window.startTimer(90); // Запуск таймера на 90с
-                }
+                if(isDone) { window.startTimer(90); }
             }
         }
         
@@ -904,8 +865,7 @@
                 const newSets = prompt("🏆 Новий рекорд! Введи нову вагу або підходи:", currentSets);
                 if (newSets !== null && newSets !== currentSets) {
                     workoutData[dayKey].exercises[idx].sets = newSets;
-                    set(ref(db, 'workout_plan'), workoutData);
-                    window.openModal(dayKey);
+                    set(ref(db, 'workout_plan'), workoutData); window.openModal(dayKey);
                 }
             }, 50);
         };
@@ -917,10 +877,7 @@
             let suppsHTML = ''; 
             if(d.supps) { 
                 d.supps.forEach((s, idx) => { 
-                    suppsHTML += `<div class="supp-box" onclick="this.classList.toggle('item-completed')" style="animation: scaleIn 0.3s ease ${idx*0.05}s backwards;">
-                        <div class="supp-icon">${iconCup}</div>
-                        <div><div class="supp-time">${iconClock} ${s.time}</div><div class="supp-desc">${s.text}</div></div>
-                    </div>`; 
+                    suppsHTML += `<div class="supp-box" onclick="this.classList.toggle('item-completed')" style="animation: scaleIn 0.3s ease ${idx*0.05}s backwards;"><div class="supp-icon">${iconCup}</div><div><div class="supp-time">${iconClock} ${s.time}</div><div class="supp-desc">${s.text}</div></div></div>`; 
                 }); 
             }
             document.getElementById('m-supps').innerHTML = suppsHTML;
@@ -929,18 +886,10 @@
             if(d.exercises && d.exercises.length > 0) {
                 document.getElementById('ex-title').style.display = 'flex';
                 d.exercises.forEach((e, idx) => { 
-                    exHTML += `<div class="exercise-item" 
-                        ontouchstart="window.swipeStartX = event.changedTouches[0].screenX" 
-                        ontouchend="window.swipeEndX = event.changedTouches[0].screenX; if(window.swipeStartX - window.swipeEndX > 45) window.handleExSwipe('${dayKey}', ${idx});"
-                        onclick="window.handleExClick(this)"
-                        style="animation: scaleIn 0.3s ease ${idx*0.05}s backwards;">
-                        <div class="ex-name"><div class="ex-icon">${iconDumbbell}</div> ${e.name}</div>
-                        <div class="ex-sets">${e.sets}</div>
-                    </div>`; 
+                    exHTML += `<div class="exercise-item" ontouchstart="window.swipeStartX = event.changedTouches[0].screenX" ontouchend="window.swipeEndX = event.changedTouches[0].screenX; if(window.swipeStartX - window.swipeEndX > 45) window.handleExSwipe('${dayKey}', ${idx});" onclick="window.handleExClick(this)" style="animation: scaleIn 0.3s ease ${idx*0.05}s backwards;"><div class="ex-name"><div class="ex-icon">${iconDumbbell}</div> ${e.name}</div><div class="ex-sets">${e.sets}</div></div>`; 
                 });
             } else { 
-                document.getElementById('ex-title').style.display = 'none'; 
-                exHTML = `<div style="text-align:center; padding: 20px; color:var(--text-muted); font-weight: 600;">Сьогодні відпочинок. Відновлюйся! 💤</div>`; 
+                document.getElementById('ex-title').style.display = 'none'; exHTML = `<div style="text-align:center; padding: 20px; color:var(--text-muted); font-weight: 600;">Сьогодні відпочинок. Відновлюйся! 💤</div>`; 
             }
             document.getElementById('m-exercises').innerHTML = exHTML;
             
@@ -951,10 +900,7 @@
             document.getElementById('modal').classList.add('active');
         }
 
-        window.closeModal = function() { 
-            document.getElementById('modal').classList.remove('active'); 
-            window.stopTimer(); // Зупиняємо таймер, якщо закрили модалку
-        }
+        window.closeModal = function() { document.getElementById('modal').classList.remove('active'); window.stopTimer(); }
         
         window.markDone = function() {
             if(savedProgress[currentActiveDay]) { window.closeModal(); return; } 
@@ -965,9 +911,7 @@
             calculateAndRenderDashboard();
         }
 
-        document.querySelectorAll('.bottom-sheet').forEach(el => {
-            el.addEventListener('click', function(e) { if(e.target === this) { this.classList.remove('active'); } });
-        });
+        document.querySelectorAll('.bottom-sheet').forEach(el => { el.addEventListener('click', function(e) { if(e.target === this) { this.classList.remove('active'); } }); });
     </script>
 </body>
 </html>
