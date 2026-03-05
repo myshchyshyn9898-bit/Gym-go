@@ -170,6 +170,7 @@
         .complete-btn.done { background: var(--primary-orange); box-shadow: 0 10px 20px rgba(216, 137, 68, 0.3); }
         .add-btn-small { background: rgba(216, 137, 68, 0.08); color: var(--primary-orange); border: 2px dashed rgba(216, 137, 68, 0.3); width: 100%; padding: 16px; border-radius: 20px; font-weight: 800; cursor: pointer; margin-bottom: 25px; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s;}
 
+        /* Списки (Виправлено класи для правильного відображення) */
         .edit-list-item { background: #fff; padding: 18px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; box-shadow: var(--shadow); border: 1px solid #fcfaf7; animation: scaleIn 0.3s ease backwards; }
         .edit-info-title { font-size: 16px; font-weight: 800; color: #000; }
         .edit-info-sub { font-size: 13px; color: var(--primary-blue); margin-top: 6px; font-weight: 700; display: flex; align-items: center; gap: 4px; background: rgba(74, 108, 247, 0.1); padding: 4px 8px; border-radius: 8px; display: inline-flex;}
@@ -211,7 +212,7 @@
         .supp-desc { font-size: 16px; font-weight: 800; color: #000;}
         .supp-icon { background: white; width: 40px; height: 40px; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: var(--primary-orange); box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
 
-        /* 🔥 КЛАС ДЛЯ "ВИКОНАНО" (Fade-out effect) 🔥 */
+        /* КЛАС ДЛЯ "ВИКОНАНО" (Fade-out effect) */
         .item-completed { opacity: 0.4; transform: scale(0.98); filter: grayscale(100%); }
 
     </style>
@@ -402,7 +403,7 @@
             <div class="section-title">Протокол добавок (Тап = Виконано)</div>
             <div id="m-supps" style="margin-top: 15px;"></div>
             
-            <div class="section-title" id="ex-title" style="margin-top: 30px;">Вправи (Тап = Виконано | Свайп вліво = Змінити вагу)</div>
+            <div class="section-title" id="ex-title" style="margin-top: 30px;">Вправи (Тап = Виконано | Свайп вліво = Вага)</div>
             <div id="m-exercises" style="margin-top: 15px;"></div>
             
             <button id="m-btn" class="complete-btn" onclick="window.markDone()">ЗАВЕРШИТИ ДЕНЬ</button>
@@ -523,7 +524,6 @@
             if(document.getElementById('tab-edit').classList.contains('active')) window.loadDayForEdit();
         });
 
-        // 🔥 ШЕРИНГ СТРІКА (WEB SHARE API) 🔥
         window.shareStreak = function() {
             const streak = document.getElementById('streak-num').innerText;
             const shareData = {
@@ -531,17 +531,12 @@
                 text: `🔥 Мій стрік у Gym Go: ${streak} дні(в) поспіль цього тижня! Тренуйся зі мною! 🚀`,
                 url: window.location.href
             };
-            if (navigator.share) {
-                navigator.share(shareData).catch(console.error);
-            } else {
-                navigator.clipboard.writeText(shareData.text + " " + shareData.url);
-                alert('Текст скопійовано! Відправ другу в Telegram або Instagram.');
-            }
+            if (navigator.share) { navigator.share(shareData).catch(console.error); } 
+            else { navigator.clipboard.writeText(shareData.text + " " + shareData.url); alert('Текст скопійовано! Відправ другу.'); }
         }
 
         function updateStreakUI() {
-            let currentStreak = 0;
-            let html = '';
+            let currentStreak = 0; let html = '';
             daysKeys.forEach((day, idx) => {
                 let isDone = savedProgress[day];
                 if(isDone) currentStreak++;
@@ -620,10 +615,10 @@
             document.getElementById('edit-title').value = d.title || '';
             document.getElementById('edit-sub').value = d.sub || '';
             let sHTML = '';
-            if(d.supps) { d.supps.forEach((s, idx) => { sHTML += `<div class="editor-item-card" style="animation-delay:${idx*0.05}s"><div><div class="eic-title">${s.text}</div><div class="eic-sub supp">${iconClock} ${s.time}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openSuppModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteSupp(${idx})">${iconTrash}</button></div></div>`; }); }
+            if(d.supps) { d.supps.forEach((s, idx) => { sHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s"><div><div class="edit-info-title">${s.text}</div><div class="edit-info-sub supp">${iconClock} ${s.time}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openSuppModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteSupp(${idx})">${iconTrash}</button></div></div>`; }); }
             document.getElementById('edit-supps-list').innerHTML = sHTML;
             let eHTML = '';
-            if(d.exercises) { d.exercises.forEach((ex, idx) => { eHTML += `<div class="editor-item-card" style="animation-delay:${idx*0.05}s"><div><div class="eic-title">${ex.name}</div><div class="eic-sub">${ex.sets}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openExerciseModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteExercise(${idx})">${iconTrash}</button></div></div>`; }); }
+            if(d.exercises) { d.exercises.forEach((ex, idx) => { eHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s"><div><div class="edit-info-title">${ex.name}</div><div class="edit-info-sub">${ex.sets}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openExerciseModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteExercise(${idx})">${iconTrash}</button></div></div>`; }); }
             document.getElementById('edit-exercises-list').innerHTML = eHTML;
         }
 
@@ -672,7 +667,6 @@
             if(confirm("Видалити цю добавку?")) { const day = document.getElementById('edit-day-select').value; workoutData[day].supps.splice(idx, 1); set(ref(db, 'workout_plan'), workoutData); window.loadDayForEdit(); }
         }
 
-        // 🔥 ЛОГІКА СВАЙПУ ВЛІВО ДЛЯ РЕДАГУВАННЯ ВАГИ 🔥
         window.swipeStartX = 0;
         window.swipeEndX = 0;
         
@@ -683,12 +677,11 @@
                 if (newSets !== null && newSets !== currentSets) {
                     workoutData[dayKey].exercises[idx].sets = newSets;
                     set(ref(db, 'workout_plan'), workoutData);
-                    window.openModal(dayKey); // Оновлюємо модалку
+                    window.openModal(dayKey);
                 }
             }, 50);
         };
 
-        // 🔥 КРАСИВЕ МОДАЛЬНЕ ВІКНО ДНЯ 🔥
         window.openModal = function(dayKey) {
             const d = workoutData[dayKey]; currentActiveDay = dayKey;
             document.getElementById('m-title').innerText = d.title; document.getElementById('m-subtitle').innerText = d.sub;
@@ -738,7 +731,7 @@
             set(ref(db, 'shared_week_progress'), savedProgress);
             if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
             window.closeModal();
-            calculateAndRenderDashboard(); // Перераховуємо прогрес після відмітки!
+            calculateAndRenderDashboard();
         }
 
         document.querySelectorAll('.bottom-sheet, .modal-overlay').forEach(el => {
