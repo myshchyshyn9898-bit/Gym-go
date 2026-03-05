@@ -106,14 +106,37 @@
         .action-btn:active { opacity: 1; transform: scale(0.9); }
         .add-btn-small { background: rgba(255, 127, 80, 0.05); color: var(--primary-orange); border: 1px dashed rgba(255, 127, 80, 0.3); width: 100%; padding: 12px; border-radius: 12px; font-weight: 700; cursor: pointer; margin-bottom: 20px; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 6px;}
 
-        .stats-grid { display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; margin-bottom: 25px; }
-        .stat-ring-card { background: var(--card-bg); border-radius: 24px; padding: 25px 15px; width: calc(50% - 7.5px); display: flex; flex-direction: column; align-items: center; justify-content: center; box-sizing: border-box; position: relative; box-shadow: var(--shadow); }
-        .large-circular-chart { display: block; margin: 0 auto; max-width: 150px; max-height: 150px; width: 100%; }
-        .large-circular-chart .circle-bg-dashed { fill: none; stroke: #e0e0e0; stroke-width: 1.5; stroke-dasharray: 2, 3; }
-        .large-circular-chart .circle { fill: none; stroke-width: 3.5; stroke-linecap: round; stroke: var(--primary-orange); transition: stroke-dasharray 1s ease-out; }
-        .large-circular-chart .percentage { fill: var(--text-main); font-size: 9px; font-weight: 300; text-anchor: middle; letter-spacing: -0.5px;}
-        .large-circular-chart .stat-name-text { fill: var(--primary-orange); font-size: 3.5px; font-weight: 600; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.5px; }
-        .large-circular-chart .stat-val-text { fill: var(--text-muted); font-size: 2.5px; font-weight: 500; text-anchor: middle; }
+        /* 🔥 НОВИЙ АНАТОМІЧНИЙ БЛОК (ЯК НА ФОТО) 🔥 */
+        .anatomy-container { position: relative; width: 100%; height: 380px; display: flex; justify-content: center; align-items: center; margin-bottom: 30px; }
+        .anatomy-title { position: absolute; top: 0; left: 0; font-size: 18px; font-weight: 800; display: flex; flex-direction: column; }
+        .anatomy-sub { font-size: 12px; color: var(--text-muted); font-weight: 500; margin-top: 2px;}
+        
+        .anatomy-svg-wrapper { height: 100%; width: 100%; display: flex; justify-content: center; margin-top: 20px;}
+        .anatomy-svg-wrapper svg { height: 100%; max-width: 250px; drop-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        
+        /* Плаваюча помаранчева лейбла "Bicep" */
+        .floating-label { position: absolute; left: 10%; top: 40%; background: var(--primary-orange); color: white; padding: 6px 12px; border-radius: 12px; font-size: 12px; font-weight: 700; box-shadow: 0 4px 15px rgba(255, 127, 80, 0.4); display: flex; align-items: center;}
+        .floating-label::after { content: ''; position: absolute; right: -5px; top: 50%; transform: translateY(-50%); border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 6px solid var(--primary-orange); }
+
+        /* Бокові кнопки-інструменти */
+        .side-tools { position: absolute; left: 0; bottom: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .side-tool-btn { background: #f1f1f1; width: 40px; height: 40px; border-radius: 14px; display: flex; justify-content: center; align-items: center; color: var(--text-main); font-weight: bold; position: relative;}
+        .side-tool-badge { position: absolute; top: -4px; right: -4px; background: var(--primary-orange); color: white; width: 16px; height: 16px; border-radius: 50%; font-size: 9px; display: flex; justify-content: center; align-items: center; font-weight: 800;}
+        
+        .side-slider { position: absolute; right: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 15px; background: #f1f1f1; padding: 15px 5px; border-radius: 20px;}
+        .slider-track { width: 4px; height: 100px; background: #e0e0e0; border-radius: 2px; position: relative;}
+        .slider-thumb { position: absolute; top: 40%; left: -2px; width: 8px; height: 30px; background: var(--text-muted); border-radius: 4px;}
+        .slider-btn { font-size: 16px; font-weight: 300; color: var(--text-muted); cursor: pointer;}
+
+        /* 🔥 НОВІ ГОРИЗОНТАЛЬНІ ПРОГРЕС-БАРИ 🔥 */
+        .progress-bars-container { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
+        .pb-card { background: var(--card-bg); border-radius: 20px; padding: 20px; box-shadow: var(--shadow); }
+        .pb-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; }
+        .pb-title { font-size: 15px; font-weight: 700; color: var(--text-main); }
+        .pb-values { font-size: 16px; font-weight: 800; color: var(--text-main); }
+        .pb-goal { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+        .pb-track { height: 12px; width: 100%; background: #f1f1f1; border-radius: 10px; overflow: hidden; position: relative;}
+        .pb-fill { height: 100%; background: var(--primary-orange); border-radius: 10px; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px rgba(255, 127, 80, 0.3);}
 
         .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
         .switch input { opacity: 0; width: 0; height: 0; }
@@ -131,7 +154,6 @@
         .nav-icon svg { width: 100%; height: 100%; fill: currentColor; }
         .nav-text { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* SVG іконки глобально */
         .svg-icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     </style>
 </head>
@@ -171,11 +193,45 @@
     </div>
 
     <div id="tab-stats" class="tab-view">
+        
+        <div class="anatomy-container">
+            <div class="anatomy-title">Front View <span class="anatomy-sub">Skin Mode</span></div>
+            
+            <div class="anatomy-svg-wrapper">
+                <svg viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20C108 20 115 26 115 35C115 42 110 48 103 49L120 60C130 65 140 70 145 80C150 90 148 110 145 120L135 110C130 140 120 170 120 190C120 200 130 250 130 280C130 330 115 370 110 380C105 390 100 385 100 380C100 350 105 300 105 280C105 240 95 190 95 190H105C105 190 95 240 95 280C95 300 100 350 100 380C100 385 95 390 90 380C85 370 70 330 70 280C70 250 80 200 80 190C80 170 70 140 65 110L55 120C52 110 50 90 55 80C60 70 70 65 80 60L97 49C90 48 85 42 85 35C85 26 92 20 100 20Z" fill="#d1d1d6" stroke="#ffffff" stroke-width="2"/>
+                    <path d="M85 85C90 90 100 90 100 90C100 90 110 90 115 85M100 90V160M90 110H110M90 130H110M90 150H110" stroke="#fcfaf7" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M135 110C140 120 148 140 142 160C138 150 135 130 135 110Z" fill="var(--primary-orange)"/>
+                    <path d="M65 110C60 120 52 140 58 160C62 150 65 130 65 110Z" fill="var(--primary-orange)"/>
+                    <path d="M142 160L150 190C152 195 145 195 143 190L135 160 M58 160L50 190C48 195 55 195 57 190L65 160" fill="#d1d1d6"/>
+                </svg>
+            </div>
+
+            <div class="floating-label">Bicep</div>
+            
+            <div class="side-tools">
+                <div class="side-tool-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg>
+                    <div class="side-tool-badge">8</div>
+                </div>
+                <div class="side-tool-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                </div>
+            </div>
+
+            <div class="side-slider">
+                <div class="slider-btn">+</div>
+                <div class="slider-track"><div class="slider-thumb"></div></div>
+                <div class="slider-btn">−</div>
+            </div>
+        </div>
+
         <div class="section-title">
             <svg class="svg-icon" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> 
             Твій Прогрес
         </div>
-        <div id="stats-rings-container" class="stats-grid" style="margin-top: 15px;"></div>
+        
+        <div id="stats-bars-container" class="progress-bars-container" style="margin-top: 15px;"></div>
 
         <div class="section-title" style="margin-top: 30px;">
             <svg class="svg-icon" viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
@@ -287,7 +343,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-        // ІКОНКИ SVG ДЛЯ СКРИПТІВ
         const iconCup = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>`;
         const iconEdit = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>`;
         const iconTrash = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
@@ -333,7 +388,6 @@
             return new Date(curr.setDate(diff)).toDateString(); 
         }
 
-        // Миттєвий рендер карток до завантаження БД
         function renderMainCards() {
             const container = document.getElementById('workout-cards-container');
             let html = '';
@@ -367,7 +421,6 @@
         setWeekDates();
         renderMainCards();
 
-        // Firebase Sync
         onValue(rootRef, (snapshot) => {
             const dataVal = snapshot.val() || {};
             
@@ -408,24 +461,20 @@
             }
         }
 
-        // 🔥 ФІКС ПОМИЛКИ З КІЛЬЦЯМИ 🔥
         function updateRingsVisuals() {
             daysKeys.forEach(day => {
-                const path = document.getElementById(`ring-${day}`);
-                if(!path) return;
-                
+                const ring = document.getElementById(`ring-${day}`);
+                if(!ring) return;
                 if (savedProgress[day]) {
-                    path.style.strokeDasharray = `100, 100`;
-                    path.style.stroke = 'var(--primary-orange)';
+                    ring.style.strokeDasharray = `100, 100`;
+                    ring.style.stroke = 'var(--primary-orange)';
                 } else {
-                    path.style.strokeDasharray = `0, 100`;
-                    path.style.stroke = '#e0e0e0';
+                    ring.style.strokeDasharray = `0, 100`;
+                    ring.style.stroke = '#e0e0e0';
                 }
             });
         }
-        updateRingsVisuals(); // Перший виклик для миттєвого рендеру
 
-        // Навігація
         window.switchTab = function(tabId, el) {
             document.querySelectorAll('.tab-view').forEach(t => t.classList.remove('active'));
             document.getElementById(`tab-${tabId}`).classList.add('active');
@@ -438,11 +487,11 @@
             if(tabId === 'edit') window.loadDayForEdit();
         }
 
-        // Прогрес Бари
+        // 🔥 РЕНДЕР НОВИХ ГОРИЗОНТАЛЬНИХ БАРІВ 🔥
         function renderStatsTab() {
-            const ringsContainer = document.getElementById('stats-rings-container');
+            const barsContainer = document.getElementById('stats-bars-container');
             const editList = document.getElementById('stats-edit-list');
-            let ringsHTML = '';
+            let barsHTML = '';
             let editHTML = '';
 
             if (myStatsArray && myStatsArray.length > 0) {
@@ -452,28 +501,28 @@
                     let percent = Math.round((curr / goal) * 100);
                     if (percent > 100) percent = 100;
 
-                    ringsHTML += `
-                    <div class="stat-ring-card">
-                        <svg viewBox="0 0 36 36" class="large-circular-chart">
-                            <path class="circle-bg-dashed" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            <path class="circle" stroke-dasharray="${percent}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            <text x="18" y="14" class="stat-name-text">${stat.name}</text>
-                            <text x="18" y="21.5" class="percentage">${percent}%</text>
-                            <text x="18" y="26" class="stat-val-text">${stat.current} / ${stat.goal}</text>
-                        </svg>
+                    barsHTML += `
+                    <div class="pb-card">
+                        <div class="pb-header">
+                            <span class="pb-title">${stat.name}</span>
+                            <span class="pb-values">${stat.current} <span class="pb-goal">/ ${stat.goal}</span></span>
+                        </div>
+                        <div class="pb-track">
+                            <div class="pb-fill" style="width: ${percent}%"></div>
+                        </div>
                     </div>`;
 
                     editHTML += `<div class="edit-list-item"><div><div class="edit-info-title">${stat.name}</div><div class="edit-info-sub">Зараз: ${stat.current} | Ціль: ${stat.goal}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.editStat(${idx})">${iconEdit}</button><button class="action-btn" onclick="window.deleteStat(${idx})">${iconTrash}</button></div></div>`;
                 });
             } else {
-                ringsHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); font-size:14px;">Показників ще немає. Додай їх нижче!</div>`;
+                barsHTML = `<div style="text-align:center; width:100%; color:var(--text-muted); font-size:14px; margin-top:20px;">Показників ще немає.</div>`;
             }
 
-            ringsContainer.innerHTML = ringsHTML;
+            barsContainer.innerHTML = barsHTML;
             editList.innerHTML = editHTML;
             
             const toggle = document.getElementById('calendar-toggle');
-            toggle.checked = localStorage.getItem('gymgo_push') === 'true';
+            if(toggle) toggle.checked = localStorage.getItem('gymgo_push') === 'true';
         }
 
         window.addStat = function() {
@@ -562,7 +611,6 @@
             document.body.removeChild(link);
         }
 
-        // Редактор
         window.loadDayForEdit = function() {
             const day = document.getElementById('edit-day-select').value;
             const d = workoutData[day];
@@ -647,7 +695,6 @@
             }
         }
 
-        // Відкриття Модалки
         window.openModal = function(dayKey) {
             const d = workoutData[dayKey]; currentActiveDay = dayKey;
             document.getElementById('m-title').innerText = d.title; document.getElementById('m-subtitle').innerText = d.sub;
