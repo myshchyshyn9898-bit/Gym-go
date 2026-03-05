@@ -20,7 +20,7 @@
     </script>
 
     <style>
-        /* БАЗОВІ ЗМІННІ (PREMIUM - КРЕМОВА) */
+        /* БАЗОВІ ЗМІННІ (PREMIUM) */
         :root {
             --bg-color: #f4ede4; 
             --card-bg: #ffffff; 
@@ -134,7 +134,6 @@
         .s-icon.done { background: var(--primary-orange); color: white; box-shadow: 0 4px 10px rgba(216, 137, 68, 0.4);}
         .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
         .streak-divider { border: none; height: 2px; background: var(--border-color); margin: 25px 0; border-radius: 1px;}
-        .streak-longest { font-size: 16px; font-weight: 800; color: var(--text-main); text-align: center; margin-bottom: 10px;}
         .streak-desc { font-size: 14px; color: var(--text-muted); text-align: center; line-height: 1.5; font-weight: 500;}
 
         /* Порада дня */
@@ -304,8 +303,7 @@
         <div class="splash-logo">GYM <span>GO</span></div>
         <div class="splash-loader"><div class="splash-loader-bar"></div></div>
     </div>
-    <script>setTimeout(function(){ var s = document.getElementById('splash-screen'); if(s){ s.style.opacity='0'; setTimeout(function(){s.style.display='none';},400); } }, 1000);</script>
-
+    
     <header>
         <h1 id="main-header-title">GYM GO <span><div class="live-dot"></div> LIVE</span></h1>
     </header>
@@ -347,7 +345,7 @@
         </div>
 
         <button class="complete-btn" style="background: var(--primary-blue); color: white;" onclick="window.shareStreak()">
-            Похвалитися стріком
+            Похвалитися результатом
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
         </button>
     </div>
@@ -365,14 +363,14 @@
             <div class="nut-card">
                 <div class="nut-header"><div class="nut-title" id="dash-title-1"><svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg> Protein</div></div>
                 <div class="nut-body">
-                    <div class="nut-info"><div class="nut-val" id="val-1">0 <span class="nut-unit">Грам</span></div><div class="nut-sub">За тиждень</div></div>
+                    <div class="nut-info"><div class="nut-val" id="val-1">0</div><div class="nut-sub">За тиждень</div></div>
                     <div class="nut-circle-wrap"><svg viewBox="0 0 36 36"><path class="nut-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path id="ring-1" class="nut-circle-fill c-orange" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg></div>
                 </div>
             </div>
             <div class="nut-card">
                 <div class="nut-header"><div class="nut-title" id="dash-title-2"><svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 2v7.31"></path><path d="M14 9.3V1.99"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path><path d="M5.52 16h12.96"></path></svg> Creatine</div></div>
                 <div class="nut-body">
-                    <div class="nut-info"><div class="nut-val" id="val-2">0 <span class="nut-unit">Грам</span></div><div class="nut-sub">За тиждень</div></div>
+                    <div class="nut-info"><div class="nut-val" id="val-2">0</div><div class="nut-sub">За тиждень</div></div>
                     <div class="nut-circle-wrap"><svg viewBox="0 0 36 36"><path class="nut-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path id="ring-2" class="nut-circle-fill c-red" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg></div>
                 </div>
             </div>
@@ -382,13 +380,13 @@
         <div class="challenge-card">
             <div class="ch-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg></div>
             <div class="ch-info"><div class="ch-title" id="dash-title-3">Підходи за тиждень</div><div class="ch-status">Completed</div></div>
-            <div class="ch-val" id="val-3">0 <span style="font-size:12px; color:var(--text-muted)">sets</span></div>
+            <div class="ch-val" id="val-3">0</div>
         </div>
         
         <div class="challenge-card">
             <div class="ch-icon-wrap" style="background: rgba(74, 108, 247, 0.1);"><svg viewBox="0 0 24 24" fill="var(--primary-blue)"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z"/></svg></div>
             <div class="ch-info"><div class="ch-title">Спалено енергії</div><div class="ch-status">Active</div></div>
-            <div class="ch-val" id="val-kcal">0 <span style="font-size:12px; color:var(--text-muted)">ккал</span></div>
+            <div class="ch-val" id="val-kcal">0</div>
         </div>
 
         <div class="anatomy-ui" style="margin-top: 30px;">
@@ -527,7 +525,7 @@
     <div class="modal-overlay" id="modal">
         <div class="modal-content">
             <div class="close-btn" onclick="window.closeModal()">✕</div>
-            <div id="modal-header"><div class="modal-title" id="m-title">Title <span style="font-size:12px; color:var(--text-muted); font-weight:600;" id="m-user-badge">👤 Тарас</span></div><div class="modal-subtitle" id="m-subtitle">Subtitle</div></div>
+            <div id="modal-header"><div class="modal-title" id="m-title">Title</div><div class="modal-subtitle" id="m-subtitle">Subtitle</div></div>
             
             <div class="section-title">Протокол добавок (Тап = Виконано)</div>
             <div id="m-supps" style="margin-top: 15px;"></div>
@@ -547,6 +545,69 @@
         <button class="rt-btn" onclick="window.adjustTimer(15)">+15</button>
     </div>
 
+    <script>
+        // Ініціалізація та безпечні глобальні функції (захист від зависань)
+        window.appData = {
+            user: localStorage.getItem('gymgo_user') || 'Taras',
+            plan: {},
+            progTaras: {},
+            progMaks: {},
+            dates: {},
+            todayKey: 'mon',
+            todayIdx: 0,
+            activeDay: ''
+        };
+        window.editExIndex = -1;
+        window.editSuppIndex = -1;
+
+        window.switchTab = function(tabId) {
+            document.querySelectorAll('.tab-view').forEach(t => t.classList.remove('active'));
+            const tab = document.getElementById(`tab-${tabId}`);
+            if(tab) tab.classList.add('active');
+            
+            document.querySelectorAll('.bottom-nav .nav-item').forEach(n => n.classList.remove('active'));
+            const nav = tabId === 'edit' ? document.getElementById('nav-edit-center') : document.getElementById(`nav-${tabId}`);
+            if(nav) nav.classList.add('active');
+            
+            if(tabId === 'edit' && window.loadDayForEdit) window.loadDayForEdit();
+            window.scrollTo(0,0);
+        }
+
+        window.setTheme = function(themeName) {
+            document.documentElement.setAttribute('data-theme', themeName);
+            localStorage.setItem('gymgo_theme', themeName);
+            document.querySelectorAll('.theme-card').forEach(el => el.classList.remove('active'));
+            const activeCard = document.getElementById('tc-' + themeName);
+            if (activeCard) activeCard.classList.add('active');
+        }
+
+        window.switchUser = function(name) {
+            window.appData.user = name;
+            localStorage.setItem('gymgo_user', name);
+            document.querySelectorAll('.ps-btn').forEach(el => el.classList.remove('active'));
+            const btn = document.getElementById('prof-' + name);
+            if(btn) btn.classList.add('active');
+            const titleEl = document.getElementById('main-header-title');
+            if(titleEl) titleEl.innerHTML = `GYM GO <span><div class="live-dot"></div> ${name}</span>`;
+            
+            if(window.renderAll) window.renderAll();
+        }
+
+        setTimeout(() => {
+            const currentT = localStorage.getItem('gymgo_theme') || 'premium';
+            const activeCard = document.getElementById('tc-' + currentT);
+            if(activeCard) activeCard.classList.add('active');
+            
+            const btn = document.getElementById('prof-' + window.appData.user);
+            if(btn) window.switchUser(window.appData.user);
+            
+            setTimeout(() => {
+                const s = document.getElementById('splash-screen'); 
+                if(s){ s.style.opacity='0'; setTimeout(()=>{s.style.display='none';},400); }
+            }, 1000);
+        }, 50);
+    </script>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
@@ -564,54 +625,18 @@
         const daysMap = { 'mon':'ПН', 'tue':'ВТ', 'wed':'СР', 'thu':'ЧТ', 'fri':'ПТ', 'sat':'СБ', 'sun':'НД' };
         const months = ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сер', 'Вер', 'Жов', 'Лис', 'Гру'];
 
-        let currentUser = localStorage.getItem('gymgo_user') || 'Taras';
-        let progress_Taras = {};
-        let progress_Maks = {};
-        
-        let workoutData = {
-            'mon': { title: 'Тренування Push', sub: 'Понеділок', supps: [], exercises: [] },
-            'tue': { title: 'Відпочинок', sub: 'Вівторок', supps: [], exercises: [] },
-            'wed': { title: 'Тренування Pull', sub: 'Середа', supps: [], exercises: [] },
-            'thu': { title: 'Відпочинок', sub: 'Четвер', supps: [], exercises: [] },
-            'fri': { title: 'Тренування Legs', sub: 'П\'ятниця', supps: [], exercises: [] },
-            'sat': { title: 'Відпочинок', sub: 'Субота', supps: [], exercises: [] },
-            'sun': { title: 'Відпочинок', sub: 'Неділя', supps: [], exercises: [] }
-        };
-
-        let currentActiveDay = '';
-        let currentDates = {};
-        let todayKey = '';
-        let todayIdx = 0;
-        window.editExIndex = -1;
-        window.editSuppIndex = -1;
-
         const tipsTaras = [
-            "Пам'ятай: м'язи ростуть під час сну, а не на тренуванні. Спи 8 годин!",
-            "Профіцит калорій — твій найкращий друг для набору маси.",
-            "Намагайся збільшувати робочу вагу хоча б на 1 кг щотижня.",
+            "М'язи ростуть під час сну. Спи 8 годин!",
+            "Профіцит калорій — найкращий друг для набору маси.",
+            "Збільшуй робочу вагу хоча б на 1 кг щотижня.",
             "Не ігноруй базові вправи: присідання, жим, станова."
         ];
         const tipsMaks = [
             "Дефіцит калорій — єдиний спосіб спалити жир. Тримай дієту!",
             "Пий більше води, вона пришвидшує метаболізм.",
-            "Кардіо після силової тренування спалює більше жиру.",
+            "Кардіо після силової спалює більше жиру.",
             "Більше повторень і менше відпочинку — ключ до рельєфу."
         ];
-
-        window.switchUser = function(name) {
-            currentUser = name;
-            localStorage.setItem('gymgo_user', name);
-            document.querySelectorAll('.ps-btn').forEach(el => el.classList.remove('active'));
-            const btn = document.getElementById('prof-' + name);
-            if(btn) btn.classList.add('active');
-            const titleEl = document.getElementById('main-header-title');
-            if(titleEl) titleEl.innerHTML = `GYM GO <span><div class="live-dot"></div> ${name}</span>`;
-            
-            updateRingsVisuals();
-            renderMainCards();
-            updateStreakUI();
-            calculateAndRenderDashboard();
-        }
 
         function getMondayID() {
             let curr = new Date(); let day = curr.getDay(); let diff = curr.getDate() - day + (day === 0 ? -6 : 1);
@@ -623,43 +648,12 @@
             let monday = new Date(curr.setDate(diff));
             for(let i = 0; i < 7; i++) {
                 let loopDate = new Date(monday); loopDate.setDate(monday.getDate() + i);
-                currentDates[daysKeys[i]] = { num: ('0' + loopDate.getDate()).slice(-2), month: months[loopDate.getMonth()] };
+                window.appData.dates[daysKeys[i]] = { num: ('0' + loopDate.getDate()).slice(-2), month: months[loopDate.getMonth()] };
             }
-            todayIdx = new Date().getDay() - 1;
-            if(todayIdx === -1) todayIdx = 6;
-            todayKey = daysKeys[todayIdx];
+            window.appData.todayIdx = new Date().getDay() - 1;
+            if(window.appData.todayIdx === -1) window.appData.todayIdx = 6;
+            window.appData.todayKey = daysKeys[window.appData.todayIdx];
         }
-
-        function renderMainCards() {
-            const container = document.getElementById('workout-cards-container');
-            if(!container) return;
-            let html = '';
-            let myProgress = currentUser === 'Taras' ? progress_Taras : progress_Maks;
-
-            daysKeys.forEach((day, index) => {
-                const d = workoutData[day];
-                const dateNum = currentDates[day] ? currentDates[day].num : '--';
-                const dateMonth = currentDates[day] ? currentDates[day].month : '--';
-                let suppsHTML = '';
-                if(d.supps && d.supps.length > 0) { suppsHTML = `<div class="supps-pill">${iconCup} <div>Добавки <span>${d.supps.length} шт.</span></div></div>`; }
-                let isTodayClass = (day === todayKey) ? 'today-card' : '';
-                let todayBadge = (day === todayKey) ? `<div class="today-badge">Сьогодні</div>` : '';
-                let delay = index * 0.08;
-
-                let checkHtml = myProgress[day] ? `<div style="position:absolute; right:20px; color:var(--primary-orange);">${iconCheck}</div>` : '';
-
-                html += `
-                <div class="card ${isTodayClass}" onclick="window.openModal('${day}')" style="animation-delay: ${delay}s">
-                    ${todayBadge}
-                    ${checkHtml}
-                    <div class="date-col"><div class="day-name">${daysMap[day]}</div><div class="day-num" id="date-${day}">${dateNum}</div><div class="month-name" id="month-${day}">${dateMonth}</div></div>
-                    <div class="info-col"><div class="title">${d.title}</div><div class="subtitle">${d.sub}</div><div class="supps-container">${suppsHTML}</div></div>
-                </div>`;
-            });
-            container.innerHTML = html;
-        }
-
-        setWeekDates();
 
         const firebaseConfig = {
             apiKey: "AIzaSyBRSU_3_0pueE5kQfY_3jr1TNCozF1lOsw",
@@ -675,76 +669,87 @@
         const db = getDatabase(app);
         const rootRef = ref(db, '/');
 
+        window.renderAll = function() {
+            window.renderMainCards();
+            window.updateRingsVisuals();
+            window.updateStreakUI();
+            window.calculateAndRenderDashboard();
+            const editTab = document.getElementById('tab-edit');
+            if(editTab && editTab.classList.contains('active')) window.loadDayForEdit();
+        }
+
         onValue(rootRef, (snapshot) => {
             const dataVal = snapshot.val() || {};
-            if(dataVal.workout_plan) workoutData = dataVal.workout_plan;
-            else set(ref(db, 'workout_plan'), workoutData);
+            
+            if(dataVal.workout_plan) {
+                window.appData.plan = dataVal.workout_plan;
+            } else {
+                window.appData.plan = {
+                    'mon': { title: 'Тренування', sub: 'Понеділок', supps: [], exercises: [] },
+                    'tue': { title: 'Відпочинок', sub: 'Вівторок', supps: [], exercises: [] },
+                    'wed': { title: 'Тренування', sub: 'Середа', supps: [], exercises: [] },
+                    'thu': { title: 'Відпочинок', sub: 'Четвер', supps: [], exercises: [] },
+                    'fri': { title: 'Тренування', sub: 'П\'ятниця', supps: [], exercises: [] },
+                    'sat': { title: 'Відпочинок', sub: 'Субота', supps: [], exercises: [] },
+                    'sun': { title: 'Відпочинок', sub: 'Неділя', supps: [], exercises: [] }
+                };
+                set(ref(db, 'workout_plan'), window.appData.plan);
+            }
 
             const currentWeekID = getMondayID();
             if (dataVal.last_reset_id !== currentWeekID) {
-                progress_Taras = {}; progress_Maks = {};
-                set(ref(db, 'progress_Taras'), progress_Taras);
-                set(ref(db, 'progress_Maks'), progress_Maks);
+                window.appData.progTaras = {}; window.appData.progMaks = {};
+                set(ref(db, 'progress_Taras'), window.appData.progTaras);
+                set(ref(db, 'progress_Maks'), window.appData.progMaks);
                 set(ref(db, 'last_reset_id'), currentWeekID);
             } else {
-                progress_Taras = dataVal.progress_Taras || {};
-                progress_Maks = dataVal.progress_Maks || {};
+                window.appData.progTaras = dataVal.progress_Taras || {};
+                window.appData.progMaks = dataVal.progress_Maks || {};
             }
             
-            updateRingsVisuals();
-            renderMainCards();
-            updateStreakUI();
-            calculateAndRenderDashboard();
-            const editTab = document.getElementById('tab-edit');
-            if(editTab && editTab.classList.contains('active')) window.loadDayForEdit();
+            setWeekDates();
+            window.renderAll();
         });
 
-        window.resetAppData = function() {
-            if(confirm(`🚨 Увага! Видалити тільки статистику користувача ${currentUser}? (План тренувань спільний і залишиться)`)) {
-                if(currentUser === 'Taras') { progress_Taras = {}; set(ref(db, 'progress_Taras'), progress_Taras); }
-                else { progress_Maks = {}; set(ref(db, 'progress_Maks'), progress_Maks); }
-                alert("✅ Ваші дані успішно обнулено!");
-                window.switchTab('home');
-            }
-        }
+        window.triggerFirebaseSave = function() {
+            set(ref(db, 'workout_plan'), window.appData.plan);
+            set(ref(db, 'progress_Taras'), window.appData.progTaras);
+            set(ref(db, 'progress_Maks'), window.appData.progMaks);
+            set(ref(db, 'last_reset_id'), getMondayID());
+        };
 
-        window.shareStreak = function() {
-            let myProgress = currentUser === 'Taras' ? progress_Taras : progress_Maks;
-            let streak = 0; daysKeys.forEach(d => { if(myProgress[d]) streak++; });
-            const shareData = {
-                title: 'Gym Go Прогрес',
-                text: `🔥 Мій стрік у Gym Go: ${streak} дні(в) поспіль! Тренуйся зі мною! 🚀`,
-                url: window.location.href
-            };
-            if (navigator.share) { navigator.share(shareData).catch(console.error); } 
-            else { navigator.clipboard.writeText(shareData.text + " " + shareData.url); alert('Текст скопійовано!'); }
-        }
+        window.renderMainCards = function() {
+            const container = document.getElementById('workout-cards-container');
+            if(!container) return;
+            let html = '';
+            let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
 
-        function updateStreakUI() {
-            let sTaras = 0; daysKeys.forEach(d => { if(progress_Taras[d]) sTaras++; });
-            let sMaks = 0; daysKeys.forEach(d => { if(progress_Maks[d]) sMaks++; });
-            
-            const vTaras = document.getElementById('v-taras'); if(vTaras) vTaras.innerText = sTaras;
-            const vMaks = document.getElementById('v-maks'); if(vMaks) vMaks.innerText = sMaks;
+            daysKeys.forEach((day, index) => {
+                const d = window.appData.plan[day];
+                if(!d) return;
+                const dateNum = window.appData.dates[day] ? window.appData.dates[day].num : '--';
+                const dateMonth = window.appData.dates[day] ? window.appData.dates[day].month : '--';
+                let suppsHTML = '';
+                if(d.supps && d.supps.length > 0) { suppsHTML = `<div class="supps-pill">${iconCup} <div>Добавки <span>${d.supps.length} шт.</span></div></div>`; }
+                let isTodayClass = (day === window.appData.todayKey) ? 'today-card' : '';
+                let todayBadge = (day === window.appData.todayKey) ? `<div class="today-badge">Сьогодні</div>` : '';
+                let delay = index * 0.08;
 
-            let myProgress = currentUser === 'Taras' ? progress_Taras : progress_Maks;
-            let currentStreak = 0; let html = '';
-            daysKeys.forEach((day, idx) => {
-                let isDone = myProgress[day];
-                if(isDone) currentStreak++;
-                let iconHtml = '';
-                if (isDone) { iconHtml = `<div class="s-icon done">${iconFlameCheck}</div>`; } 
-                else if (idx < todayIdx) { iconHtml = `<div class="s-icon missed">${iconCross}</div>`; } 
-                else { iconHtml = `<div class="s-icon empty"></div>`; }
-                html += `<div class="s-day-col"><div class="s-day-name">${daysMap[day]}</div>${iconHtml}</div>`;
+                let checkHtml = myProgress[day] ? `<div style="position:absolute; right:20px; color:var(--primary-orange);">${iconCheck}</div>` : '';
+
+                html += `
+                <div class="card ${isTodayClass}" onclick="window.openModal('${day}')" style="animation-delay: ${delay}s">
+                    ${todayBadge}
+                    ${checkHtml}
+                    <div class="date-col"><div class="day-name">${daysMap[day]}</div><div class="day-num" id="date-${day}">${dateNum}</div><div class="month-name" id="month-${day}">${dateMonth}</div></div>
+                    <div class="info-col"><div class="title">${d.title}</div><div class="subtitle">${d.sub}</div><div class="supps-container">${suppsHTML}</div></div>
+                </div>`;
             });
-            const sContainer = document.getElementById('streak-days-container'); if(sContainer) sContainer.innerHTML = html;
-            const sNum = document.getElementById('streak-num'); if(sNum) sNum.innerText = currentStreak;
-            const lStreak = document.getElementById('longest-streak'); if(lStreak) lStreak.innerText = currentStreak > 0 ? currentStreak + 2 : 0;
+            container.innerHTML = html;
         }
 
-        function updateRingsVisuals() {
-            let myProgress = currentUser === 'Taras' ? progress_Taras : progress_Maks;
+        window.updateRingsVisuals = function() {
+            let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
             daysKeys.forEach(day => {
                 const path = document.getElementById(`ring-${day}`);
                 if(!path) return;
@@ -753,18 +758,38 @@
             });
         }
 
-        function calculateAndRenderDashboard() {
-            let myProgress = currentUser === 'Taras' ? progress_Taras : progress_Maks;
+        window.updateStreakUI = function() {
+            let sTaras = 0; daysKeys.forEach(d => { if(window.appData.progTaras[d]) sTaras++; });
+            let sMaks = 0; daysKeys.forEach(d => { if(window.appData.progMaks[d]) sMaks++; });
             
+            const vTaras = document.getElementById('v-taras'); if(vTaras) vTaras.innerText = sTaras;
+            const vMaks = document.getElementById('v-maks'); if(vMaks) vMaks.innerText = sMaks;
+
+            let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
+            let currentStreak = 0; let html = '';
+            daysKeys.forEach((day, idx) => {
+                let isDone = myProgress[day];
+                if(isDone) currentStreak++;
+                let iconHtml = '';
+                if (isDone) { iconHtml = `<div class="s-icon done">${iconFlameCheck}</div>`; } 
+                else if (idx < window.appData.todayIdx) { iconHtml = `<div class="s-icon missed">${iconCross}</div>`; } 
+                else { iconHtml = `<div class="s-icon empty"></div>`; }
+                html += `<div class="s-day-col"><div class="s-day-name">${daysMap[day]}</div>${iconHtml}</div>`;
+            });
+            const sContainer = document.getElementById('streak-days-container'); if(sContainer) sContainer.innerHTML = html;
+            const sNum = document.getElementById('streak-num'); if(sNum) sNum.innerText = currentStreak;
+            const lStreak = document.getElementById('longest-streak'); if(lStreak) lStreak.innerText = currentStreak > 0 ? currentStreak + 2 : 0;
+        }
+
+        window.calculateAndRenderDashboard = function() {
+            let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
             let dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
             
             const tipBox = document.getElementById('tip-text-box');
             const dash1 = document.getElementById('dash-title-1');
             const dash2 = document.getElementById('dash-title-2');
-            const val1El = document.getElementById('val-1');
-            const val2El = document.getElementById('val-2');
 
-            if (currentUser === 'Taras') {
+            if (window.appData.user === 'Taras') {
                 if(tipBox) tipBox.innerText = tipsTaras[dayOfYear % tipsTaras.length];
                 if(dash1) dash1.innerHTML = `<svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg> Протеїн`;
                 if(dash2) dash2.innerHTML = `<svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 2v7.31"></path><path d="M14 9.3V1.99"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path><path d="M5.52 16h12.96"></path></svg> Креатин`;
@@ -783,25 +808,22 @@
             const kwArms = ['біцепс', 'тріцепс', 'bicep', 'tricep', 'махи', 'руки', 'curl', 'французький'];
 
             daysKeys.forEach((day) => {
-                let d = workoutData[day]; let isDone = myProgress[day];
+                let d = window.appData.plan[day]; let isDone = myProgress[day];
                 let dailyWorkoutVal = 0; let suppVal = 10;
 
-                if(d.supps && isDone) {
+                if(d && d.supps && isDone) {
                     d.supps.forEach(s => {
                         let text = s.text.toLowerCase();
-                        if(currentUser === 'Taras') {
+                        if(window.appData.user === 'Taras') {
                             if (text.includes("протеїн")) val1 += 25; 
                             if (text.includes("креатин")) val2 += 5;
                         }
                     });
                 }
                 
-                if (d.exercises && d.exercises.length > 0 && isDone) {
+                if (d && d.exercises && d.exercises.length > 0 && isDone) {
                     totalWorkouts++;
-                    if(currentUser === 'Maks') {
-                        val1 += 400; 
-                        val2 += 1.5; 
-                    }
+                    if(window.appData.user === 'Maks') { val1 += 400; val2 += 1.5; }
 
                     d.exercises.forEach(e => { 
                         let setsNum = parseInt(e.sets.charAt(0)); 
@@ -815,7 +837,7 @@
                         }
                     });
                     dailyWorkoutVal = 80; 
-                } else if (d.exercises && d.exercises.length > 0) {
+                } else if (d && d.exercises && d.exercises.length > 0) {
                     dailyWorkoutVal = 20;
                 }
 
@@ -824,13 +846,18 @@
                 chartHtml += `<div class="bar-column"><div class="bar-wrapper"><div class="b-bg orange-light" style="height: 100%;"></div><div class="b-fill orange-solid" style="height: ${dailyWorkoutVal}%;"><div class="b-dot"></div></div></div><div class="bar-wrapper" style="position: absolute; left: 10px;"><div class="b-bg red-light" style="height: 80%;"></div><div class="b-fill red-solid" style="height: ${suppVal}%;"><div class="b-dot white"></div></div></div></div>`;
             });
 
-            if(val1El) val1El.innerHTML = `${val1} <span class="nut-unit">${currentUser === 'Taras' ? 'Грам' : 'Ккал'}</span>`;
-            const r1 = document.getElementById('ring-1');
-            if(r1) r1.style.strokeDasharray = currentUser === 'Taras' ? `${Math.min(val1/1.5, 100)}, 100` : `${Math.min(val1/20, 100)}, 100`;
+            // БЕЗПЕЧНЕ ОНОВЛЕННЯ DOM (щоб не ламати JS)
+            const val1El = document.getElementById('val-1');
+            if(val1El) val1El.innerHTML = `${val1} <span class="nut-unit">${window.appData.user === 'Taras' ? 'Грам' : 'Ккал'}</span>`;
             
-            if(val2El) val2El.innerHTML = `${val2} <span class="nut-unit">${currentUser === 'Taras' ? 'Грам' : 'Літрів'}</span>`;
+            const r1 = document.getElementById('ring-1');
+            if(r1) r1.style.strokeDasharray = window.appData.user === 'Taras' ? `${Math.min(val1/1.5, 100)}, 100` : `${Math.min(val1/20, 100)}, 100`;
+            
+            const val2El = document.getElementById('val-2');
+            if(val2El) val2El.innerHTML = `${val2} <span class="nut-unit">${window.appData.user === 'Taras' ? 'Грам' : 'Літрів'}</span>`;
+            
             const r2 = document.getElementById('ring-2');
-            if(r2) r2.style.strokeDasharray = currentUser === 'Taras' ? `${Math.min(val2/0.3, 100)}, 100` : `${Math.min(val2/0.05, 100)}, 100`;
+            if(r2) r2.style.strokeDasharray = window.appData.user === 'Taras' ? `${Math.min(val2/0.3, 100)}, 100` : `${Math.min(val2/0.05, 100)}, 100`;
             
             const cb = document.getElementById('chart-bars-container');
             if(cb) cb.innerHTML = chartHtml;
@@ -846,6 +873,7 @@
                 if (sets <= 10) return { class: 'tag-worked', text: `🟠 ${name}: У тонусі` };
                 return { class: 'tag-fatigued', text: `🔴 ${name}: Знищено` };
             }
+            
             let tagsHtml = `
                 <div class="smart-tag ${getTagData('Груди', vol.Chest).class}" style="top: 28%; left: 12%;">${getTagData('Груди', vol.Chest).text}</div>
                 <div class="smart-tag ${getTagData('Спина', vol.Back).class}" style="top: 35%; right: 8%;">${getTagData('Спина', vol.Back).text}</div>
@@ -860,7 +888,8 @@
             const daySelect = document.getElementById('edit-day-select');
             if(!daySelect) return;
             const day = daySelect.value;
-            const d = workoutData[day];
+            const d = window.appData.plan[day];
+            if(!d) return;
             document.getElementById('edit-title').value = d.title || '';
             document.getElementById('edit-sub').value = d.sub || '';
             
@@ -875,9 +904,10 @@
 
         window.quickSaveHeader = function() {
             const day = document.getElementById('edit-day-select').value;
-            workoutData[day].title = document.getElementById('edit-title').value;
-            workoutData[day].sub = document.getElementById('edit-sub').value;
-            set(ref(db, 'workout_plan'), workoutData);
+            if(!window.appData.plan[day]) window.appData.plan[day] = {};
+            window.appData.plan[day].title = document.getElementById('edit-title').value;
+            window.appData.plan[day].sub = document.getElementById('edit-sub').value;
+            window.triggerFirebaseSave();
         }
 
         window.openExerciseModal = function(idx) {
@@ -888,8 +918,8 @@
                 document.getElementById('inp-ex-sets').value = ""; 
             } else { 
                 document.getElementById('bs-ex-title').innerText = "Редагувати вправу"; 
-                document.getElementById('inp-ex-name').value = workoutData[day].exercises[idx].name; 
-                document.getElementById('inp-ex-sets').value = workoutData[day].exercises[idx].sets; 
+                document.getElementById('inp-ex-name').value = window.appData.plan[day].exercises[idx].name; 
+                document.getElementById('inp-ex-sets').value = window.appData.plan[day].exercises[idx].sets; 
             }
             document.getElementById('bs-exercise').classList.add('active');
         }
@@ -899,19 +929,17 @@
             const name = document.getElementById('inp-ex-name').value; const sets = document.getElementById('inp-ex-sets').value;
             if(!name) return alert('Введіть назву вправи!');
             const day = document.getElementById('edit-day-select').value;
-            if(!workoutData[day].exercises) workoutData[day].exercises = [];
-            if (window.editExIndex === -1) workoutData[day].exercises.push({ name, sets }); 
-            else workoutData[day].exercises[window.editExIndex] = { name, sets };
-            set(ref(db, 'workout_plan'), workoutData); 
-            window.closeExerciseModal(); 
-            window.loadDayForEdit();
+            if(!window.appData.plan[day].exercises) window.appData.plan[day].exercises = [];
+            if (window.editExIndex === -1) window.appData.plan[day].exercises.push({ name, sets }); 
+            else window.appData.plan[day].exercises[window.editExIndex] = { name, sets };
+            window.triggerFirebaseSave();
+            window.closeExerciseModal(); window.loadDayForEdit();
         }
         window.deleteExercise = function(idx) {
             if(confirm("Видалити цю вправу?")) { 
                 const day = document.getElementById('edit-day-select').value; 
-                workoutData[day].exercises.splice(idx, 1); 
-                set(ref(db, 'workout_plan'), workoutData); 
-                window.loadDayForEdit(); 
+                window.appData.plan[day].exercises.splice(idx, 1); 
+                window.triggerFirebaseSave(); window.loadDayForEdit(); 
             }
         }
 
@@ -923,8 +951,8 @@
                 document.getElementById('inp-supp-time').value = "ПІСЛЯ ТРЕНУВАННЯ"; 
             } else { 
                 document.getElementById('bs-supp-title').innerText = "Редагувати добавку"; 
-                document.getElementById('inp-supp-text').value = workoutData[day].supps[idx].text; 
-                document.getElementById('inp-supp-time').value = workoutData[day].supps[idx].time; 
+                document.getElementById('inp-supp-text').value = window.appData.plan[day].supps[idx].text; 
+                document.getElementById('inp-supp-time').value = window.appData.plan[day].supps[idx].time; 
             }
             document.getElementById('bs-supp').classList.add('active');
         }
@@ -934,19 +962,17 @@
             const text = document.getElementById('inp-supp-text').value; const time = document.getElementById('inp-supp-time').value;
             if(!text) return alert('Введіть назву добавки!');
             const day = document.getElementById('edit-day-select').value;
-            if(!workoutData[day].supps) workoutData[day].supps = [];
-            if (window.editSuppIndex === -1) workoutData[day].supps.push({ time, text }); 
-            else workoutData[day].supps[window.editSuppIndex] = { time, text };
-            set(ref(db, 'workout_plan'), workoutData); 
-            window.closeSuppModal(); 
-            window.loadDayForEdit();
+            if(!window.appData.plan[day].supps) window.appData.plan[day].supps = [];
+            if (window.editSuppIndex === -1) window.appData.plan[day].supps.push({ time, text }); 
+            else window.appData.plan[day].supps[window.editSuppIndex] = { time, text };
+            window.triggerFirebaseSave();
+            window.closeSuppModal(); window.loadDayForEdit();
         }
         window.deleteSupp = function(idx) {
             if(confirm("Видалити цю добавку?")) { 
                 const day = document.getElementById('edit-day-select').value; 
-                workoutData[day].supps.splice(idx, 1); 
-                set(ref(db, 'workout_plan'), workoutData); 
-                window.loadDayForEdit(); 
+                window.appData.plan[day].supps.splice(idx, 1); 
+                window.triggerFirebaseSave(); window.loadDayForEdit(); 
             }
         }
 
@@ -988,21 +1014,21 @@
         
         window.handleExSwipe = function(dayKey, idx) {
             setTimeout(() => {
-                const currentSets = workoutData[dayKey].exercises[idx].sets;
+                const currentSets = window.appData.plan[dayKey].exercises[idx].sets;
                 const newSets = prompt("🏆 Введи нову вагу або підходи:", currentSets);
                 if (newSets !== null && newSets !== currentSets) {
-                    workoutData[dayKey].exercises[idx].sets = newSets;
-                    set(ref(db, 'workout_plan'), workoutData); 
+                    window.appData.plan[dayKey].exercises[idx].sets = newSets;
+                    window.triggerFirebaseSave();
                     window.openModal(dayKey);
                 }
             }, 50);
         };
 
         window.openModal = function(dayKey) {
-            const d = workoutData[dayKey]; currentActiveDay = dayKey;
+            const d = window.appData.plan[dayKey]; window.appData.activeDay = dayKey;
             
             const titleEl = document.getElementById('m-title');
-            if(titleEl) titleEl.innerHTML = `${d.title} <span style="font-size:12px; color:var(--text-muted); font-weight:600;" id="m-user-badge">👤 ${currentUser}</span>`;
+            if(titleEl) titleEl.innerHTML = `${d.title} <span style="font-size:12px; color:var(--text-muted); font-weight:600;" id="m-user-badge">👤 ${window.appData.user}</span>`;
             const subEl = document.getElementById('m-subtitle');
             if(subEl) subEl.innerText = d.sub;
             
@@ -1027,8 +1053,8 @@
             document.getElementById('m-exercises').innerHTML = exHTML;
             
             const btn = document.getElementById('m-btn');
-            let myProgress = currentUser === 'Taras' ? progress_Taras : progress_Maks;
-            if(myProgress[currentActiveDay]) { btn.className = `complete-btn done`; btn.innerHTML = `${iconCheck} ВИКОНАНО`; } 
+            let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
+            if(myProgress[window.appData.activeDay]) { btn.className = `complete-btn done`; btn.innerHTML = `${iconCheck} ВИКОНАНО`; } 
             else { btn.className = `complete-btn`; btn.innerHTML = ((d.exercises && d.exercises.length > 0) ? 'ЗАВЕРШИТИ ТРЕНУВАННЯ' : 'ВІДМІТИТИ ВІДПОЧИНОК'); }
             
             document.getElementById('modal').classList.add('active');
@@ -1041,34 +1067,37 @@
         }
         
         window.markDone = function() {
-            let myProgress = currentUser === 'Taras' ? progress_Taras : progress_Maks;
-            if(myProgress[currentActiveDay]) { window.closeModal(); return; } 
+            let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
+            if(myProgress[window.appData.activeDay]) { window.closeModal(); return; } 
             
-            if(currentUser === 'Taras') {
-                progress_Taras[currentActiveDay] = true;
-                set(ref(db, 'progress_Taras'), progress_Taras);
-            } else {
-                progress_Maks[currentActiveDay] = true;
-                set(ref(db, 'progress_Maks'), progress_Maks);
-            }
+            if(window.appData.user === 'Taras') { window.appData.progTaras[window.appData.activeDay] = true; } 
+            else { window.appData.progMaks[window.appData.activeDay] = true; }
             
+            window.triggerFirebaseSave();
             if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
             window.closeModal();
-            calculateAndRenderDashboard();
-            updateStreakUI();
-            renderMainCards();
+            window.renderAll();
         }
 
-        document.querySelectorAll('.bottom-sheet, .modal-overlay').forEach(el => { 
-            el.addEventListener('click', function(e) { if(e.target === this) { this.classList.remove('active'); } }); 
-        });
-
-        // Ініціалізація до Firebase
-        window.addEventListener('DOMContentLoaded', () => {
-            if(document.getElementById('prof-' + currentUser)) {
-                window.switchUser(currentUser);
+        window.resetAppData = function() {
+            if(confirm(`🚨 Увага! Видалити тільки статистику користувача ${window.appData.user}? (План тренувань спільний і залишиться)`)) {
+                if(window.appData.user === 'Taras') { window.appData.progTaras = {}; }
+                else { window.appData.progMaks = {}; }
+                window.triggerFirebaseSave();
+                alert("✅ Ваші дані успішно обнулено!");
+                window.switchTab('home');
             }
-        });
+        }
+        
+        window.toggleCalendar = function(el) {
+            if (el.checked) {
+                localStorage.setItem('gymgo_push', 'true');
+                alert("⏳ Функція активована.");
+            } else {
+                localStorage.setItem('gymgo_push', 'false');
+            }
+        }
+
     </script>
 </body>
 </html>
