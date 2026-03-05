@@ -134,6 +134,7 @@
         .s-icon.done { background: var(--primary-orange); color: white; box-shadow: 0 4px 10px rgba(216, 137, 68, 0.4);}
         .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
         .streak-divider { border: none; height: 2px; background: var(--border-color); margin: 25px 0; border-radius: 1px;}
+        .streak-longest { font-size: 16px; font-weight: 800; color: var(--text-main); text-align: center; margin-bottom: 10px;}
         .streak-desc { font-size: 14px; color: var(--text-muted); text-align: center; line-height: 1.5; font-weight: 500;}
 
         /* Порада дня */
@@ -172,6 +173,7 @@
         .ch-title { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;}
         .ch-status { font-size: 12px; font-weight: 700; color: #34C759; }
         .ch-val { font-size: 16px; font-weight: 900; color: var(--text-main); display: flex; align-items: center; gap: 4px;}
+        .ch-val svg { width: 16px; height: 16px; fill: var(--primary-blue);}
 
         /* РОЗУМНА АНАТОМІЯ */
         .anatomy-ui { background: var(--surface-1); border-radius: 30px; padding: 20px; position: relative; height: 500px; overflow: hidden; margin-bottom: 30px; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
@@ -186,8 +188,12 @@
         .tag-fresh { background: rgba(52, 199, 89, 0.85); }
         .tag-worked { background: rgba(216, 137, 68, 0.85); }
         .tag-fatigued { background: rgba(255, 59, 48, 0.85); }
+        .a-right-slider { position: absolute; right: 15px; top: 45%; transform: translateY(-50%); background: var(--card-bg); border-radius: 20px; width: 36px; height: 160px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 15px 0; box-shadow: var(--shadow); z-index: 2;}
+        .a-rs-btn { color: var(--text-muted); font-size: 18px; font-weight: bold; }
+        .a-rs-track { flex-grow: 1; width: 4px; background: var(--surface-1); margin: 10px 0; border-radius: 2px; position: relative; }
+        .a-rs-thumb { position: absolute; bottom: 30%; left: -2px; width: 8px; height: 30px; background: var(--text-muted); border-radius: 4px; }
 
-        /* Редактор */
+        /* Редактор та Налаштування */
         .editor-banner { background: linear-gradient(135deg, var(--primary-blue), #2a4bd8); border-radius: 30px; padding: 25px 20px; color: white; margin-bottom: 25px; box-shadow: 0 15px 30px rgba(74, 108, 247, 0.3); display: flex; align-items: center; gap: 15px; animation: slideUp 0.4s ease;}
         .eb-icon { background: rgba(255,255,255,0.2); width: 55px; height: 55px; border-radius: 18px; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px);}
         .eb-text { flex-grow: 1; }
@@ -231,6 +237,7 @@
         .nav-icon { height: 22px; width: 22px; display: flex; justify-content: center; align-items: center; }
         .nav-icon svg { width: 100%; height: 100%; fill: currentColor; }
         .nav-text { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .svg-icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
         /* Модалки */
         .modal-overlay, .bottom-sheet { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); display: none; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
@@ -248,12 +255,10 @@
         .ex-name { font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 10px; color: var(--text-main);}
         .ex-icon { background: var(--surface-1); width: 36px; height: 36px; border-radius: 10px; display: flex; justify-content: center; align-items: center; color: var(--text-main); }
         .ex-sets { background: var(--primary-blue); color: white; padding: 6px 12px; border-radius: 10px; font-size: 14px; font-weight: 800; box-shadow: 0 4px 10px rgba(74, 108, 247, 0.3); }
-        
         .supp-box { background: linear-gradient(135deg, rgba(216, 137, 68, 0.1), rgba(216, 137, 68, 0.02)); border: 1px solid rgba(216, 137, 68, 0.2); padding: 18px; border-radius: 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 15px; transition: 0.3s ease; cursor: pointer;}
         .supp-time { font-size: 12px; color: var(--primary-orange); margin-bottom: 4px; font-weight: 800; display: flex; align-items: center; gap: 4px;}
         .supp-desc { font-size: 16px; font-weight: 800; color: var(--text-main);}
         .supp-icon { background: var(--card-bg); width: 40px; height: 40px; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: var(--primary-orange); box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
-
         .item-completed { opacity: 0.3; transform: scale(0.97); filter: grayscale(100%); }
 
         /* СМАРТ ТАЙМЕР */
@@ -310,7 +315,7 @@
             <div class="streak-longest" style="margin-bottom: 20px;">Твої дні цього тижня:</div>
             <div class="streak-days-row" id="streak-days-container"></div>
             <hr class="streak-divider">
-            <div class="streak-desc">Бро, не дозволь напарнику вирватись вперед! Тренуйся стабільно! 🎉</div>
+            <div class="streak-desc">Не дозволь напарнику вирватись вперед! Тренуйся стабільно! 🎉</div>
         </div>
 
         <button class="complete-btn" style="background: var(--primary-blue); color: white;" onclick="window.shareStreak()">
@@ -357,7 +362,7 @@
             <div class="ch-info"><div class="ch-title">Спалено енергії</div><div class="ch-status">Active</div></div>
             <div class="ch-val" id="val-kcal">0 <span style="font-size:12px; color:var(--text-muted)">ккал</span></div>
         </div>
-        
+
         <div class="anatomy-ui" style="margin-top: 30px;">
             <div class="a-header"><div class="a-title">Muscle Heatmap</div><div class="a-sub">Аналіз виконаних вправ</div></div>
             <div class="a-image-wrap"><img src="https://i.postimg.cc/DzqjKPqL/file.png" alt="Anatomy" class="a-image"></div>
@@ -371,7 +376,7 @@
             <div class="eb-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
             <div class="eb-text">
                 <div class="eb-title">Спільний План</div>
-                <div class="eb-sub">Ці вправи бачать обидва бро</div>
+                <div class="eb-sub">Ці вправи бачать обидва користувачі</div>
             </div>
         </div>
 
@@ -494,7 +499,7 @@
     <div class="modal-overlay" id="modal">
         <div class="modal-content">
             <div class="close-btn" onclick="window.closeModal()">✕</div>
-            <div id="modal-header"><div class="modal-title" id="m-title">Title <span style="font-size:12px; color:var(--text-muted); font-weight:600;" id="m-user-badge">👤 Тарас</span></div><div class="modal-subtitle" id="m-subtitle">Subtitle</div></div>
+            <div id="modal-header"><div class="modal-title" id="m-title">Title</div><div class="modal-subtitle" id="m-subtitle">Subtitle</div></div>
             
             <div class="section-title">Протокол добавок (Тап = Виконано)</div>
             <div id="m-supps" style="margin-top: 15px;"></div>
@@ -668,6 +673,39 @@
             if(document.getElementById('tab-edit').classList.contains('active')) window.loadDayForEdit();
         });
 
+        window.resetAppData = function() {
+            if(confirm(`🚨 Увага! Видалити тільки статистику користувача ${currentUser}? (План тренувань спільний і залишиться)`)) {
+                if(currentUser === 'Taras') { progress_Taras = {}; set(ref(db, 'progress_Taras'), progress_Taras); }
+                else { progress_Maks = {}; set(ref(db, 'progress_Maks'), progress_Maks); }
+                alert("✅ Ваші дані успішно обнулено!");
+                window.switchTab('home', document.getElementById('nav-home'));
+            }
+        }
+
+        window.shareStreak = function() {
+            let myProgress = currentUser === 'Taras' ? progress_Taras : progress_Maks;
+            let streak = 0; daysKeys.forEach(d => { if(myProgress[d]) streak++; });
+            const shareData = {
+                title: 'Gym Go Прогрес',
+                text: `🔥 Мій стрік у Gym Go: ${streak} дні(в) поспіль! Тренуйся зі мною! 🚀`,
+                url: window.location.href
+            };
+            if (navigator.share) { navigator.share(shareData).catch(console.error); } 
+            else { navigator.clipboard.writeText(shareData.text + " " + shareData.url); alert('Текст скопійовано!'); }
+        }
+
+        window.toggleCalendar = function(el) {
+            if (el.checked) {
+                localStorage.setItem('gymgo_push', 'true');
+                alert("⏳ Функція активована.");
+            } else {
+                localStorage.setItem('gymgo_push', 'false');
+            }
+        }
+        if(localStorage.getItem('gymgo_push') === 'true') {
+            document.getElementById('calendar-toggle').checked = true;
+        }
+
         function updateStreakUI() {
             let sTaras = 0; daysKeys.forEach(d => { if(progress_Taras[d]) sTaras++; });
             let sMaks = 0; daysKeys.forEach(d => { if(progress_Maks[d]) sMaks++; });
@@ -701,7 +739,15 @@
             });
         }
 
-        // 🔥 ДАШБОРД З ВІДНОВЛЕНИМИ КАРТКАМИ 🔥
+        window.switchTab = function(tabId, el) {
+            document.querySelectorAll('.tab-view').forEach(t => t.classList.remove('active'));
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            document.querySelectorAll('.bottom-nav .nav-item').forEach(n => n.classList.remove('active'));
+            if (tabId === 'edit') document.getElementById('nav-edit-center').classList.add('active');
+            else document.getElementById(`nav-${tabId}`).classList.add('active');
+            if(tabId === 'edit') window.loadDayForEdit();
+        }
+
         function calculateAndRenderDashboard() {
             let myProgress = currentUser === 'Taras' ? progress_Taras : progress_Maks;
             
