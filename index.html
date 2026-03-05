@@ -142,6 +142,16 @@
         <div class="splash-loader"><div class="splash-loader-bar"></div></div>
     </div>
 
+    <script>
+        setTimeout(function() {
+            var splash = document.getElementById('splash-screen');
+            if (splash) {
+                splash.style.opacity = '0';
+                setTimeout(function() { splash.style.display = 'none'; }, 400);
+            }
+        }, 1200); // Гарантовано зникає через 1.2 секунди
+    </script>
+
     <header>
         <h1>GYM GO <span><div class="live-dot"></div> LIVE SYNC</span></h1>
     </header>
@@ -247,7 +257,7 @@
             <div class="nav-text">Прогрес</div>
         </div>
         <div id="nav-edit-center" class="nav-item center-btn" onclick="window.switchTab('edit', this)">
-            <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2C10.3431 2 9 3.34315 9 5C9 6.65685 10.3431 8 12 8C13.6569 8 15 6.65685 15 5C15 3.34315 13.6569 2 12 2ZM6.44917 10.1582C5.99017 9.87878 5.39169 10.0245 5.11226 10.4835C4.5501 11.4074 4.09908 12.3968 3.77443 13.4357L2.23466 18.3631C2.07153 18.8853 2.36214 19.4414 2.8843 19.6045C3.40645 19.7676 3.96261 19.477 4.12574 18.9548L5.47466 14.6382C5.74836 13.7844 6.12154 12.9697 6.58431 12.2136C6.86375 11.7546 6.71802 11.1561 6.25902 10.8767L6.44917 10.1582ZM17.5508 10.1582C17.741 10.8767 17.282 11.1561 17.5614 11.7546C18.0242 12.5107 18.3974 13.3253 18.6711 14.1791L20.0196 18.4952C20.1827 19.0173 20.7389 19.308 21.261 19.1448C21.7832 18.9817 22.0738 18.4255 21.9107 17.9034L20.3709 12.976C20.0463 11.9372 19.5952 10.9477 19.0331 10.0238C18.7537 9.56481 18.1552 9.41908 17.6962 9.69852C17.5273 9.80145 17.4086 9.96024 17.3627 10.1436L17.5508 10.1582ZM11 10C8.23858 10 6 12.2386 6 15V21C6 21.5523 6.44772 22 7 22H17C17.5523 22 18 21.5523 18 21V15C18 12.2386 15.7614 10 13 10H11Z"/></svg></div>
+            <div class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2C10.3431 2 9 3.34315 9 5C9 6.65685 10.3431 8 12 8C13.6569 8 15 6.65685 15 5C15 3.34315 13.6569 2 12 2ZM6.44917 10.1582C5.99017 9.87878 5.39169 10.0245 5.11226 10.4835C4.5501 11.4074 4.09908 12.3968 3.77443 13.4357L2.23466 18.3631C2.07153 18.8853 2.36214 19.4414 2.8843 19.6045C3.40645 19.7676 3.96261 19.477 4.12574 18.9548L5.47466 14.6382C5.74836 13.7844 6.12154 12.9697 6.58431 12.2136C6.86375 11.7546 6.71802 11.1561 6.25902 10.8767L6.44917 10.1582ZM11 10C8.23858 10 6 12.2386 6 15V21C6 21.5523 6.44772 22 7 22H17C17.5523 22 18 21.5523 18 21V15C18 12.2386 15.7614 10 13 10H11Z"/></svg></div>
         </div>
         <div id="nav-edit" class="nav-item" style="opacity: 0; pointer-events: none;"><div class="nav-text">⚙️</div></div>
     </nav>
@@ -323,6 +333,7 @@
             return new Date(curr.setDate(diff)).toDateString(); 
         }
 
+        // Рендер карток ДО завантаження Firebase, щоб не було порожнього екрану
         function renderMainCards() {
             const container = document.getElementById('workout-cards-container');
             let html = '';
@@ -353,7 +364,6 @@
             container.innerHTML = html;
         }
 
-        // ВІДМАЛЬОВКА ДО ТОГО ЯК ЗАВАНТАЖИТЬСЯ FIREBASE (Усуває порожній екран)
         setWeekDates();
         renderMainCards();
         updateRingsVisuals();
@@ -675,14 +685,6 @@
             if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
             window.closeModal();
         }
-
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                splash.style.opacity = '0';
-                setTimeout(() => splash.style.display = 'none', 400);
-            }, 1000);
-        });
 
         document.getElementById('modal').addEventListener('click', function(e) { if(e.target === this) window.closeModal(); });
     </script>
