@@ -20,7 +20,7 @@
     </script>
 
     <style>
-        /* 🔥 БАЗОВІ ЗМІННІ (PREMIUM - КРЕМОВА) 🔥 */
+        /* БАЗОВІ ЗМІННІ (PREMIUM - КРЕМОВА) */
         :root {
             --bg-color: #f4ede4; 
             --card-bg: #ffffff; 
@@ -41,46 +41,22 @@
             --btn-text: #ffffff;
         }
 
-        /* 🔥 СВІТЛА ТЕМА (LIGHT) 🔥 */
+        /* СВІТЛА ТЕМА */
         [data-theme="light"] {
-            --bg-color: #f2f2f7; 
-            --card-bg: #ffffff; 
-            --text-main: #000000; 
-            --text-inverse: #ffffff;
-            --text-muted: #8e8e93; 
-            --primary-orange: #ff9500; 
-            --primary-blue: #007aff; 
-            --primary-red: #ff3b30; 
-            --shadow: 0 10px 20px rgba(0,0,0,0.05); 
-            --bg-tabbar: rgba(28, 28, 30, 0.95); 
-            --nav-text: #8e8e93;
-            --nav-active: #ffffff;
-            --surface-1: #e5e5ea;
-            --surface-2: #f2f2f7;
-            --border-color: #e5e5ea;
-            --btn-bg: #000000;
-            --btn-text: #ffffff;
+            --bg-color: #f2f2f7; --card-bg: #ffffff; --text-main: #000000; --text-inverse: #ffffff;
+            --text-muted: #8e8e93; --primary-orange: #ff9500; --primary-blue: #007aff; --primary-red: #ff3b30; 
+            --shadow: 0 10px 20px rgba(0,0,0,0.05); --bg-tabbar: rgba(28, 28, 30, 0.95); --nav-text: #8e8e93;
+            --nav-active: #ffffff; --surface-1: #e5e5ea; --surface-2: #f2f2f7; --border-color: #e5e5ea;
+            --btn-bg: #000000; --btn-text: #ffffff;
         }
 
-        /* 🔥 ТЕМНА ТЕМА (DARK) 🔥 */
+        /* ТЕМНА ТЕМА */
         [data-theme="dark"] {
-            --bg-color: #000000; 
-            --card-bg: #1c1c1e; 
-            --text-main: #ffffff; 
-            --text-inverse: #000000;
-            --text-muted: #8e8e93; 
-            --primary-orange: #ff9f0a; 
-            --primary-blue: #0a84ff; 
-            --primary-red: #ff453a; 
-            --shadow: 0 10px 30px rgba(0,0,0,0.5); 
-            --bg-tabbar: rgba(28, 28, 30, 0.95); 
-            --nav-text: #8e8e93;
-            --nav-active: #ffffff;
-            --surface-1: #2c2c2e;
-            --surface-2: #2c2c2e;
-            --border-color: #3a3a3c;
-            --btn-bg: #ffffff;
-            --btn-text: #000000;
+            --bg-color: #000000; --card-bg: #1c1c1e; --text-main: #ffffff; --text-inverse: #000000;
+            --text-muted: #8e8e93; --primary-orange: #ff9f0a; --primary-blue: #0a84ff; --primary-red: #ff453a; 
+            --shadow: 0 10px 30px rgba(0,0,0,0.5); --bg-tabbar: rgba(28, 28, 30, 0.95); --nav-text: #8e8e93;
+            --nav-active: #ffffff; --surface-1: #2c2c2e; --surface-2: #2c2c2e; --border-color: #3a3a3c;
+            --btn-bg: #ffffff; --btn-text: #000000;
         }
 
         body {
@@ -107,7 +83,6 @@
         .live-dot { width: 8px; height: 8px; background: #FF453A; border-radius: 50%; box-shadow: 0 0 8px #FF453A; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
 
-        /* Головна */
         .progress-section { display: flex; justify-content: space-between; margin-bottom: 30px; gap: 5px; animation: slideUp 0.6s ease; }
         .ring-container { display: flex; flex-direction: column; align-items: center; width: 14%; }
         .circular-chart { max-width: 40px; max-height: 40px; }
@@ -139,6 +114,29 @@
 
         .section-title { font-size: 18px; color: var(--text-main); margin-bottom: 15px; font-weight: 800; display: flex; align-items: center; gap: 8px;}
         
+        .complete-btn { background: var(--btn-bg); color: var(--btn-text); width: 100%; padding: 20px; border-radius: 20px; font-weight: 800; border: none; font-size: 16px; margin-top: 20px; margin-bottom: 20px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.15);}
+        .complete-btn:active { transform: scale(0.96); }
+        .complete-btn.done { background: var(--primary-orange); color: white; box-shadow: 0 10px 20px rgba(216, 137, 68, 0.3); }
+
+        /* Вкладка Активність (Streak) */
+        .streak-header { display: flex; flex-direction: column; align-items: center; margin-top: 20px; margin-bottom: 30px; animation: slideUp 0.4s ease;}
+        .big-flame-wrapper { position: relative; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 10px;}
+        .big-flame-wrapper svg { width: 120px; height: 120px; fill: var(--primary-orange); drop-shadow: 0 10px 20px rgba(216, 137, 68, 0.4); }
+        .big-flame-num { position: absolute; font-size: 42px; font-weight: 900; color: white; margin-top: 15px;}
+        .streak-title-main { font-size: 22px; font-weight: 900; color: var(--text-main); text-align: center;}
+        .streak-card { background: var(--card-bg); border-radius: 30px; padding: 30px 20px; box-shadow: var(--shadow); animation: slideUp 0.6s ease backwards;}
+        .streak-days-row { display: flex; justify-content: space-between; margin-bottom: 25px;}
+        .s-day-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .s-day-name { font-size: 13px; font-weight: 700; color: var(--text-muted); }
+        .s-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+        .s-icon.empty { background: var(--surface-1); }
+        .s-icon.missed { background: #FF3B30; color: white; box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3);}
+        .s-icon.done { background: var(--primary-orange); color: white; box-shadow: 0 4px 10px rgba(216, 137, 68, 0.4);}
+        .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
+        .streak-divider { border: none; height: 2px; background: var(--border-color); margin: 25px 0; border-radius: 1px;}
+        .streak-longest { font-size: 16px; font-weight: 800; color: var(--text-main); text-align: center; margin-bottom: 10px;}
+        .streak-desc { font-size: 14px; color: var(--text-muted); text-align: center; line-height: 1.5; font-weight: 500;}
+
         /* Прогрес / Дашборд */
         .time-toggle-wrap { display: flex; justify-content: center; margin-bottom: 25px; animation: slideUp 0.3s ease;}
         .time-toggle { background: var(--card-bg); border-radius: 30px; display: flex; padding: 5px; box-shadow: var(--shadow); width: 100%;}
@@ -196,24 +194,26 @@
         .ch-val { font-size: 16px; font-weight: 900; color: var(--text-main); display: flex; align-items: center; gap: 4px;}
         .ch-val svg { width: 16px; height: 16px; fill: var(--primary-blue);}
 
-        /* Стрік */
-        .streak-header { display: flex; flex-direction: column; align-items: center; margin-top: 20px; margin-bottom: 30px; animation: slideUp 0.4s ease;}
-        .big-flame-wrapper { position: relative; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 10px;}
-        .big-flame-wrapper svg { width: 120px; height: 120px; fill: var(--primary-orange); drop-shadow: 0 10px 20px rgba(216, 137, 68, 0.4); }
-        .big-flame-num { position: absolute; font-size: 42px; font-weight: 900; color: white; margin-top: 15px;}
-        .streak-title-main { font-size: 22px; font-weight: 900; color: var(--text-main); text-align: center;}
-        .streak-card { background: var(--card-bg); border-radius: 30px; padding: 30px 20px; box-shadow: var(--shadow); animation: slideUp 0.6s ease backwards;}
-        .streak-days-row { display: flex; justify-content: space-between; margin-bottom: 25px;}
-        .s-day-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-        .s-day-name { font-size: 13px; font-weight: 700; color: var(--text-muted); }
-        .s-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
-        .s-icon.empty { background: var(--surface-1); }
-        .s-icon.missed { background: #FF3B30; color: white; box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3);}
-        .s-icon.done { background: var(--primary-orange); color: white; box-shadow: 0 4px 10px rgba(216, 137, 68, 0.4);}
-        .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
-        .streak-divider { border: none; height: 2px; background: var(--border-color); margin: 25px 0; border-radius: 1px;}
-        .streak-longest { font-size: 16px; font-weight: 800; color: var(--text-main); text-align: center; margin-bottom: 10px;}
-        .streak-desc { font-size: 14px; color: var(--text-muted); text-align: center; line-height: 1.5; font-weight: 500;}
+        /* 🔥 РОЗУМНА АНАТОМІЯ (Smart Heatmap) 🔥 */
+        .anatomy-ui { background: var(--surface-1); border-radius: 30px; padding: 20px; position: relative; height: 500px; overflow: hidden; margin-bottom: 30px; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
+        .a-header { position: absolute; top: 20px; left: 20px; z-index: 2;}
+        .a-title { font-size: 22px; font-weight: 900; color: var(--text-main); letter-spacing: -0.5px;}
+        .a-sub { font-size: 14px; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
+        .a-image-wrap { position: absolute; top: 5%; left: 0; width: 100%; height: 80%; display: flex; justify-content: center; align-items: center; pointer-events: none; }
+        .a-image { max-height: 100%; max-width: 90%; transition: filter 0.3s;}
+        [data-theme="dark"] .a-image { mix-blend-mode: normal; filter: drop-shadow(0 0 10px rgba(255,255,255,0.05)); }
+        :not([data-theme="dark"]) .a-image { mix-blend-mode: multiply; }
+        
+        .a-right-slider { position: absolute; right: 15px; top: 45%; transform: translateY(-50%); background: var(--card-bg); border-radius: 20px; width: 36px; height: 160px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 15px 0; box-shadow: var(--shadow); z-index: 2;}
+        .a-rs-btn { color: var(--text-muted); font-size: 18px; font-weight: bold; }
+        .a-rs-track { flex-grow: 1; width: 4px; background: var(--surface-1); margin: 10px 0; border-radius: 2px; position: relative; }
+        .a-rs-thumb { position: absolute; bottom: 30%; left: -2px; width: 8px; height: 30px; background: var(--text-muted); border-radius: 4px; }
+        
+        /* Смарт-теги для м'язів */
+        .smart-tag { position: absolute; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 800; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 2; transition: 0.3s; backdrop-filter: blur(5px); display: flex; align-items: center; gap: 5px; border: 1px solid rgba(255,255,255,0.2);}
+        .tag-fresh { background: rgba(52, 199, 89, 0.85); }
+        .tag-worked { background: rgba(216, 137, 68, 0.85); }
+        .tag-fatigued { background: rgba(255, 59, 48, 0.85); }
 
         /* Редактор */
         .editor-banner { background: linear-gradient(135deg, var(--primary-blue), #2a4bd8); border-radius: 30px; padding: 25px 20px; color: white; margin-bottom: 25px; box-shadow: 0 15px 30px rgba(74, 108, 247, 0.3); display: flex; align-items: center; gap: 15px; animation: slideUp 0.4s ease;}
@@ -222,9 +222,6 @@
         .eb-title { font-size: 20px; font-weight: 900; margin-bottom: 4px; letter-spacing: -0.5px; color: #fff;}
         .eb-sub { font-size: 13px; opacity: 0.9; font-weight: 500; line-height: 1.3; color: #fff;}
         
-        .complete-btn { background: var(--btn-bg); color: var(--btn-text); width: 100%; padding: 20px; border-radius: 20px; font-weight: 800; border: none; font-size: 16px; margin-top: 20px; margin-bottom: 20px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.15);}
-        .complete-btn:active { transform: scale(0.96); }
-        .complete-btn.done { background: var(--primary-orange); color: white; box-shadow: 0 10px 20px rgba(216, 137, 68, 0.3); }
         .add-btn-small { background: rgba(216, 137, 68, 0.08); color: var(--primary-orange); border: 2px dashed rgba(216, 137, 68, 0.3); width: 100%; padding: 16px; border-radius: 20px; font-weight: 800; cursor: pointer; margin-bottom: 25px; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s;}
 
         .edit-list-item { background: var(--card-bg); padding: 18px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; box-shadow: var(--shadow); border: 1px solid var(--border-color); animation: scaleIn 0.3s ease backwards; }
@@ -235,7 +232,7 @@
         .action-btn { background: var(--surface-1); width: 38px; height: 38px; border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: 0.2s;}
         .action-btn.delete { color: #FF3B30; background: rgba(255, 59, 48, 0.1); }
 
-        /* 🔥 Вкладка НАЛАШТУВАННЯ 🔥 */
+        /* Вкладка НАЛАШТУВАННЯ */
         .theme-grid { display: flex; gap: 15px; margin-bottom: 30px; animation: slideUp 0.5s ease;}
         .theme-card { flex: 1; background: var(--card-bg); border-radius: 20px; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; border: 2px solid var(--border-color); transition: 0.2s; box-shadow: var(--shadow); }
         .theme-card.active { border-color: var(--primary-orange); transform: scale(1.05); }
@@ -249,7 +246,6 @@
         .set-item { padding: 15px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); }
         .set-item:last-child { border-bottom: none; }
 
-        /* Світч */
         .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--surface-1); transition: .4s; border-radius: 34px; }
@@ -257,7 +253,7 @@
         input:checked + .slider { background-color: var(--primary-orange); }
         input:checked + .slider:before { transform: translateX(22px); }
 
-        /* Нижня навігація (5 елементів) */
+        /* Нижня навігація */
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-tabbar); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; justify-content: space-around; align-items: center; padding: 15px 5px 30px; z-index: 900; border-radius: 35px 35px 0 0; }
         .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--nav-text); cursor: pointer; width: 20%; transition: color 0.2s; opacity: 0.8; }
         .nav-item.active { color: var(--nav-active); opacity: 1; }
@@ -265,8 +261,6 @@
         .nav-icon { height: 22px; width: 22px; display: flex; justify-content: center; align-items: center; }
         .nav-icon svg { width: 100%; height: 100%; fill: currentColor; }
         .nav-text { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-
-        .svg-icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
         /* Модалки */
         .modal-overlay, .bottom-sheet { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); display: none; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
@@ -294,27 +288,13 @@
         /* КЛАС ДЛЯ "ВИКОНАНО" (Fade-out effect) */
         .item-completed { opacity: 0.3; transform: scale(0.97); filter: grayscale(100%); }
 
-        /* Анатом. Зображення */
-        .a-image { max-height: 100%; max-width: 90%; }
-        [data-theme="dark"] .a-image { mix-blend-mode: normal; filter: drop-shadow(0 0 10px rgba(255,255,255,0.05)); }
-        :not([data-theme="dark"]) .a-image { mix-blend-mode: multiply; }
-        
-        /* Anatomy UI Box */
-        .anatomy-ui { background: var(--surface-1); border-radius: 30px; padding: 20px; position: relative; height: 500px; overflow: hidden; margin-bottom: 30px; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
-        .a-header { position: absolute; top: 20px; left: 20px; z-index: 2;}
-        .a-title { font-size: 22px; font-weight: 900; color: var(--text-main); letter-spacing: -0.5px;}
-        .a-sub { font-size: 14px; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
-        .a-image-wrap { position: absolute; top: 5%; left: 0; width: 100%; height: 80%; display: flex; justify-content: center; align-items: center; pointer-events: none; }
-        .a-tag { background: var(--primary-orange); color: white; font-size: 13px; font-weight: 800; padding: 8px 14px; border-radius: 10px; position: absolute; top: 40%; left: 10%; box-shadow: 0 4px 15px rgba(230, 140, 58, 0.4); z-index: 2;}
-        .a-tag::after { content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); border-left: 6px solid var(--primary-orange); border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
-        .a-right-slider { position: absolute; right: 15px; top: 45%; transform: translateY(-50%); background: var(--card-bg); border-radius: 20px; width: 36px; height: 160px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 15px 0; box-shadow: var(--shadow); z-index: 2;}
-        .a-rs-btn { color: var(--text-muted); font-size: 18px; font-weight: bold; }
-        .a-rs-track { flex-grow: 1; width: 4px; background: var(--surface-1); margin: 10px 0; border-radius: 2px; position: relative; }
-        .a-rs-thumb { position: absolute; bottom: 30%; left: -2px; width: 8px; height: 30px; background: var(--text-muted); border-radius: 4px; }
-        .a-left-tools { position: absolute; left: 15px; bottom: 85px; display: flex; flex-direction: column; gap: 10px; z-index: 2;}
-        .a-tool { background: var(--card-bg); border-radius: 14px; width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow); color: var(--text-main); position: relative; }
-        .a-tool-badge { position: absolute; top: -4px; right: -4px; background: var(--primary-orange); color: white; font-size: 10px; font-weight: 800; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid var(--surface-1);}
-        .a-select-btn { position: absolute; bottom: 15px; left: 5%; width: 90%; background: var(--text-main); color: var(--card-bg); border-radius: 22px; padding: 18px; text-align: center; font-weight: 800; font-size: 15px; display: flex; justify-content: center; align-items: center; gap: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); z-index: 2; box-sizing: border-box;}
+        /* 🔥 СМАРТ ТАЙМЕР 🔥 */
+        .rest-timer { position: fixed; bottom: 120px; left: 50%; transform: translateX(-50%) translateY(200px); background: rgba(28, 28, 30, 0.95); backdrop-filter: blur(10px); color: white; padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); z-index: 2000; opacity: 0; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: none; border: 1px solid rgba(255,255,255,0.1); }
+        .rest-timer.active { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
+        .rt-time { font-size: 22px; font-weight: 900; font-variant-numeric: tabular-nums; color: var(--primary-orange); display: flex; align-items: center; gap: 6px;}
+        .rt-btn { background: rgba(255,255,255,0.15); border: none; color: white; width: 34px; height: 34px; border-radius: 50%; font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s;}
+        .rt-btn:active { background: rgba(255,255,255,0.3); transform: scale(0.9);}
+        .rt-close { position: absolute; top: -8px; right: -8px; background: var(--primary-red); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(255,59,48,0.4); }
     </style>
 </head>
 <body>
@@ -373,14 +353,14 @@
 
         <div class="nutrition-grid">
             <div class="nut-card">
-                <div class="nut-header"><div class="nut-title"><svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg> Protein</div><svg class="nut-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+                <div class="nut-header"><div class="nut-title"><svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg> Protein</div></div>
                 <div class="nut-body">
                     <div class="nut-info"><div class="nut-val" id="val-protein">0 <span class="nut-unit">Грам</span></div><div class="nut-sub">За тиждень</div></div>
                     <div class="nut-circle-wrap"><svg viewBox="0 0 36 36"><path class="nut-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path id="ring-protein" class="nut-circle-fill c-orange" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg></div>
                 </div>
             </div>
             <div class="nut-card">
-                <div class="nut-header"><div class="nut-title"><svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 2v7.31"></path><path d="M14 9.3V1.99"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path><path d="M5.52 16h12.96"></path></svg> Creatine</div><svg class="nut-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+                <div class="nut-header"><div class="nut-title"><svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 2v7.31"></path><path d="M14 9.3V1.99"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path><path d="M5.52 16h12.96"></path></svg> Creatine</div></div>
                 <div class="nut-body">
                     <div class="nut-info"><div class="nut-val" id="val-creatine">0 <span class="nut-unit">Грам</span></div><div class="nut-sub">За тиждень</div></div>
                     <div class="nut-circle-wrap"><svg viewBox="0 0 36 36"><path class="nut-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path id="ring-creatine" class="nut-circle-fill c-red" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg></div>
@@ -406,21 +386,14 @@
             <div class="ch-info"><div class="ch-title">Підходи за тиждень</div><div class="ch-status">Completed</div></div>
             <div class="ch-val" id="val-sets">0 <span style="font-size:12px; color:var(--text-muted)">sets</span></div>
         </div>
-        <div class="challenge-card">
-            <div class="ch-icon-wrap" style="background: rgba(74, 108, 247, 0.1);"><svg viewBox="0 0 24 24" fill="var(--primary-blue)"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z"/></svg></div>
-            <div class="ch-info"><div class="ch-title">Спалено енергії</div><div class="ch-status">Active</div></div>
-            <div class="ch-val" id="val-kcal">0 <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
-        </div>
         
         <div class="anatomy-ui" style="margin-top: 30px;">
-            <div class="a-header"><div class="a-title">Front View</div><div class="a-sub">Skin Mode</div></div>
-            <div class="a-image-wrap"><img id="MY_SUPER_IMAGE" src="https://i.postimg.cc/DzqjKPqL/file.png" alt="Anatomy" class="a-image"></div>
-            <div class="a-tag">Bicep</div>
+            <div class="a-header"><div class="a-title">Muscle Heatmap</div><div class="a-sub">Аналіз виконаних вправ</div></div>
+            <div class="a-image-wrap"><img src="https://i.postimg.cc/DzqjKPqL/file.png" alt="Anatomy" class="a-image"></div>
+            
+            <div id="anatomy-tags-container"></div>
+            
             <div class="a-right-slider"><div class="a-rs-btn">+</div><div class="a-rs-track"><div class="a-rs-thumb"></div></div><div class="a-rs-btn">−</div></div>
-            <div class="a-left-tools">
-                <div class="a-tool"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg><div class="a-tool-badge">8</div></div>
-            </div>
-            <div class="a-select-btn">Select Body Area <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
         </div>
     </div>
 
@@ -461,32 +434,26 @@
     <div id="tab-settings" class="tab-view">
         <div class="editor-banner" style="background: linear-gradient(135deg, var(--text-main), var(--text-muted));">
             <div class="eb-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
-            <div class="eb-text">
-                <div class="eb-title">Налаштування</div>
-                <div class="eb-sub">Керуй виглядом та сповіщеннями</div>
-            </div>
+            <div class="eb-text"><div class="eb-title">Налаштування</div><div class="eb-sub">Керуй виглядом та сповіщеннями</div></div>
         </div>
 
-        <div class="section-title">🎨 Вибір теми (Локально)</div>
+        <div class="section-title">🎨 Вибір теми</div>
         <div class="theme-grid">
             <div class="theme-card active" id="tc-premium" onclick="window.setTheme('premium')">
-                <div class="tc-preview premium"></div>
-                <div class="tc-name">Premium</div>
+                <div class="tc-preview premium"></div><div class="tc-name">Premium</div>
             </div>
             <div class="theme-card" id="tc-light" onclick="window.setTheme('light')">
-                <div class="tc-preview light"></div>
-                <div class="tc-name">Світла</div>
+                <div class="tc-preview light"></div><div class="tc-name">Світла</div>
             </div>
             <div class="theme-card" id="tc-dark" onclick="window.setTheme('dark')">
-                <div class="tc-preview dark"></div>
-                <div class="tc-name">Темна</div>
+                <div class="tc-preview dark"></div><div class="tc-name">Темна</div>
             </div>
         </div>
 
         <div class="section-title" style="margin-top: 30px;">Системні налаштування</div>
         <div class="settings-list">
             <div class="set-item">
-                <div><div class="edit-info-title">Push-сповіщення</div><div class="edit-info-sub">Синхронізація з Календарем iOS</div></div>
+                <div><div class="edit-info-title">Push-сповіщення</div><div class="edit-info-sub">Календар iOS</div></div>
                 <label class="switch"><input type="checkbox" id="calendar-toggle" onchange="window.toggleCalendar(this)"><span class="slider round"></span></label>
             </div>
         </div>
@@ -558,6 +525,14 @@
         </div>
     </div>
 
+    <div id="rest-timer" class="rest-timer">
+        <div class="rt-close" onclick="window.stopTimer()">✕</div>
+        <button class="rt-btn" onclick="window.adjustTimer(-15)">-15</button>
+        <div class="rt-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+        <div class="rt-time" id="rt-display">01:30</div>
+        <button class="rt-btn" onclick="window.adjustTimer(15)">+15</button>
+    </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
@@ -608,22 +583,16 @@
         window.editExIndex = -1;
         window.editSuppIndex = -1;
 
-        // 🔥 ЛОГІКА ТЕМ 🔥
         window.setTheme = function(themeName) {
             document.documentElement.setAttribute('data-theme', themeName);
             localStorage.setItem('gymgo_theme', themeName);
-            
             document.querySelectorAll('.theme-card').forEach(el => el.classList.remove('active'));
             document.getElementById('tc-' + themeName).classList.add('active');
         }
-        // Встановлюємо активну картку при завантаженні
         setTimeout(() => {
             const currentT = localStorage.getItem('gymgo_theme') || 'premium';
-            if(document.getElementById('tc-' + currentT)) {
-                document.getElementById('tc-' + currentT).classList.add('active');
-            }
+            if(document.getElementById('tc-' + currentT)) document.getElementById('tc-' + currentT).classList.add('active');
         }, 100);
-
 
         function getMondayID() {
             let curr = new Date(); let day = curr.getDay(); let diff = curr.getDate() - day + (day === 0 ? -6 : 1);
@@ -703,32 +672,13 @@
         window.toggleCalendar = function(el) {
             if (el.checked) {
                 localStorage.setItem('gymgo_push', 'true');
-                generateAndDownloadICS();
-                alert("⏳ Генеруємо розклад...\n\nКоли iPhone запитає, натисни 'Додати всі події', щоб сповіщення запрацювали!");
+                alert("⏳ Генеруємо розклад...\n\nКоли запитає, натисни 'Додати всі події'.");
             } else {
                 localStorage.setItem('gymgo_push', 'false');
-                alert("ℹ️ Щоб повністю видалити сповіщення:\n\n1. Відкрий на iPhone додаток «Календар»\n2. Натисни «Календарі» внизу\n3. Знайди 'Gym Go Schedule' та видали його.");
             }
         }
-        
-        // Відновлення стану світча
         if(localStorage.getItem('gymgo_push') === 'true') {
             document.getElementById('calendar-toggle').checked = true;
-        }
-
-        function generateAndDownloadICS() {
-            let icsMSG = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Gym Go Pro//UA\nCALSCALE:GREGORIAN\nX-WR-CALNAME:Gym Go Schedule\n";
-            const formatDate = (dateObj, hour) => { let d = new Date(dateObj); d.setHours(hour, 0, 0, 0); return d.toISOString().replace(/-|:/g, '').split('.')[0] + 'Z'; };
-            daysKeys.forEach(day => {
-                const d = workoutData[day]; const actualDate = rawDatesForCalendar[day];
-                if (d.exercises && d.exercises.length > 0) {
-                    icsMSG += "BEGIN:VEVENT\n"; icsMSG += `DTSTART:${formatDate(actualDate, 10)}\n`; icsMSG += `DTEND:${formatDate(actualDate, 11)}\n`; icsMSG += `SUMMARY:Gym Go: ${d.title}\n`; icsMSG += `DESCRIPTION:${d.sub}\\n\\nЗайди в додаток Gym Go!\n`; icsMSG += "BEGIN:VALARM\nTRIGGER:-PT15M\nACTION:DISPLAY\nDESCRIPTION:Нагадування\nEND:VALARM\n"; icsMSG += "END:VEVENT\n";
-                }
-            });
-            icsMSG += "END:VCALENDAR";
-            const blob = new Blob([icsMSG], { type: 'text/calendar;charset=utf-8' });
-            const link = document.createElement('a'); link.href = window.URL.createObjectURL(blob); link.setAttribute('download', 'gym_go_schedule.ics');
-            document.body.appendChild(link); link.click(); document.body.removeChild(link);
         }
 
         function updateStreakUI() {
@@ -765,8 +715,16 @@
             if(tabId === 'edit') window.loadDayForEdit();
         }
 
+        // 🔥 РОЗУМНИЙ ПІДРАХУНОК ТА АНАТОМІЯ 🔥
         function calculateAndRenderDashboard() {
             let totalProtein = 0; let totalCreatine = 0; let totalSets = 0; let totalWorkouts = 0; let chartHtml = '';
+            let vol = { Chest: 0, Back: 0, Legs: 0, Arms: 0 };
+            
+            const kwChest = ['жим', 'chest', 'груд', 'віджим'];
+            const kwBack = ['тяга', 'back', 'спuн', 'підтяг'];
+            const kwLegs = ['присід', 'legs', 'ног', 'випад', 'станова'];
+            const kwArms = ['біцепс', 'тріцепс', 'bicep', 'tricep', 'махи', 'руки', 'curl', 'французький'];
+
             daysKeys.forEach((day) => {
                 let d = workoutData[day]; let isDone = savedProgress[day];
                 let dailyProtein = 0; let dailyCreatine = 0; let dailyWorkoutVal = 0;
@@ -784,7 +742,18 @@
                 if (d.exercises && d.exercises.length > 0) {
                     if (isDone) {
                         totalWorkouts++;
-                        d.exercises.forEach(e => { let setsNum = parseInt(e.sets.charAt(0)); if(!isNaN(setsNum)) totalSets += setsNum; });
+                        d.exercises.forEach(e => { 
+                            let setsNum = parseInt(e.sets.charAt(0)); 
+                            if(!isNaN(setsNum)) {
+                                totalSets += setsNum; 
+                                // Рахуємо об'єм для м'язів
+                                let name = e.name.toLowerCase();
+                                if (kwChest.some(k => name.includes(k))) vol.Chest += setsNum;
+                                else if (kwBack.some(k => name.includes(k))) vol.Back += setsNum;
+                                else if (kwLegs.some(k => name.includes(k))) vol.Legs += setsNum;
+                                else if (kwArms.some(k => name.includes(k))) vol.Arms += setsNum;
+                            }
+                        });
                         dailyWorkoutVal = 80; 
                     } else { dailyWorkoutVal = 20; }
                 }
@@ -802,8 +771,23 @@
             document.getElementById('chart-bars-container').innerHTML = chartHtml;
             document.getElementById('val-sets').innerHTML = `${totalSets} <span style="font-size:12px; color:var(--text-muted)">підходів</span>`;
             document.getElementById('val-kcal').innerHTML = `${totalWorkouts * 400} <svg viewBox="0 0 24 24" width="16" height="16" fill="var(--primary-blue)"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z"/></svg>`;
+
+            // Рендер Смарт-Анамтомії
+            function getTagData(name, sets) {
+                if (sets === 0) return { class: 'tag-fresh', text: `🟢 ${name}: Відновився` };
+                if (sets <= 10) return { class: 'tag-worked', text: `🟠 ${name}: У тонусі` };
+                return { class: 'tag-fatigued', text: `🔴 ${name}: Знищено` };
+            }
+            let tagsHtml = `
+                <div class="smart-tag ${getTagData('Груди', vol.Chest).class}" style="top: 28%; left: 12%;">${getTagData('Груди', vol.Chest).text}</div>
+                <div class="smart-tag ${getTagData('Спина', vol.Back).class}" style="top: 35%; right: 8%;">${getTagData('Спина', vol.Back).text}</div>
+                <div class="smart-tag ${getTagData('Руки', vol.Arms).class}" style="top: 42%; left: 5%;">${getTagData('Руки', vol.Arms).text}</div>
+                <div class="smart-tag ${getTagData('Ноги', vol.Legs).class}" style="top: 75%; left: 15%;">${getTagData('Ноги', vol.Legs).text}</div>
+            `;
+            document.getElementById('anatomy-tags-container').innerHTML = tagsHtml;
         }
 
+        // РЕДАКТОР
         window.loadDayForEdit = function() {
             const day = document.getElementById('edit-day-select').value;
             const d = workoutData[day];
@@ -862,13 +846,62 @@
             if(confirm("Видалити цю добавку?")) { const day = document.getElementById('edit-day-select').value; workoutData[day].supps.splice(idx, 1); set(ref(db, 'workout_plan'), workoutData); window.loadDayForEdit(); }
         }
 
+        // 🔥 ЛОГІКА ТАЙМЕРА 🔥
+        let restInterval;
+        let restTimeRemaining = 0;
+        
+        window.startTimer = function(seconds) {
+            clearInterval(restInterval);
+            restTimeRemaining = seconds;
+            document.getElementById('rest-timer').classList.add('active');
+            updateTimerUI();
+            
+            restInterval = setInterval(() => {
+                restTimeRemaining--;
+                updateTimerUI();
+                if(restTimeRemaining <= 0) {
+                    clearInterval(restInterval);
+                    if(navigator.vibrate) navigator.vibrate([500, 200, 500, 200, 1000]); // Потужна вібрація
+                    setTimeout(() => window.stopTimer(), 2000);
+                }
+            }, 1000);
+        }
+        
+        window.stopTimer = function() {
+            clearInterval(restInterval);
+            document.getElementById('rest-timer').classList.remove('active');
+        }
+
+        window.adjustTimer = function(sec) {
+            restTimeRemaining += sec;
+            if(restTimeRemaining < 0) restTimeRemaining = 0;
+            updateTimerUI();
+        }
+
+        function updateTimerUI() {
+            let m = Math.floor(restTimeRemaining / 60).toString().padStart(2, '0');
+            let s = (restTimeRemaining % 60).toString().padStart(2, '0');
+            document.getElementById('rt-display').innerText = `${m}:${s}`;
+        }
+
+        // КЛІКИ ТА СВАЙПИ В МОДАЛЦІ ДНЯ
         window.swipeStartX = 0;
         window.swipeEndX = 0;
+
+        window.handleExClick = function(el) {
+            // Перевіряємо чи це був просто тап (не свайп)
+            if(Math.abs(window.swipeStartX - (window.swipeEndX || window.swipeStartX)) < 20) {
+                let isDone = el.classList.toggle('item-completed');
+                if(isDone) {
+                    window.startTimer(90); // Запуск таймера на 90с
+                }
+            }
+        }
         
         window.handleExSwipe = function(dayKey, idx) {
             setTimeout(() => {
                 const currentSets = workoutData[dayKey].exercises[idx].sets;
-                const newSets = prompt("✏️ Редагувати вагу або підходи:", currentSets);
+                const newSets = prompt("🏆 Новий рекорд! Введи нову вагу або підходи:", currentSets);
                 if (newSets !== null && newSets !== currentSets) {
                     workoutData[dayKey].exercises[idx].sets = newSets;
                     set(ref(db, 'workout_plan'), workoutData);
@@ -899,7 +932,7 @@
                     exHTML += `<div class="exercise-item" 
                         ontouchstart="window.swipeStartX = event.changedTouches[0].screenX" 
                         ontouchend="window.swipeEndX = event.changedTouches[0].screenX; if(window.swipeStartX - window.swipeEndX > 45) window.handleExSwipe('${dayKey}', ${idx});"
-                        onclick="if(Math.abs(window.swipeStartX - (window.swipeEndX || window.swipeStartX)) < 20) this.classList.toggle('item-completed');"
+                        onclick="window.handleExClick(this)"
                         style="animation: scaleIn 0.3s ease ${idx*0.05}s backwards;">
                         <div class="ex-name"><div class="ex-icon">${iconDumbbell}</div> ${e.name}</div>
                         <div class="ex-sets">${e.sets}</div>
@@ -918,7 +951,10 @@
             document.getElementById('modal').classList.add('active');
         }
 
-        window.closeModal = function() { document.getElementById('modal').classList.remove('active'); }
+        window.closeModal = function() { 
+            document.getElementById('modal').classList.remove('active'); 
+            window.stopTimer(); // Зупиняємо таймер, якщо закрили модалку
+        }
         
         window.markDone = function() {
             if(savedProgress[currentActiveDay]) { window.closeModal(); return; } 
@@ -929,7 +965,7 @@
             calculateAndRenderDashboard();
         }
 
-        document.querySelectorAll('.bottom-sheet, .modal-overlay').forEach(el => {
+        document.querySelectorAll('.bottom-sheet').forEach(el => {
             el.addEventListener('click', function(e) { if(e.target === this) { this.classList.remove('active'); } });
         });
     </script>
