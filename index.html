@@ -33,7 +33,6 @@
             -webkit-font-smoothing: antialiased; overflow-x: hidden;
         }
 
-        /* Анімації */
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes scaleIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -51,6 +50,7 @@
         .live-dot { width: 8px; height: 8px; background: #FF453A; border-radius: 50%; box-shadow: 0 0 8px #FF453A; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
 
+        /* Картки Головної */
         .progress-section { display: flex; justify-content: space-between; margin-bottom: 30px; gap: 5px; animation: slideUp 0.6s ease; }
         .ring-container { display: flex; flex-direction: column; align-items: center; width: 14%; }
         .circular-chart { max-width: 40px; max-height: 40px; }
@@ -58,15 +58,11 @@
         .circle { fill: none; stroke-width: 2.8; stroke-linecap: round; transition: stroke-dasharray 0.5s ease, stroke 0.3s; stroke: var(--primary-orange); }
         .ring-label { font-size: 10px; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
 
-        /* 🔥 КАРТКИ ДНІВ ТИЖНЯ 🔥 */
         .card { background: var(--card-bg); border-radius: 24px; padding: 25px 20px; margin-bottom: 15px; display: flex; align-items: center; position: relative; overflow: hidden; cursor: pointer; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; animation: slideUp 0.5s ease backwards; border: 2px solid transparent;}
         .card:active { transform: scale(0.97); box-shadow: 0 5px 15px rgba(0,0,0,0.04); }
-        
-        /* 🔥 ПІДСВІТКА СЬОГОДНІШНЬОГО ДНЯ 🔥 */
         .card.today-card { border: 2px solid var(--primary-orange); background: linear-gradient(145deg, #ffffff, #fffcf9); box-shadow: 0 10px 30px rgba(230, 140, 58, 0.15); transform: scale(1.02); }
         .card.today-card:active { transform: scale(0.99); }
         .today-badge { position: absolute; top: 15px; right: 20px; background: var(--primary-orange); color: white; font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 10px rgba(230, 140, 58, 0.3);}
-
         .date-col { text-align: center; margin-right: 20px; min-width: 50px; background: #f9f9f9; padding: 12px 10px; border-radius: 18px; transition: 0.3s;}
         .today-card .date-col { background: rgba(230, 140, 58, 0.1); }
         .day-name { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-orange); }
@@ -81,48 +77,35 @@
         .tab-view { display: none; }
         .tab-view.active { display: block; animation: fadeIn 0.4s ease; }
         
+        /* Загальні елементи */
         input[type="text"], select { background: #f4f5f7; border: 2px solid transparent; color: var(--text-main); padding: 16px 20px; border-radius: 16px; width: 100%; box-sizing: border-box; margin-bottom: 15px; font-family: inherit; font-size: 16px; font-weight: 600; -webkit-appearance: none; transition: 0.3s; }
         input:focus, select:focus { outline: none; border-color: var(--primary-orange); background: #fff; box-shadow: 0 0 0 4px rgba(230, 140, 58, 0.1); }
-
         .section-title { font-size: 13px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 12px; font-weight: 800; display: flex; align-items: center; gap: 6px;}
-        .edit-list-item { background: #fff; padding: 18px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; box-shadow: var(--shadow); border: 1px solid #f1f1f1; animation: scaleIn 0.3s ease backwards; }
-        .edit-info-title { font-size: 16px; font-weight: 800; color: #000; }
-        .edit-info-sub { font-size: 13px; color: var(--primary-blue); margin-top: 6px; font-weight: 700; display: flex; align-items: center; gap: 4px; background: rgba(74, 108, 247, 0.1); padding: 4px 8px; border-radius: 8px; display: inline-flex;}
-        .edit-info-sub.supp { color: var(--primary-orange); background: rgba(230, 140, 58, 0.1); }
-        .edit-actions { display: flex; gap: 10px; }
-        .action-btn { background: #f4f5f7; width: 36px; height: 36px; border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: 0.2s;}
-        .action-btn.delete { color: #FF3B30; background: rgba(255, 59, 48, 0.1); }
-        .action-btn:active { transform: scale(0.9); }
-        .add-btn-small { background: rgba(230, 140, 58, 0.05); color: var(--primary-orange); border: 2px dashed rgba(230, 140, 58, 0.3); width: 100%; padding: 16px; border-radius: 16px; font-weight: 800; cursor: pointer; margin-bottom: 25px; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s;}
         
         .complete-btn { background: #000000; color: #ffffff; width: 100%; padding: 20px; border-radius: 20px; font-weight: 800; border: none; font-size: 16px; margin-top: 30px; margin-bottom: 20px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.15);}
         .complete-btn:active { transform: scale(0.96); }
         .complete-btn.done { background: var(--primary-orange); box-shadow: 0 10px 20px rgba(230, 140, 58, 0.3); }
 
-        /* 🔥 НОВА ВКЛАДКА "АКТИВНІСТЬ" (STREAK З ФОТО) 🔥 */
+        /* Вкладка Активність (Streak) */
         .streak-header { display: flex; flex-direction: column; align-items: center; margin-top: 20px; margin-bottom: 30px; animation: slideUp 0.4s ease;}
         .big-flame-wrapper { position: relative; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 10px;}
         .big-flame-wrapper svg { width: 120px; height: 120px; fill: var(--primary-orange); drop-shadow: 0 10px 20px rgba(230, 140, 58, 0.4); }
         .big-flame-num { position: absolute; font-size: 42px; font-weight: 900; color: white; margin-top: 15px;}
         .streak-title-main { font-size: 22px; font-weight: 900; color: #000; text-align: center;}
-        
         .streak-card { background: var(--card-bg); border-radius: 30px; padding: 30px 20px; box-shadow: var(--shadow); animation: slideUp 0.6s ease backwards;}
         .streak-days-row { display: flex; justify-content: space-between; margin-bottom: 25px;}
         .s-day-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
         .s-day-name { font-size: 13px; font-weight: 700; color: var(--text-muted); }
-        
-        /* Іконки днів стріка */
         .s-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
         .s-icon.empty { background: #f1f1f1; }
         .s-icon.missed { background: #FF3B30; color: white; box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3);}
         .s-icon.done { background: var(--primary-orange); color: white; box-shadow: 0 4px 10px rgba(230, 140, 58, 0.4);}
         .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
-
         .streak-divider { border: none; height: 2px; background: #f1f1f1; margin: 25px 0; border-radius: 1px;}
         .streak-longest { font-size: 16px; font-weight: 800; color: #000; text-align: center; margin-bottom: 10px;}
         .streak-desc { font-size: 14px; color: var(--text-muted); text-align: center; line-height: 1.5; font-weight: 500;}
 
-        /* Анатом. Екран (Stats) */
+        /* Анатомія (Stats) */
         .anatomy-ui { background: #f4f5f7; border-radius: 30px; padding: 20px; position: relative; height: 500px; overflow: hidden; margin-bottom: 30px; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
         .a-header { position: absolute; top: 20px; left: 20px; z-index: 2;}
         .a-title { font-size: 22px; font-weight: 900; color: #000; letter-spacing: -0.5px;}
@@ -140,17 +123,50 @@
         .a-tool-badge { position: absolute; top: -4px; right: -4px; background: var(--primary-orange); color: white; font-size: 10px; font-weight: 800; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #f4f5f7;}
         .a-select-btn { position: absolute; bottom: 15px; left: 5%; width: 90%; background: #000; color: #fff; border-radius: 22px; padding: 18px; text-align: center; font-weight: 800; font-size: 15px; display: flex; justify-content: center; align-items: center; gap: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); z-index: 2; box-sizing: border-box;}
 
-        /* Прогрес Бари */
-        .progress-bars-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
-        .pb-card { background: var(--card-bg); border-radius: 18px; padding: 18px 20px; box-shadow: var(--shadow); }
-        .pb-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px; }
-        .pb-title { font-size: 14px; font-weight: 800; color: var(--text-main); }
-        .pb-values { font-size: 16px; font-weight: 800; color: var(--text-main); }
-        .pb-goal { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-        .pb-track { height: 10px; width: 100%; background: #f1f1f1; border-radius: 8px; overflow: hidden; position: relative;}
-        .pb-fill { height: 100%; background: var(--primary-orange); border-radius: 8px; transition: width 0.8s; }
+        /* 🔥 НОВИЙ DASHBOARD СТАТИСТИКИ (Замість смужок) 🔥 */
+        .stats-dashboard { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .stat-widget { background: var(--card-bg); border-radius: 24px; padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; position: relative; overflow: hidden; animation: scaleIn 0.4s ease backwards;}
+        .stat-w-title { font-size: 12px; color: var(--text-muted); font-weight: 800; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px;}
+        .stat-w-val { font-size: 26px; font-weight: 900; color: var(--text-main); margin-bottom: 2px;}
+        .stat-w-goal { font-size: 13px; color: var(--primary-orange); font-weight: 700; margin-bottom: 18px;}
+        .stat-w-bar-bg { background: #f1f1f1; height: 8px; border-radius: 4px; width: 100%; overflow: hidden;}
+        .stat-w-bar-fill { background: var(--primary-orange); height: 100%; border-radius: 4px; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px rgba(230, 140, 58, 0.4);}
+        .stat-w-icon { position: absolute; right: -10px; bottom: -10px; width: 60px; height: 60px; opacity: 0.05; fill: #000;}
 
-        /* Нижня навігація (Оновлена, 5 елементів) */
+        /* Налаштування показників (Settings style) */
+        .settings-list { background: var(--card-bg); border-radius: 24px; padding: 10px 20px; box-shadow: var(--shadow); margin-bottom: 20px;}
+        .edit-list-item { padding: 15px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f1f1; }
+        .edit-list-item:last-child { border-bottom: none; }
+        .edit-info-title { font-size: 16px; font-weight: 800; color: #000; }
+        .edit-info-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; font-weight: 600; display: flex; align-items: center; gap: 4px;}
+        .edit-actions { display: flex; gap: 10px; }
+        .action-btn { background: #f4f5f7; width: 34px; height: 34px; border-radius: 10px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: 0.2s;}
+        .action-btn.delete { color: #FF3B30; background: rgba(255, 59, 48, 0.1); }
+        .action-btn:active { transform: scale(0.9); }
+        .add-btn-small { background: rgba(230, 140, 58, 0.05); color: var(--primary-orange); border: 2px dashed rgba(230, 140, 58, 0.3); width: 100%; padding: 16px; border-radius: 16px; font-weight: 800; cursor: pointer; margin-bottom: 25px; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s;}
+
+        /* Світчі */
+        .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e0e0e0; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        input:checked + .slider { background-color: var(--primary-orange); }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        /* 🔥 НОВИЙ БАНЕР У РЕДАКТОРІ 🔥 */
+        .editor-banner { background: linear-gradient(135deg, var(--primary-blue), #2a4bd8); border-radius: 24px; padding: 25px 20px; color: white; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(74, 108, 247, 0.3); display: flex; align-items: center; gap: 15px; animation: slideUp 0.4s ease;}
+        .eb-icon { background: rgba(255,255,255,0.2); width: 50px; height: 50px; border-radius: 16px; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px);}
+        .eb-text { flex-grow: 1; }
+        .eb-title { font-size: 20px; font-weight: 900; margin-bottom: 4px; letter-spacing: -0.5px;}
+        .eb-sub { font-size: 13px; opacity: 0.85; font-weight: 500; line-height: 1.3;}
+
+        /* Списки в редакторі */
+        .editor-item-card { background: #fff; padding: 18px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; box-shadow: var(--shadow); border: 1px solid #f1f1f1; animation: scaleIn 0.3s ease backwards; }
+        .eic-title { font-size: 16px; font-weight: 800; color: #000; }
+        .eic-sub { font-size: 13px; color: var(--primary-blue); margin-top: 6px; font-weight: 700; display: flex; align-items: center; gap: 4px; background: rgba(74, 108, 247, 0.1); padding: 4px 8px; border-radius: 8px; display: inline-flex;}
+        .eic-sub.supp { color: var(--primary-orange); background: rgba(230, 140, 58, 0.1); }
+
+        /* Нижня навігація (5 елементів) */
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-tabbar); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; justify-content: space-around; align-items: center; padding: 15px 5px 30px; z-index: 900; border-radius: 30px 30px 0 0; }
         .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text-muted); cursor: pointer; width: 20%; transition: color 0.2s; opacity: 0.6; }
         .nav-item.active { color: #ffffff; opacity: 1; }
@@ -159,7 +175,7 @@
         .nav-icon svg { width: 100%; height: 100%; fill: currentColor; }
         .nav-text { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* Модалки (Bottom Sheets) */
+        /* Модалки */
         .modal-overlay, .bottom-sheet { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); display: none; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
         .modal-overlay { align-items: flex-end; }
         .bottom-sheet { align-items: flex-end; z-index: 1001;}
@@ -180,13 +196,6 @@
         .supp-time { font-size: 12px; color: var(--primary-orange); margin-bottom: 4px; font-weight: 800; display: flex; align-items: center; gap: 4px;}
         .supp-desc { font-size: 16px; font-weight: 800; color: #000;}
         .supp-icon { background: white; width: 40px; height: 40px; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: var(--primary-orange); box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
-        
-        .switch { position: relative; display: inline-block; width: 50px; height: 28px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #e0e0e0; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        input:checked + .slider { background-color: var(--primary-orange); }
-        input:checked + .slider:before { transform: translateX(22px); }
     </style>
 </head>
 <body>
@@ -228,7 +237,7 @@
             <div class="streak-desc">Ти у вогні! Продовжуй тренуватись, щоб розблокувати нові досягнення. Тренуйся щодня! 🎉</div>
         </div>
 
-        <button class="complete-btn share-btn" onclick="alert('Функція поширення')">Поділитися <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+        <button class="complete-btn" style="background: var(--primary-blue);" onclick="alert('Функція поширення')">Поділитися <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
     </div>
 
     <div id="tab-stats" class="tab-view">
@@ -243,22 +252,36 @@
             <div class="a-select-btn">Select Body Area <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
         </div>
 
-        <div class="section-title"><svg class="svg-icon" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg> Статистика</div>
-        <div id="stats-bars-container" class="progress-bars-container"></div>
-
-        <div class="section-title" style="margin-top: 30px;"><svg class="svg-icon" viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg> Налаштувати показники</div>
-        <div id="stats-edit-list" style="margin-top: 15px;"></div>
-        <button class="add-btn-small" onclick="window.addStat()">+ ДОДАТИ ПОКАЗНИК</button>
+        <div class="section-title"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg> Твій Дашборд</div>
         
-        <div class="section-title" style="margin-top: 30px;">Налаштування сповіщень</div>
-        <div class="edit-list-item" style="margin-bottom: 20px;">
-            <div><div class="edit-info-title">Push-сповіщення</div><div class="edit-info-sub supp">Календар iOS</div></div>
-            <label class="switch"><input type="checkbox" id="calendar-toggle" onchange="window.toggleCalendar(this)"><span class="slider round"></span></label>
+        <div id="stats-bars-container" class="stats-dashboard"></div>
+
+        <button class="add-btn-small" onclick="window.addStat()" style="margin-top: 10px;">+ ДОДАТИ ПОКАЗНИК</button>
+
+        <div class="section-title" style="margin-top: 30px;"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Налаштування показників</div>
+        <div class="settings-list" id="stats-edit-list"></div>
+        
+        <div class="section-title" style="margin-top: 30px;">Системні налаштування</div>
+        <div class="settings-list">
+            <div class="edit-list-item">
+                <div><div class="edit-info-title">Push-сповіщення</div><div class="edit-info-sub">Календар iOS</div></div>
+                <label class="switch"><input type="checkbox" id="calendar-toggle" onchange="window.toggleCalendar(this)"><span class="slider round"></span></label>
+            </div>
         </div>
     </div>
 
     <div id="tab-edit" class="tab-view">
-        <div class="section-title" style="margin-bottom: 15px;"><svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle></svg> Редагування плану</div>
+        
+        <div class="editor-banner">
+            <div class="eb-icon">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            </div>
+            <div class="eb-text">
+                <div class="eb-title">Редактор Плану</div>
+                <div class="eb-sub">Налаштуй ідеальний тиждень під себе</div>
+            </div>
+        </div>
+
         <select id="edit-day-select" onchange="window.loadDayForEdit()">
             <option value="mon">Понеділок (Push)</option>
             <option value="tue">Вівторок (Відпочинок)</option>
@@ -269,18 +292,18 @@
             <option value="sun">Неділя (Відпочинок)</option>
         </select>
 
-        <div style="background: var(--card-bg); padding: 20px; border-radius: 20px; margin-bottom: 20px; box-shadow: var(--shadow);">
+        <div style="background: var(--card-bg); padding: 20px; border-radius: 20px; margin-bottom: 25px; box-shadow: var(--shadow);">
             <div class="section-title" style="margin-bottom: 10px;">Назва та фокус дня</div>
             <input type="text" id="edit-title" placeholder="Назва тренування" onchange="window.quickSaveHeader()">
             <input type="text" id="edit-sub" placeholder="Підзаголовок" style="margin-bottom: 0;" onchange="window.quickSaveHeader()">
         </div>
 
         <div class="section-title">Добавки на цей день</div>
-        <div id="edit-supps-list" style="margin-top: 15px;"></div>
+        <div id="edit-supps-list"></div>
         <button class="add-btn-small" onclick="window.openSuppModal(-1)">+ ДОДАТИ ДОБАВКУ</button>
 
         <div class="section-title" style="margin-top: 30px;">Вправи на цей день</div>
-        <div id="edit-exercises-list" style="margin-top: 15px;"></div>
+        <div id="edit-exercises-list"></div>
         <button class="add-btn-small" onclick="window.openExerciseModal(-1)">+ ДОДАТИ ВПРАВУ</button>
     </div>
 
@@ -354,7 +377,7 @@
         const iconCup = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg>`;
         const iconEdit = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>`;
         const iconTrash = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
-        const iconClock = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`;
+        const iconClock = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 16 14"></polyline></svg>`;
         const iconDumbbell = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg>`;
         const iconCheck = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
         const iconFlame = `<svg viewBox="0 0 24 24"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z" fill="currentColor"/></svg>`;
@@ -411,7 +434,6 @@
                 let loopDate = new Date(monday); loopDate.setDate(monday.getDate() + i);
                 currentDates[daysKeys[i]] = { num: ('0' + loopDate.getDate()).slice(-2), month: months[loopDate.getMonth()] };
             }
-            // Визначаємо сьогоднішній індекс (0 - ПН, 6 - НД)
             todayIdx = new Date().getDay() - 1;
             if(todayIdx === -1) todayIdx = 6;
             todayKey = daysKeys[todayIdx];
@@ -470,7 +492,6 @@
             if(document.getElementById('tab-edit').classList.contains('active')) window.loadDayForEdit();
         });
 
-        // 🔥 ЛОГІКА СТРІКІВ (ВКЛАДКА АКТИВНІСТЬ) 🔥
         function updateStreakUI() {
             let currentStreak = 0;
             let html = '';
@@ -481,11 +502,11 @@
                 
                 let iconHtml = '';
                 if (isDone) {
-                    iconHtml = `<div class="s-icon done">${iconFlameCheck}</div>`; // Горить + Галочка
+                    iconHtml = `<div class="s-icon done">${iconFlameCheck}</div>`;
                 } else if (idx < todayIdx) {
-                    iconHtml = `<div class="s-icon missed">${iconCross}</div>`; // Пропущено (Хрестик)
+                    iconHtml = `<div class="s-icon missed">${iconCross}</div>`;
                 } else {
-                    iconHtml = `<div class="s-icon empty"></div>`; // Майбутнє (Порожнє)
+                    iconHtml = `<div class="s-icon empty"></div>`;
                 }
                 
                 html += `<div class="s-day-col"><div class="s-day-name">${daysMap[day]}</div>${iconHtml}</div>`;
@@ -493,7 +514,7 @@
             
             document.getElementById('streak-days-container').innerHTML = html;
             document.getElementById('streak-num').innerText = currentStreak;
-            document.getElementById('longest-streak').innerText = currentStreak > 0 ? currentStreak + 2 : 0; // Фейк рекорд для прикладу
+            document.getElementById('longest-streak').innerText = currentStreak > 0 ? currentStreak + 2 : 0;
         }
 
         function updateRingsVisuals() {
@@ -516,6 +537,7 @@
             if(tabId === 'edit') window.loadDayForEdit();
         }
 
+        // 🔥 ОНОВЛЕНИЙ ДАШБОРД СТАТИСТИКИ 🔥
         function renderStatsTab() {
             const barsContainer = document.getElementById('stats-bars-container');
             const editList = document.getElementById('stats-edit-list');
@@ -524,19 +546,31 @@
                 myStatsArray.forEach((stat, idx) => {
                     let percent = Math.round((parseFloat(stat.current) / parseFloat(stat.goal)) * 100);
                     if (percent > 100) percent = 100;
-                    barsHTML += `<div class="pb-card"><div class="pb-header"><span class="pb-title">${stat.name}</span><span class="pb-values">${stat.current} <span class="pb-goal">/ ${stat.goal}</span></span></div><div class="pb-track"><div class="pb-fill" style="width: ${percent}%"></div></div></div>`;
+                    
+                    let delay = idx * 0.1;
+                    
+                    barsHTML += `
+                    <div class="stat-widget" style="animation-delay: ${delay}s">
+                        <svg class="stat-w-icon" viewBox="0 0 24 24"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg>
+                        <div class="stat-w-title">${stat.name}</div>
+                        <div class="stat-w-val">${stat.current}</div>
+                        <div class="stat-w-goal">Ціль: ${stat.goal}</div>
+                        <div class="stat-w-bar-bg">
+                            <div class="stat-w-bar-fill" style="width: ${percent}%"></div>
+                        </div>
+                    </div>`;
+                    
                     editHTML += `<div class="edit-list-item"><div><div class="edit-info-title">${stat.name}</div><div class="edit-info-sub">Зараз: ${stat.current} | Ціль: ${stat.goal}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.editStat(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteStat(${idx})">${iconTrash}</button></div></div>`;
                 });
-            } else { barsHTML = `<div style="text-align:center; color:var(--text-muted); font-size:14px; margin-top:20px;">Показників ще немає.</div>`; }
+            } else { barsHTML = `<div style="text-align:center; color:var(--text-muted); font-size:14px; grid-column: span 2;">Додайте показники нижче.</div>`; }
             barsContainer.innerHTML = barsHTML; editList.innerHTML = editHTML;
         }
 
         window.addStat = function() {
-            const name = prompt("Назва (напр. Жим, Вага):"); if(!name) return;
+            const name = prompt("Назва (напр. Вага, Жим):"); if(!name) return;
             const current = prompt("Поточне значення:", "0"); const goal = prompt("Ціль:", "100");
             myStatsArray.push({ name, current, goal }); set(ref(db, 'stats_array'), myStatsArray);
         }
-
         window.editStat = function(idx) {
             const stat = myStatsArray[idx];
             const name = prompt("Назва:", stat.name); if(!name) return;
@@ -554,10 +588,10 @@
             document.getElementById('edit-title').value = d.title || '';
             document.getElementById('edit-sub').value = d.sub || '';
             let sHTML = '';
-            if(d.supps) { d.supps.forEach((s, idx) => { sHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s"><div><div class="edit-info-title">${s.text}</div><div class="edit-info-sub supp">${iconClock} ${s.time}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openSuppModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteSupp(${idx})">${iconTrash}</button></div></div>`; }); }
+            if(d.supps) { d.supps.forEach((s, idx) => { sHTML += `<div class="editor-item-card" style="animation-delay:${idx*0.05}s"><div><div class="eic-title">${s.text}</div><div class="eic-sub supp">${iconClock} ${s.time}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openSuppModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteSupp(${idx})">${iconTrash}</button></div></div>`; }); }
             document.getElementById('edit-supps-list').innerHTML = sHTML;
             let eHTML = '';
-            if(d.exercises) { d.exercises.forEach((ex, idx) => { eHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s"><div><div class="edit-info-title">${ex.name}</div><div class="edit-info-sub">${ex.sets}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openExerciseModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteExercise(${idx})">${iconTrash}</button></div></div>`; }); }
+            if(d.exercises) { d.exercises.forEach((ex, idx) => { eHTML += `<div class="editor-item-card" style="animation-delay:${idx*0.05}s"><div><div class="eic-title">${ex.name}</div><div class="eic-sub">${ex.sets}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openExerciseModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteExercise(${idx})">${iconTrash}</button></div></div>`; }); }
             document.getElementById('edit-exercises-list').innerHTML = eHTML;
         }
 
@@ -664,7 +698,6 @@
             window.closeModal();
         }
 
-        // Закриття модалок при кліку на фон
         document.querySelectorAll('.bottom-sheet, .modal-overlay').forEach(el => {
             el.addEventListener('click', function(e) { if(e.target === this) { this.classList.remove('active'); } });
         });
