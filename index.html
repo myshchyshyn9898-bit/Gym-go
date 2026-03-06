@@ -20,7 +20,6 @@
     </script>
 
     <style>
-        /* БАЗОВІ ЗМІННІ (PREMIUM - КРЕМОВА) */
         :root {
             --bg-color: #f4ede4; 
             --card-glass: rgba(255, 255, 255, 0.7); 
@@ -43,7 +42,6 @@
             --orb-2: #4a6cf7;
         }
 
-        /* СВІТЛА ТЕМА */
         :root[data-theme="light"] {
             --bg-color: #f2f2f7; 
             --card-glass: rgba(255, 255, 255, 0.75); 
@@ -62,7 +60,6 @@
             --orb-2: #007aff;
         }
 
-        /* ТЕМНА ТЕМА */
         :root[data-theme="dark"] {
             --bg-color: #000000; 
             --card-glass: rgba(28, 28, 30, 0.65); 
@@ -84,7 +81,6 @@
 
         body { background-color: var(--bg-color); color: var(--text-main); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; padding-bottom: 120px; -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background-color 0.3s ease, color 0.3s ease; }
 
-        /* 🔥 ФОНОВІ СФЕРИ (GLASSMORPHISM) 🔥 */
         .bg-orbs { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; z-index: -1; pointer-events: none; }
         .orb-1 { position: absolute; top: -5%; left: -10%; width: 350px; height: 350px; background: var(--orb-1); border-radius: 50%; filter: blur(90px); opacity: 0.15; transition: 0.5s; }
         .orb-2 { position: absolute; top: 40%; right: -20%; width: 450px; height: 450px; background: var(--orb-2); border-radius: 50%; filter: blur(120px); opacity: 0.12; transition: 0.5s; }
@@ -111,22 +107,13 @@
         .ring-container { display: flex; flex-direction: column; align-items: center; width: 14%; }
         .circular-chart { max-width: 40px; max-height: 40px; }
         .circle-bg { fill: none; stroke: rgba(128,128,128,0.15); stroke-width: 3.8; }
-        /* 🔥 Градієнтна обводка кілець 🔥 */
         .circle { fill: none; stroke-width: 3.2; stroke-linecap: round; transition: stroke-dasharray 1s cubic-bezier(0.175, 0.885, 0.32, 1.275), stroke 0.3s; stroke: url(#ring-grad-orange); filter: drop-shadow(0 2px 4px rgba(216,137,68,0.3)); }
         .ring-label { font-size: 10px; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
 
-        /* 🔥 КАРТКИ GLASSMORPHISM 🔥 */
         .card, .nut-card, .chart-card, .versus-card, .challenge-card, .streak-card, .tip-of-the-day, .settings-list, .anatomy-ui { 
-            background: var(--card-glass); 
-            backdrop-filter: blur(24px); 
-            -webkit-backdrop-filter: blur(24px); 
-            border: 1px solid var(--card-border); 
-            border-radius: 30px; 
-            padding: 25px 20px; 
-            margin-bottom: 15px; 
-            box-shadow: var(--shadow); 
-            transition: transform 0.2s, box-shadow 0.2s; 
-            animation: slideUp 0.5s ease backwards; 
+            background: var(--card-glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); 
+            border: 1px solid var(--card-border); border-radius: 30px; padding: 25px 20px; margin-bottom: 15px; 
+            box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; animation: slideUp 0.5s ease backwards; 
         }
         
         .card { display: flex; align-items: center; position: relative; overflow: hidden; cursor: pointer; }
@@ -159,7 +146,6 @@
         .ps-btn { flex: 1; text-align: center; padding: 14px 0; font-size: 15px; font-weight: 800; color: var(--text-muted); border-radius: 16px; transition: 0.3s; cursor: pointer;}
         .ps-btn.active { background: var(--surface-1); color: var(--text-main); box-shadow: 0 4px 15px rgba(0,0,0,0.08);}
 
-        /* Версус Стрік */
         .vc-title { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; color: var(--text-muted); text-align: center; margin-bottom: 20px;}
         .vc-battle { display: flex; justify-content: space-between; align-items: center;}
         .vc-player { text-align: center; flex: 1;}
@@ -179,14 +165,12 @@
         .streak-longest { font-size: 16px; font-weight: 800; color: var(--text-main); text-align: center; margin-bottom: 10px;}
         .streak-desc { font-size: 14px; color: var(--text-muted); text-align: center; line-height: 1.5; font-weight: 500;}
 
-        /* Порада дня */
         .tip-of-the-day { display: flex; gap: 15px; }
         .tip-icon { font-size: 28px; }
         .tip-content { flex-grow: 1;}
         .tip-header { font-size: 13px; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;}
         .tip-text { font-size: 14px; font-weight: 600; color: var(--text-main); line-height: 1.4;}
 
-        /* Дашборд Нутрієнти */
         .time-toggle-wrap { display: flex; justify-content: center; margin-bottom: 25px; animation: slideUp 0.3s ease;}
         .time-toggle { background: var(--card-glass); backdrop-filter: blur(20px); border: 1px solid var(--card-border); border-radius: 30px; display: flex; padding: 5px; box-shadow: var(--shadow); width: 100%;}
         .time-btn { flex: 1; text-align: center; padding: 12px 0; font-size: 14px; font-weight: 700; color: var(--text-muted); border-radius: 25px; transition: 0.3s; cursor: pointer;}
@@ -258,7 +242,6 @@
         .a-rs-track { flex-grow: 1; width: 4px; background: rgba(128,128,128,0.2); margin: 10px 0; border-radius: 2px; position: relative; }
         .a-rs-thumb { position: absolute; bottom: 30%; left: -2px; width: 8px; height: 30px; background: var(--text-muted); border-radius: 4px; }
 
-        /* Редактор та Налаштування */
         .editor-banner { background: linear-gradient(135deg, var(--primary-blue), #2a4bd8); border-radius: 30px; padding: 25px 20px; color: white; margin-bottom: 25px; box-shadow: 0 15px 30px rgba(74, 108, 247, 0.3); display: flex; align-items: center; gap: 15px; animation: slideUp 0.4s ease;}
         .eb-icon { background: rgba(255,255,255,0.2); width: 55px; height: 55px; border-radius: 18px; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px);}
         .eb-text { flex-grow: 1; }
@@ -267,7 +250,6 @@
         
         .add-btn-small { background: var(--card-glass); backdrop-filter: blur(20px); border: 2px dashed rgba(216, 137, 68, 0.4); color: var(--primary-orange); width: 100%; padding: 16px; border-radius: 20px; font-weight: 800; cursor: pointer; margin-bottom: 25px; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s;}
 
-        /* 🔥 SWIPE TO ACTION UI 🔥 */
         .swipe-wrapper { position: relative; overflow: hidden; border-radius: 20px; border: 1px solid var(--card-border); margin-bottom: 12px; box-shadow: var(--shadow); background: rgba(255,59,48,0.1); animation: scaleIn 0.3s ease backwards; }
         .swipe-actions-bg { position: absolute; right: 0; top: 0; bottom: 0; width: 120px; display: flex; justify-content: flex-end; align-items: center; padding-right: 15px; gap: 8px; z-index: 1;}
         .swipe-front { background: var(--card-glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); padding: 18px; border-radius: 20px; position: relative; z-index: 2; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; justify-content: space-between; align-items: center;}
@@ -404,7 +386,7 @@
         </div>
 
         <button class="complete-btn" style="background: var(--primary-blue); color: white;" onclick="window.shareStreak()">
-            Поділитися результатом
+            Поділитися результатами
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
         </button>
     </div>
@@ -422,14 +404,14 @@
             <div class="nut-card">
                 <div class="nut-header"><div class="nut-title" id="dash-title-1"></div></div>
                 <div class="nut-body">
-                    <div class="nut-info"><div class="nut-val" id="val-1">0 <span class="nut-unit" id="unit-1"></span></div><div class="nut-sub">За тиждень</div></div>
+                    <div class="nut-info"><div class="nut-val"><span id="val-1-num">0</span> <span class="nut-unit" id="val-1-unit"></span></div><div class="nut-sub">За тиждень</div></div>
                     <div class="nut-circle-wrap"><svg viewBox="0 0 36 36"><path class="nut-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path id="ring-1" class="nut-circle-fill c-orange" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg></div>
                 </div>
             </div>
             <div class="nut-card">
                 <div class="nut-header"><div class="nut-title" id="dash-title-2"></div></div>
                 <div class="nut-body">
-                    <div class="nut-info"><div class="nut-val" id="val-2">0 <span class="nut-unit" id="unit-2"></span></div><div class="nut-sub">За тиждень</div></div>
+                    <div class="nut-info"><div class="nut-val"><span id="val-2-num">0</span> <span class="nut-unit" id="val-2-unit"></span></div><div class="nut-sub">За тиждень</div></div>
                     <div class="nut-circle-wrap"><svg viewBox="0 0 36 36"><path class="nut-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path id="ring-2" class="nut-circle-fill c-red" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg></div>
                 </div>
             </div>
@@ -439,13 +421,13 @@
         <div class="challenge-card">
             <div class="ch-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg></div>
             <div class="ch-info"><div class="ch-title" id="dash-title-3">Підходи за тиждень</div><div class="ch-status">Completed</div></div>
-            <div class="ch-val" id="val-3">0</div>
+            <div class="ch-val"><span id="val-3-num">0</span> <span style="font-size:12px; color:var(--text-muted)">sets</span></div>
         </div>
         
         <div class="challenge-card">
             <div class="ch-icon-wrap" style="background: rgba(74, 108, 247, 0.1);"><svg viewBox="0 0 24 24" fill="var(--primary-blue)"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z"/></svg></div>
             <div class="ch-info"><div class="ch-title">Спалено енергії</div><div class="ch-status">Active</div></div>
-            <div class="ch-val" id="val-kcal">0</div>
+            <div class="ch-val"><span id="val-kcal-num">0</span> <span style="font-size:12px; color:var(--text-muted)">ккал</span></div>
         </div>
 
         <div class="anatomy-ui" style="margin-top: 30px;">
@@ -618,7 +600,6 @@
         const daysMap = { 'mon':'ПН', 'tue':'ВТ', 'wed':'СР', 'thu':'ЧТ', 'fri':'ПТ', 'sat':'СБ', 'sun':'НД' };
         const months = ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сер', 'Вер', 'Жов', 'Лис', 'Гру'];
 
-        // Виносимо масиви порад у глобальну область, щоб уникнути ReferenceError
         window.tipsTaras = [
             "М'язи ростуть під час сну. Спи 8 годин!",
             "Профіцит калорій — найкращий друг для набору маси.",
@@ -640,21 +621,20 @@
 
         window.editExIndex = -1; window.editSuppIndex = -1;
 
-        // Плавна анімація чисел
-        window.animateValue = function(obj, start, end, duration) {
+        window.animateValue = function(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            if (!obj) return;
             let startTimestamp = null;
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const current = Math.floor(progress * (end - start) + start);
-                if (obj) obj.innerHTML = current;
-                if (progress < 1) { window.requestAnimationFrame(step); } 
-                else { if (obj) obj.innerHTML = end; }
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) { obj.dataset.animId = window.requestAnimationFrame(step); } 
             };
-            window.requestAnimationFrame(step);
+            if(obj.dataset.animId) window.cancelAnimationFrame(obj.dataset.animId);
+            obj.dataset.animId = window.requestAnimationFrame(step);
         }
 
-        // Жести Свайпу (Swipe-to-Action)
         window.swipeState = { startX: 0, currentX: 0, activeEl: null };
         
         window.tsStart = function(e, el) {
@@ -673,12 +653,12 @@
             el.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
             let finalDeltaX = e.changedTouches[0].clientX - window.swipeState.startX;
             if (finalDeltaX < -50) {
-                el.style.transform = `translateX(-110px)`; // Відкрито
+                el.style.transform = `translateX(-110px)`; 
                 document.querySelectorAll('.swipe-front').forEach(other => {
                     if(other !== el) other.style.transform = 'translateX(0)';
                 });
             } else {
-                el.style.transform = `translateX(0)`; // Закрито
+                el.style.transform = `translateX(0)`; 
             }
         };
 
@@ -693,7 +673,7 @@
             
             window.appData.linkingExIndex = -1; 
             if(tabId === 'edit' && window.loadDayForEdit) window.loadDayForEdit();
-            if(tabId === 'stats' && window.calculateAndRenderDashboard) window.calculateAndRenderDashboard(true); // true = з анімацією
+            if(tabId === 'stats' && window.calculateAndRenderDashboard) window.calculateAndRenderDashboard(true); 
             window.scrollTo(0,0);
         }
 
@@ -874,7 +854,6 @@
             const sContainer = document.getElementById('streak-days-container'); if(sContainer) sContainer.innerHTML = html;
         }
 
-        // БЕЗПЕЧНА ФУНКЦІЯ ДАШБОРДА
         window.calculateAndRenderDashboard = function(doAnimation = false) {
             let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
             let dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
@@ -883,14 +862,13 @@
             const dash1 = document.getElementById('dash-title-1');
             const dash2 = document.getElementById('dash-title-2');
 
-            // Захист від помилок `null`, якщо елементи ще не завантажилися
             if(tipBox) tipBox.innerText = window.appData.user === 'Taras' ? window.tipsTaras[dayOfYear % window.tipsTaras.length] : window.tipsMaks[dayOfYear % window.tipsMaks.length];
             
             if(dash1) dash1.innerHTML = window.appData.user === 'Taras' ? `<svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg> Протеїн` : `🔥 Дефіцит`;
             if(dash2) dash2.innerHTML = window.appData.user === 'Taras' ? `<svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 2v7.31"></path><path d="M14 9.3V1.99"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path><path d="M5.52 16h12.96"></path></svg> Креатин` : `💧 Вода`;
             
-            const u1 = document.getElementById('unit-1'); if(u1) u1.innerText = window.appData.user === 'Taras' ? 'Грам' : 'Ккал';
-            const u2 = document.getElementById('unit-2'); if(u2) u2.innerText = window.appData.user === 'Taras' ? 'Грам' : 'Літрів';
+            const u1 = document.getElementById('val-1-unit'); if(u1) u1.innerText = window.appData.user === 'Taras' ? 'Грам' : 'Ккал';
+            const u2 = document.getElementById('val-2-unit'); if(u2) u2.innerText = window.appData.user === 'Taras' ? 'Грам' : 'Літрів';
 
             let val1 = 0; let val2 = 0; let totalSets = 0; let totalWorkouts = 0; let chartHtml = '';
             let vol = { Chest: 0, Back: 0, Legs: 0, Arms: 0 };
@@ -939,36 +917,27 @@
                 chartHtml += `<div class="bar-column"><div class="bar-wrapper"><div class="b-bg orange-light" style="height: 100%;"></div><div class="b-fill orange-solid" style="height: ${dailyWorkoutVal}%;"><div class="b-dot"></div></div></div><div class="bar-wrapper" style="position: absolute; left: 10px;"><div class="b-bg red-light" style="height: 80%;"></div><div class="b-fill red-solid" style="height: ${suppVal}%;"><div class="b-dot white"></div></div></div></div>`;
             });
 
-            const val1El = document.getElementById('val-1');
-            if(val1El) {
-                if (doAnimation) window.animateValue(val1El, 0, val1, 800);
-                else val1El.innerHTML = val1;
+            if (doAnimation) {
+                window.animateValue('val-1-num', 0, val1, 800);
+                if (window.appData.user === 'Taras') window.animateValue('val-2-num', 0, val2, 800);
+                else { const v2 = document.getElementById('val-2-num'); if(v2) v2.innerHTML = val2; }
+                window.animateValue('val-3-num', 0, totalSets, 800);
+                window.animateValue('val-kcal-num', 0, totalWorkouts * 400, 800);
+            } else {
+                const v1 = document.getElementById('val-1-num'); if(v1) v1.innerHTML = val1;
+                const v2 = document.getElementById('val-2-num'); if(v2) v2.innerHTML = val2;
+                const v3 = document.getElementById('val-3-num'); if(v3) v3.innerHTML = totalSets;
+                const vk = document.getElementById('val-kcal-num'); if(vk) vk.innerHTML = totalWorkouts * 400;
             }
+
             const r1 = document.getElementById('ring-1');
             if(r1) r1.style.strokeDasharray = window.appData.user === 'Taras' ? `${Math.min(val1/1.5, 100)}, 100` : `${Math.min(val1/20, 100)}, 100`;
             
-            const val2El = document.getElementById('val-2');
-            if(val2El) {
-                if (doAnimation && window.appData.user === 'Taras') window.animateValue(val2El, 0, val2, 800);
-                else val2El.innerHTML = val2;
-            }
             const r2 = document.getElementById('ring-2');
             if(r2) r2.style.strokeDasharray = window.appData.user === 'Taras' ? `${Math.min(val2/0.3, 100)}, 100` : `${Math.min(val2/0.05, 100)}, 100`;
             
             const cb = document.getElementById('chart-bars-container');
             if(cb) cb.innerHTML = chartHtml;
-            
-            const v3 = document.getElementById('val-3');
-            if(v3) {
-                if(doAnimation) window.animateValue(v3, 0, totalSets, 800);
-                else v3.innerHTML = totalSets;
-            }
-            
-            const vKcal = document.getElementById('val-kcal');
-            if(vKcal) {
-                if(doAnimation) window.animateValue(vKcal, 0, totalWorkouts * 400, 800);
-                else vKcal.innerHTML = totalWorkouts * 400;
-            }
 
             function getTagData(name, sets) {
                 if (sets === 0) return { class: 'tag-fresh', text: `🟢 ${name}: Відновився` };
@@ -986,7 +955,6 @@
             if(atc) atc.innerHTML = tagsHtml;
         }
 
-        // 🔥 ЛОГІКА SWIPE-TO-ACTION У РЕДАКТОРІ 🔥
         window.loadDayForEdit = function() {
             const daySelect = document.getElementById('edit-day-select');
             if(!daySelect) return;
@@ -1120,11 +1088,17 @@
             if(window.triggerFirebaseSave) window.triggerFirebaseSave();
             window.closeExerciseModal(); window.loadDayForEdit();
         }
+        
         window.deleteExercise = function(idx) {
             if(confirm("Видалити цю вправу?")) { 
                 const day = document.getElementById('edit-day-select').value; 
+                let wasLinked = window.appData.plan[day].exercises[idx].superset;
                 window.appData.plan[day].exercises.splice(idx, 1); 
-                if(idx > 0 && window.appData.plan[day].exercises[idx-1]) window.appData.plan[day].exercises[idx-1].superset = false;
+                
+                if (idx > 0 && window.appData.plan[day].exercises[idx-1] && window.appData.plan[day].exercises[idx-1].superset && !wasLinked) {
+                    window.appData.plan[day].exercises[idx-1].superset = false;
+                }
+
                 if(window.triggerFirebaseSave) window.triggerFirebaseSave(); 
                 window.loadDayForEdit(); 
             }
@@ -1164,11 +1138,30 @@
             }
         }
 
+        window.handleExClick = function(el, isLinkedToNext) {
+            if(Math.abs(window.swipeStartX - (window.swipeEndX || window.swipeStartX)) < 20) {
+                let isDone = el.classList.toggle('item-completed');
+                if(isDone && !isLinkedToNext && window.startTimer) { window.startTimer(90); }
+            }
+        }
+        
+        window.handleExSwipe = function(dayKey, idx) {
+            setTimeout(() => {
+                const currentSets = window.appData.plan[dayKey].exercises[idx].sets;
+                const newSets = prompt("Введіть нову вагу або підходи:", currentSets);
+                if (newSets !== null && newSets !== currentSets) {
+                    window.appData.plan[dayKey].exercises[idx].sets = newSets;
+                    if(window.triggerFirebaseSave) window.triggerFirebaseSave();
+                    window.openModal(dayKey);
+                }
+            }, 50);
+        };
+
         window.openModal = function(dayKey) {
             const d = window.appData.plan[dayKey]; window.appData.activeDay = dayKey;
             
             const titleEl = document.getElementById('m-title');
-            if(titleEl) titleEl.innerHTML = `${d.title} <span style="font-size:12px; color:var(--text-muted); font-weight:600;" id="m-user-badge">👤 ${window.appData.user}</span>`;
+            if(titleEl) titleEl.innerHTML = `${d.title} <span style="font-size:12px; color:var(--text-muted); font-weight:600;">👤 ${window.appData.user}</span>`;
             const subEl = document.getElementById('m-subtitle');
             if(subEl) subEl.innerText = d.sub;
             
@@ -1219,6 +1212,44 @@
             else { btn.className = `complete-btn`; btn.innerHTML = ((d.exercises && d.exercises.length > 0) ? 'ЗАВЕРШИТИ ТРЕНУВАННЯ' : 'ВІДМІТИТИ ВІДПОЧИНОК'); }
             
             document.getElementById('modal').classList.add('active');
+        }
+
+        window.closeModal = function() { 
+            const m = document.getElementById('modal');
+            if(m) m.classList.remove('active'); 
+            if(window.stopTimer) window.stopTimer(); 
+        }
+        
+        window.markDone = function() {
+            let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
+            if(myProgress[window.appData.activeDay]) { window.closeModal(); return; } 
+            
+            if(window.appData.user === 'Taras') { window.appData.progTaras[window.appData.activeDay] = true; } 
+            else { window.appData.progMaks[window.appData.activeDay] = true; }
+            
+            if(window.triggerFirebaseSave) window.triggerFirebaseSave();
+            if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
+            window.closeModal();
+            window.renderAll();
+        }
+
+        window.resetAppData = function() {
+            if(confirm(`🚨 Увага! Видалити тільки статистику користувача ${window.appData.user}? (План тренувань спільний і залишиться)`)) {
+                if(window.appData.user === 'Taras') { window.appData.progTaras = {}; }
+                else { window.appData.progMaks = {}; }
+                if(window.triggerFirebaseSave) window.triggerFirebaseSave();
+                alert("✅ Ваші дані успішно обнулено!");
+                window.switchTab('home');
+            }
+        }
+        
+        window.toggleCalendar = function(el) {
+            if (el.checked) {
+                localStorage.setItem('gymgo_push', 'true');
+                alert("⏳ Функція активована.");
+            } else {
+                localStorage.setItem('gymgo_push', 'false');
+            }
         }
     </script>
 </body>
