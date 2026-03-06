@@ -64,6 +64,7 @@
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes scaleIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes pulseLink { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(216, 137, 68, 0.4); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(216, 137, 68, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(216, 137, 68, 0); } }
 
         #splash-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: var(--bg-color); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.4s ease-out; }
         .splash-logo { font-size: 42px; font-weight: 900; color: var(--text-main); letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
@@ -115,7 +116,6 @@
         .ps-btn { flex: 1; text-align: center; padding: 14px 0; font-size: 15px; font-weight: 800; color: var(--text-muted); border-radius: 16px; transition: 0.3s; cursor: pointer;}
         .ps-btn.active { background: var(--card-bg); color: var(--text-main); box-shadow: 0 4px 15px rgba(0,0,0,0.08);}
 
-        /* Версус Стрік */
         .versus-card { background: linear-gradient(135deg, var(--card-bg), var(--surface-2)); border-radius: 30px; padding: 30px 20px; margin-bottom: 30px; box-shadow: var(--shadow); border: 1px solid var(--border-color); animation: slideUp 0.4s ease;}
         .vc-title { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; color: var(--text-muted); text-align: center; margin-bottom: 20px;}
         .vc-battle { display: flex; justify-content: space-between; align-items: center;}
@@ -134,17 +134,14 @@
         .s-icon.done { background: var(--primary-orange); color: white; box-shadow: 0 4px 10px rgba(216, 137, 68, 0.4);}
         .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
         .streak-divider { border: none; height: 2px; background: var(--border-color); margin: 25px 0; border-radius: 1px;}
-        .streak-longest { font-size: 16px; font-weight: 800; color: var(--text-main); text-align: center; margin-bottom: 10px;}
         .streak-desc { font-size: 14px; color: var(--text-muted); text-align: center; line-height: 1.5; font-weight: 500;}
 
-        /* Порада дня */
         .tip-of-the-day { background: linear-gradient(135deg, rgba(74, 108, 247, 0.1), rgba(74, 108, 247, 0.02)); border: 1px solid rgba(74, 108, 247, 0.2); border-radius: 24px; padding: 20px; margin-bottom: 25px; display: flex; gap: 15px; animation: slideUp 0.3s ease backwards;}
         .tip-icon { font-size: 28px; }
         .tip-content { flex-grow: 1;}
         .tip-header { font-size: 13px; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;}
         .tip-text { font-size: 14px; font-weight: 600; color: var(--text-main); line-height: 1.4;}
 
-        /* Дашборд Нутрієнти */
         .time-toggle-wrap { display: flex; justify-content: center; margin-bottom: 25px; animation: slideUp 0.3s ease;}
         .time-toggle { background: var(--card-bg); border-radius: 30px; display: flex; padding: 5px; box-shadow: var(--shadow); width: 100%;}
         .time-btn { flex: 1; text-align: center; padding: 12px 0; font-size: 14px; font-weight: 700; color: var(--text-muted); border-radius: 25px; transition: 0.3s; cursor: pointer;}
@@ -200,7 +197,6 @@
         .ch-val { font-size: 16px; font-weight: 900; color: var(--text-main); display: flex; align-items: center; gap: 4px;}
         .ch-val svg { width: 16px; height: 16px; fill: var(--primary-blue);}
 
-        /* РОЗУМНА АНАТОМІЯ */
         .anatomy-ui { background: var(--surface-1); border-radius: 30px; padding: 20px; position: relative; height: 500px; overflow: hidden; margin-bottom: 30px; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
         .a-header { position: absolute; top: 20px; left: 20px; z-index: 2;}
         .a-title { font-size: 22px; font-weight: 900; color: var(--text-main); letter-spacing: -0.5px;}
@@ -213,12 +209,7 @@
         .tag-fresh { background: rgba(52, 199, 89, 0.85); }
         .tag-worked { background: rgba(216, 137, 68, 0.85); }
         .tag-fatigued { background: rgba(255, 59, 48, 0.85); }
-        .a-right-slider { position: absolute; right: 15px; top: 45%; transform: translateY(-50%); background: var(--card-bg); border-radius: 20px; width: 36px; height: 160px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 15px 0; box-shadow: var(--shadow); z-index: 2;}
-        .a-rs-btn { color: var(--text-muted); font-size: 18px; font-weight: bold; }
-        .a-rs-track { flex-grow: 1; width: 4px; background: var(--surface-1); margin: 10px 0; border-radius: 2px; position: relative; }
-        .a-rs-thumb { position: absolute; bottom: 30%; left: -2px; width: 8px; height: 30px; background: var(--text-muted); border-radius: 4px; }
 
-        /* Редактор та Налаштування */
         .editor-banner { background: linear-gradient(135deg, var(--primary-blue), #2a4bd8); border-radius: 30px; padding: 25px 20px; color: white; margin-bottom: 25px; box-shadow: 0 15px 30px rgba(74, 108, 247, 0.3); display: flex; align-items: center; gap: 15px; animation: slideUp 0.4s ease;}
         .eb-icon { background: rgba(255,255,255,0.2); width: 55px; height: 55px; border-radius: 18px; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px);}
         .eb-text { flex-grow: 1; }
@@ -231,9 +222,13 @@
         .edit-info-title { font-size: 16px; font-weight: 800; color: var(--text-main); }
         .edit-info-sub { font-size: 13px; color: var(--primary-blue); margin-top: 6px; font-weight: 700; display: flex; align-items: center; gap: 4px; background: rgba(74, 108, 247, 0.1); padding: 4px 8px; border-radius: 8px; display: inline-flex;}
         .edit-info-sub.supp { color: var(--primary-orange); background: rgba(216, 137, 68, 0.1); }
-        .edit-actions { display: flex; gap: 10px; }
+        .edit-actions { display: flex; gap: 10px; align-items: center; }
         .action-btn { background: var(--surface-1); width: 38px; height: 38px; border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-main); transition: 0.2s;}
         .action-btn.delete { color: #FF3B30; background: rgba(255, 59, 48, 0.1); }
+        
+        /* Кнопки суперсету */
+        .action-btn.link-btn.linking { background: var(--primary-orange); color: white; animation: pulseLink 1.5s infinite; }
+        .action-btn.link-btn.linked { background: rgba(216, 137, 68, 0.15); color: var(--primary-orange); }
 
         .theme-grid { display: flex; gap: 15px; margin-bottom: 30px; animation: slideUp 0.5s ease;}
         .theme-card { flex: 1; background: var(--card-bg); border-radius: 20px; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; border: 2px solid var(--border-color); transition: 0.2s; box-shadow: var(--shadow); }
@@ -254,7 +249,6 @@
         input:checked + .slider { background-color: var(--primary-orange); }
         input:checked + .slider:before { transform: translateX(22px); }
 
-        /* Нижня навігація */
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-tabbar); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); display: flex; justify-content: space-around; align-items: center; padding: 15px 5px 30px; z-index: 900; border-radius: 35px 35px 0 0; }
         .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--nav-text); cursor: pointer; width: 20%; transition: color 0.2s; opacity: 0.8; }
         .nav-item.active { color: var(--nav-active); opacity: 1; }
@@ -263,9 +257,6 @@
         .nav-icon svg { width: 100%; height: 100%; fill: currentColor; }
         .nav-text { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .svg-icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
-        /* Модалки */
         .modal-overlay, .bottom-sheet { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); display: none; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
         .modal-overlay { align-items: flex-end; }
         .bottom-sheet { align-items: flex-end; z-index: 1001;}
@@ -289,7 +280,6 @@
 
         .item-completed { opacity: 0.3; transform: scale(0.97); filter: grayscale(100%); }
 
-        /* СМАРТ ТАЙМЕР */
         .rest-timer { position: fixed; bottom: 120px; left: 50%; transform: translateX(-50%) translateY(200px); background: rgba(28, 28, 30, 0.95); backdrop-filter: blur(10px); color: white; padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); z-index: 2000; opacity: 0; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: none; border: 1px solid rgba(255,255,255,0.1); }
         .rest-timer.active { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
         .rt-time { font-size: 22px; font-weight: 900; font-variant-numeric: tabular-nums; color: var(--primary-orange); display: flex; align-items: center; gap: 6px;}
@@ -569,7 +559,8 @@
             dates: {},
             todayKey: 'mon',
             todayIdx: 0,
-            activeDay: ''
+            activeDay: '',
+            linkingExIndex: -1 // Стан для з'єднання суперсетів
         };
         window.editExIndex = -1;
         window.editSuppIndex = -1;
@@ -583,6 +574,7 @@
             const nav = tabId === 'edit' ? document.getElementById('nav-edit-center') : document.getElementById(`nav-${tabId}`);
             if(nav) nav.classList.add('active');
             
+            window.appData.linkingExIndex = -1; // Скидаємо вибір при зміні вкладки
             if(tabId === 'edit' && window.loadDayForEdit) window.loadDayForEdit();
             window.scrollTo(0,0);
         }
@@ -622,19 +614,6 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-
-        const tipsTaras = [
-            "М'язи ростуть під час сну. Спи 8 годин!",
-            "Профіцит калорій — найкращий друг для набору маси.",
-            "Збільшуй робочу вагу хоча б на 1 кг щотижня.",
-            "Не ігноруй базові вправи: присідання, жим, станова."
-        ];
-        const tipsMaks = [
-            "Дефіцит калорій — єдиний спосіб спалити жир. Тримай дієту!",
-            "Пий більше води, вона пришвидшує метаболізм.",
-            "Кардіо після силової спалює більше жиру.",
-            "Більше повторень і менше відпочинку — ключ до рельєфу."
-        ];
 
         window.getMondayID = function() {
             let curr = new Date(); let day = curr.getDay(); let diff = curr.getDate() - day + (day === 0 ? -6 : 1);
@@ -880,7 +859,7 @@
             if(atc) atc.innerHTML = tagsHtml;
         }
 
-        /* 🔥 ЛОГІКА РЕДАКТОРА З СУПЕРСЕТАМИ 🔥 */
+        // 🔥 ЛОГІКА СУПЕРСЕТІВ ТА РЕДАКТОРА 🔥
         window.loadDayForEdit = function() {
             const daySelect = document.getElementById('edit-day-select');
             if(!daySelect) return;
@@ -897,31 +876,74 @@
             let eHTML = '';
             if(d.exercises) { 
                 d.exercises.forEach((ex, idx) => { 
-                    let isLinked = ex.superset === true;
-                    eHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s; margin-bottom: ${idx < d.exercises.length - 1 ? '4px' : '12px'};">
+                    let isLinkedToNext = ex.superset === true;
+                    let isLinkedToPrev = idx > 0 && d.exercises[idx-1].superset === true;
+                    let isLinkingThis = window.appData.linkingExIndex === idx;
+
+                    let linkClass = '';
+                    if (isLinkingThis) linkClass = 'linking';
+                    else if (isLinkedToNext || isLinkedToPrev) linkClass = 'linked';
+
+                    let wrapStyle = '';
+                    if (isLinkedToNext || isLinkedToPrev) {
+                        wrapStyle = `border-left: 4px solid var(--primary-orange); padding-left: 14px; margin-left: 4px;`;
+                    }
+
+                    eHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s; margin-bottom: ${isLinkedToNext ? '4px' : '12px'}; ${wrapStyle}">
                         <div><div class="edit-info-title">${ex.name}</div><div class="edit-info-sub">${ex.sets}</div></div>
                         <div class="edit-actions">
+                            <button class="action-btn link-btn ${linkClass}" onclick="window.handleLinkClick(${idx})">${iconLink}</button>
                             <button class="action-btn" onclick="window.openExerciseModal(${idx})">${iconEdit}</button>
                             <button class="action-btn delete" onclick="window.deleteExercise(${idx})">${iconTrash}</button>
                         </div>
                     </div>`; 
-                    
-                    if (idx < d.exercises.length - 1) {
-                        eHTML += `<div style="display:flex; justify-content:center; margin-bottom: 12px; position:relative; z-index:2; animation-delay:${idx*0.05}s;">
-                            <button onclick="window.toggleSuperset(${idx})" style="background: ${isLinked ? 'var(--primary-orange)' : 'var(--surface-1)'}; color: ${isLinked ? 'white' : 'var(--text-main)'}; border: none; border-radius: 12px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s; box-shadow: ${isLinked ? '0 4px 10px rgba(216, 137, 68, 0.4)' : 'none'};">
-                                ${iconLink}
-                            </button>
-                        </div>`;
-                    }
                 }); 
             }
             document.getElementById('edit-exercises-list').innerHTML = eHTML;
         }
 
-        window.toggleSuperset = function(idx) {
+        window.handleLinkClick = function(idx) {
             const day = document.getElementById('edit-day-select').value;
-            window.appData.plan[day].exercises[idx].superset = !window.appData.plan[day].exercises[idx].superset;
-            if(window.triggerFirebaseSave) window.triggerFirebaseSave();
+            let exercises = window.appData.plan[day].exercises;
+
+            // Відв'язати, якщо вже зв'язано
+            if (exercises[idx].superset || (idx > 0 && exercises[idx-1].superset)) {
+                if(confirm("Роз'єднати ці вправи?")) {
+                    exercises[idx].superset = false;
+                    if(idx > 0) exercises[idx-1].superset = false;
+                    window.appData.linkingExIndex = -1;
+                    window.triggerFirebaseSave();
+                    window.loadDayForEdit();
+                }
+                return;
+            }
+
+            // Почати вибір
+            if (window.appData.linkingExIndex === -1) {
+                window.appData.linkingExIndex = idx;
+                window.loadDayForEdit();
+                return;
+            }
+
+            // Скасувати вибір, якщо клікнули на ту ж саму
+            if (window.appData.linkingExIndex === idx) {
+                window.appData.linkingExIndex = -1;
+                window.loadDayForEdit();
+                return;
+            }
+
+            // Об'єднати дві вибрані вправи
+            let idxA = window.appData.linkingExIndex;
+            let idxB = idx;
+            let itemB = exercises.splice(idxB, 1)[0];
+            
+            if (idxB < idxA) { idxA--; } // Коригуємо індекс
+            
+            exercises.splice(idxA + 1, 0, itemB); // Ставимо B одразу після A
+            exercises[idxA].superset = true; // Робимо лінк
+            
+            window.appData.linkingExIndex = -1;
+            window.triggerFirebaseSave();
             window.loadDayForEdit();
         }
 
@@ -962,6 +984,8 @@
             if(confirm("Видалити цю вправу?")) { 
                 const day = document.getElementById('edit-day-select').value; 
                 window.appData.plan[day].exercises.splice(idx, 1); 
+                // Очищаємо залишковий лінк, якщо видалили вправу з суперсету
+                if(idx > 0 && window.appData.plan[day].exercises[idx-1]) window.appData.plan[day].exercises[idx-1].superset = false;
                 window.triggerFirebaseSave(); window.loadDayForEdit(); 
             }
         }
@@ -1028,17 +1052,18 @@
         }
 
         window.swipeStartX = 0; window.swipeEndX = 0;
-        window.handleExClick = function(el, isSuperset) {
+        window.handleExClick = function(el, isLinkedToNext) {
             if(Math.abs(window.swipeStartX - (window.swipeEndX || window.swipeStartX)) < 20) {
                 let isDone = el.classList.toggle('item-completed');
-                if(isDone && !isSuperset) { window.startTimer(90); }
+                // Таймер запускається ТІЛЬКИ якщо це не перша/середня вправа у суперсеті
+                if(isDone && !isLinkedToNext) { window.startTimer(90); }
             }
         }
         
         window.handleExSwipe = function(dayKey, idx) {
             setTimeout(() => {
                 const currentSets = window.appData.plan[dayKey].exercises[idx].sets;
-                const newSets = prompt("🏆 Введи нову вагу або підходи:", currentSets);
+                const newSets = prompt("Введи нову вагу або підходи:", currentSets);
                 if (newSets !== null && newSets !== currentSets) {
                     window.appData.plan[dayKey].exercises[idx].sets = newSets;
                     window.triggerFirebaseSave();
@@ -1051,7 +1076,7 @@
             const d = window.appData.plan[dayKey]; window.appData.activeDay = dayKey;
             
             const titleEl = document.getElementById('m-title');
-            if(titleEl) titleEl.innerHTML = `${d.title} <span style="font-size:12px; color:var(--text-muted); font-weight:600;">👤 ${window.appData.user}</span>`;
+            if(titleEl) titleEl.innerHTML = `${d.title} <span style="font-size:12px; color:var(--text-muted); font-weight:600;" id="m-user-badge">👤 ${window.appData.user}</span>`;
             const subEl = document.getElementById('m-subtitle');
             if(subEl) subEl.innerText = d.sub;
             
@@ -1103,57 +1128,6 @@
             
             document.getElementById('modal').classList.add('active');
         }
-
-        window.closeModal = function() { 
-            const m = document.getElementById('modal');
-            if(m) m.classList.remove('active'); 
-            window.stopTimer(); 
-        }
-        
-        window.markDone = function() {
-            let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
-            if(myProgress[window.appData.activeDay]) { window.closeModal(); return; } 
-            
-            if(window.appData.user === 'Taras') { window.appData.progTaras[window.appData.activeDay] = true; } 
-            else { window.appData.progMaks[window.appData.activeDay] = true; }
-            
-            window.triggerFirebaseSave();
-            if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
-            window.closeModal();
-            window.renderAll();
-        }
-
-        window.resetAppData = function() {
-            if(confirm(`🚨 Увага! Видалити тільки статистику користувача ${window.appData.user}? (План тренувань спільний і залишиться)`)) {
-                if(window.appData.user === 'Taras') { window.appData.progTaras = {}; }
-                else { window.appData.progMaks = {}; }
-                window.triggerFirebaseSave();
-                alert("✅ Ваші дані успішно обнулено!");
-                window.switchTab('home');
-            }
-        }
-        
-        window.shareStreak = function() {
-            let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
-            let streak = 0; daysKeys.forEach(d => { if(myProgress[d]) streak++; });
-            const shareData = {
-                title: 'Gym Go Прогрес',
-                text: `🔥 Мій стрік у Gym Go: ${streak} дні(в) поспіль! Тренуйся зі мною! 🚀`,
-                url: window.location.href
-            };
-            if (navigator.share) { navigator.share(shareData).catch(console.error); } 
-            else { navigator.clipboard.writeText(shareData.text + " " + shareData.url); alert('Текст скопійовано!'); }
-        }
-        
-        window.toggleCalendar = function(el) {
-            if (el.checked) {
-                localStorage.setItem('gymgo_push', 'true');
-                alert("⏳ Функція активована.");
-            } else {
-                localStorage.setItem('gymgo_push', 'false');
-            }
-        }
-
     </script>
 </body>
 </html>
