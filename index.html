@@ -42,7 +42,7 @@
         }
 
         /* СВІТЛА ТЕМА */
-        [data-theme="light"] {
+        :root[data-theme="light"] {
             --bg-color: #f2f2f7; --card-bg: #ffffff; --text-main: #000000; --text-inverse: #ffffff;
             --text-muted: #8e8e93; --primary-orange: #ff9500; --primary-blue: #007aff; --primary-red: #ff3b30; 
             --shadow: 0 10px 20px rgba(0,0,0,0.05); --bg-tabbar: rgba(28, 28, 30, 0.95); --nav-text: #8e8e93;
@@ -51,7 +51,7 @@
         }
 
         /* ТЕМНА ТЕМА */
-        [data-theme="dark"] {
+        :root[data-theme="dark"] {
             --bg-color: #000000; --card-bg: #1c1c1e; --text-main: #ffffff; --text-inverse: #000000;
             --text-muted: #8e8e93; --primary-orange: #ff9f0a; --primary-blue: #0a84ff; --primary-red: #ff453a; 
             --shadow: 0 10px 30px rgba(0,0,0,0.5); --bg-tabbar: rgba(28, 28, 30, 0.95); --nav-text: #8e8e93;
@@ -134,6 +134,7 @@
         .s-icon.done { background: var(--primary-orange); color: white; box-shadow: 0 4px 10px rgba(216, 137, 68, 0.4);}
         .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
         .streak-divider { border: none; height: 2px; background: var(--border-color); margin: 25px 0; border-radius: 1px;}
+        .streak-longest { font-size: 16px; font-weight: 800; color: var(--text-main); text-align: center; margin-bottom: 10px;}
         .streak-desc { font-size: 14px; color: var(--text-muted); text-align: center; line-height: 1.5; font-weight: 500;}
 
         /* Порада дня */
@@ -226,7 +227,7 @@
         
         .add-btn-small { background: rgba(216, 137, 68, 0.08); color: var(--primary-orange); border: 2px dashed rgba(216, 137, 68, 0.3); width: 100%; padding: 16px; border-radius: 20px; font-weight: 800; cursor: pointer; margin-bottom: 25px; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s;}
 
-        .edit-list-item { background: var(--card-bg); padding: 18px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; box-shadow: var(--shadow); border: 1px solid var(--border-color); animation: scaleIn 0.3s ease backwards; }
+        .edit-list-item { background: var(--card-bg); padding: 18px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow); border: 1px solid var(--border-color); animation: scaleIn 0.3s ease backwards; }
         .edit-info-title { font-size: 16px; font-weight: 800; color: var(--text-main); }
         .edit-info-sub { font-size: 13px; color: var(--primary-blue); margin-top: 6px; font-weight: 700; display: flex; align-items: center; gap: 4px; background: rgba(74, 108, 247, 0.1); padding: 4px 8px; border-radius: 8px; display: inline-flex;}
         .edit-info-sub.supp { color: var(--primary-orange); background: rgba(216, 137, 68, 0.1); }
@@ -276,7 +277,7 @@
         .modal-subtitle { color: var(--text-muted); margin-bottom: 30px; font-size: 15px; font-weight: 500; }
         .bs-title { font-size: 22px; font-weight: 900; margin-bottom: 25px; text-align: center; color: var(--text-main); }
 
-        .exercise-item { background: var(--card-bg); padding: 18px; border-radius: 20px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow); border: 1px solid var(--border-color); transition: 0.3s ease; cursor: pointer; position: relative;}
+        .exercise-item { background: var(--card-bg); padding: 18px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow); border: 1px solid var(--border-color); transition: 0.3s ease; cursor: pointer; position: relative;}
         .ex-name { font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 10px; color: var(--text-main);}
         .ex-icon { background: var(--surface-1); width: 36px; height: 36px; border-radius: 10px; display: flex; justify-content: center; align-items: center; color: var(--text-main); }
         .ex-sets { background: var(--primary-blue); color: white; padding: 6px 12px; border-radius: 10px; font-size: 14px; font-weight: 800; box-shadow: 0 4px 10px rgba(74, 108, 247, 0.3); }
@@ -525,12 +526,12 @@
     <div class="modal-overlay" id="modal">
         <div class="modal-content">
             <div class="close-btn" onclick="window.closeModal()">✕</div>
-            <div id="modal-header"><div class="modal-title" id="m-title">Title</div><div class="modal-subtitle" id="m-subtitle">Subtitle</div></div>
+            <div id="modal-header"><div class="modal-title" id="m-title">Title <span style="font-size:12px; color:var(--text-muted); font-weight:600;" id="m-user-badge">👤 Тарас</span></div><div class="modal-subtitle" id="m-subtitle">Subtitle</div></div>
             
-            <div class="section-title">Протокол добавок (Тап = Виконано)</div>
+            <div class="section-title">Протокол добавок</div>
             <div id="m-supps" style="margin-top: 15px;"></div>
             
-            <div class="section-title" id="ex-title" style="margin-top: 30px;">Вправи (Тап = Виконано | Свайп вліво = Вага)</div>
+            <div class="section-title" id="ex-title" style="margin-top: 30px;">Вправи</div>
             <div id="m-exercises" style="margin-top: 15px;"></div>
             
             <button id="m-btn" class="complete-btn" onclick="window.markDone()">ЗАВЕРШИТИ ДЕНЬ</button>
@@ -546,7 +547,20 @@
     </div>
 
     <script>
-        // Ініціалізація та безпечні глобальні функції (захист від зависань)
+        const iconCup = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg>`;
+        const iconEdit = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>`;
+        const iconTrash = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
+        const iconClock = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 16 14"></polyline></svg>`;
+        const iconDumbbell = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg>`;
+        const iconCheck = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        const iconFlameCheck = `<svg viewBox="0 0 24 24"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z" fill="currentColor"/><polyline points="10 13 11.5 14.5 14 11" stroke="white" stroke-width="2" fill="none"/></svg>`;
+        const iconCross = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><line x1="8" y1="8" x2="16" y2="16"></line><line x1="16" y1="8" x2="8" y2="16"></line></svg>`;
+        const iconLink = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`;
+
+        const daysKeys = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+        const daysMap = { 'mon':'ПН', 'tue':'ВТ', 'wed':'СР', 'thu':'ЧТ', 'fri':'ПТ', 'sat':'СБ', 'sun':'НД' };
+        const months = ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сер', 'Вер', 'Жов', 'Лис', 'Гру'];
+
         window.appData = {
             user: localStorage.getItem('gymgo_user') || 'Taras',
             plan: {},
@@ -595,12 +609,9 @@
 
         setTimeout(() => {
             const currentT = localStorage.getItem('gymgo_theme') || 'premium';
-            const activeCard = document.getElementById('tc-' + currentT);
-            if(activeCard) activeCard.classList.add('active');
-            
+            window.setTheme(currentT);
             const btn = document.getElementById('prof-' + window.appData.user);
             if(btn) window.switchUser(window.appData.user);
-            
             setTimeout(() => {
                 const s = document.getElementById('splash-screen'); 
                 if(s){ s.style.opacity='0'; setTimeout(()=>{s.style.display='none';},400); }
@@ -611,19 +622,6 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
-
-        const iconCup = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg>`;
-        const iconEdit = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>`;
-        const iconTrash = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>`;
-        const iconClock = `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 16 14"></polyline></svg>`;
-        const iconDumbbell = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg>`;
-        const iconCheck = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
-        const iconFlameCheck = `<svg viewBox="0 0 24 24"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z" fill="currentColor"/><polyline points="10 13 11.5 14.5 14 11" stroke="white" stroke-width="2" fill="none"/></svg>`;
-        const iconCross = `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><line x1="8" y1="8" x2="16" y2="16"></line><line x1="16" y1="8" x2="8" y2="16"></line></svg>`;
-
-        const daysKeys = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-        const daysMap = { 'mon':'ПН', 'tue':'ВТ', 'wed':'СР', 'thu':'ЧТ', 'fri':'ПТ', 'sat':'СБ', 'sun':'НД' };
-        const months = ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сер', 'Вер', 'Жов', 'Лис', 'Гру'];
 
         const tipsTaras = [
             "М'язи ростуть під час сну. Спи 8 годин!",
@@ -638,12 +636,12 @@
             "Більше повторень і менше відпочинку — ключ до рельєфу."
         ];
 
-        function getMondayID() {
+        window.getMondayID = function() {
             let curr = new Date(); let day = curr.getDay(); let diff = curr.getDate() - day + (day === 0 ? -6 : 1);
             return new Date(curr.setDate(diff)).toDateString(); 
         }
 
-        function setWeekDates() {
+        window.setWeekDates = function() {
             let curr = new Date(); let day = curr.getDay(); let diff = curr.getDate() - day + (day === 0 ? -6 : 1); 
             let monday = new Date(curr.setDate(diff));
             for(let i = 0; i < 7; i++) {
@@ -696,7 +694,7 @@
                 set(ref(db, 'workout_plan'), window.appData.plan);
             }
 
-            const currentWeekID = getMondayID();
+            const currentWeekID = window.getMondayID();
             if (dataVal.last_reset_id !== currentWeekID) {
                 window.appData.progTaras = {}; window.appData.progMaks = {};
                 set(ref(db, 'progress_Taras'), window.appData.progTaras);
@@ -707,7 +705,7 @@
                 window.appData.progMaks = dataVal.progress_Maks || {};
             }
             
-            setWeekDates();
+            window.setWeekDates();
             window.renderAll();
         });
 
@@ -715,7 +713,7 @@
             set(ref(db, 'workout_plan'), window.appData.plan);
             set(ref(db, 'progress_Taras'), window.appData.progTaras);
             set(ref(db, 'progress_Maks'), window.appData.progMaks);
-            set(ref(db, 'last_reset_id'), getMondayID());
+            set(ref(db, 'last_reset_id'), window.getMondayID());
         };
 
         window.renderMainCards = function() {
@@ -778,7 +776,6 @@
             });
             const sContainer = document.getElementById('streak-days-container'); if(sContainer) sContainer.innerHTML = html;
             const sNum = document.getElementById('streak-num'); if(sNum) sNum.innerText = currentStreak;
-            const lStreak = document.getElementById('longest-streak'); if(lStreak) lStreak.innerText = currentStreak > 0 ? currentStreak + 2 : 0;
         }
 
         window.calculateAndRenderDashboard = function() {
@@ -846,7 +843,6 @@
                 chartHtml += `<div class="bar-column"><div class="bar-wrapper"><div class="b-bg orange-light" style="height: 100%;"></div><div class="b-fill orange-solid" style="height: ${dailyWorkoutVal}%;"><div class="b-dot"></div></div></div><div class="bar-wrapper" style="position: absolute; left: 10px;"><div class="b-bg red-light" style="height: 80%;"></div><div class="b-fill red-solid" style="height: ${suppVal}%;"><div class="b-dot white"></div></div></div></div>`;
             });
 
-            // БЕЗПЕЧНЕ ОНОВЛЕННЯ DOM (щоб не ламати JS)
             const val1El = document.getElementById('val-1');
             if(val1El) val1El.innerHTML = `${val1} <span class="nut-unit">${window.appData.user === 'Taras' ? 'Грам' : 'Ккал'}</span>`;
             
@@ -884,6 +880,7 @@
             if(atc) atc.innerHTML = tagsHtml;
         }
 
+        /* 🔥 ЛОГІКА РЕДАКТОРА З СУПЕРСЕТАМИ 🔥 */
         window.loadDayForEdit = function() {
             const daySelect = document.getElementById('edit-day-select');
             if(!daySelect) return;
@@ -898,8 +895,34 @@
             document.getElementById('edit-supps-list').innerHTML = sHTML;
             
             let eHTML = '';
-            if(d.exercises) { d.exercises.forEach((ex, idx) => { eHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s"><div><div class="edit-info-title">${ex.name}</div><div class="edit-info-sub">${ex.sets}</div></div><div class="edit-actions"><button class="action-btn" onclick="window.openExerciseModal(${idx})">${iconEdit}</button><button class="action-btn delete" onclick="window.deleteExercise(${idx})">${iconTrash}</button></div></div>`; }); }
+            if(d.exercises) { 
+                d.exercises.forEach((ex, idx) => { 
+                    let isLinked = ex.superset === true;
+                    eHTML += `<div class="edit-list-item" style="animation-delay:${idx*0.05}s; margin-bottom: ${idx < d.exercises.length - 1 ? '4px' : '12px'};">
+                        <div><div class="edit-info-title">${ex.name}</div><div class="edit-info-sub">${ex.sets}</div></div>
+                        <div class="edit-actions">
+                            <button class="action-btn" onclick="window.openExerciseModal(${idx})">${iconEdit}</button>
+                            <button class="action-btn delete" onclick="window.deleteExercise(${idx})">${iconTrash}</button>
+                        </div>
+                    </div>`; 
+                    
+                    if (idx < d.exercises.length - 1) {
+                        eHTML += `<div style="display:flex; justify-content:center; margin-bottom: 12px; position:relative; z-index:2; animation-delay:${idx*0.05}s;">
+                            <button onclick="window.toggleSuperset(${idx})" style="background: ${isLinked ? 'var(--primary-orange)' : 'var(--surface-1)'}; color: ${isLinked ? 'white' : 'var(--text-main)'}; border: none; border-radius: 12px; width: 36px; height: 36px; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s; box-shadow: ${isLinked ? '0 4px 10px rgba(216, 137, 68, 0.4)' : 'none'};">
+                                ${iconLink}
+                            </button>
+                        </div>`;
+                    }
+                }); 
+            }
             document.getElementById('edit-exercises-list').innerHTML = eHTML;
+        }
+
+        window.toggleSuperset = function(idx) {
+            const day = document.getElementById('edit-day-select').value;
+            window.appData.plan[day].exercises[idx].superset = !window.appData.plan[day].exercises[idx].superset;
+            if(window.triggerFirebaseSave) window.triggerFirebaseSave();
+            window.loadDayForEdit();
         }
 
         window.quickSaveHeader = function() {
@@ -931,7 +954,7 @@
             const day = document.getElementById('edit-day-select').value;
             if(!window.appData.plan[day].exercises) window.appData.plan[day].exercises = [];
             if (window.editExIndex === -1) window.appData.plan[day].exercises.push({ name, sets }); 
-            else window.appData.plan[day].exercises[window.editExIndex] = { name, sets };
+            else window.appData.plan[day].exercises[window.editExIndex] = { name, sets, superset: window.appData.plan[day].exercises[window.editExIndex].superset };
             window.triggerFirebaseSave();
             window.closeExerciseModal(); window.loadDayForEdit();
         }
@@ -1005,10 +1028,10 @@
         }
 
         window.swipeStartX = 0; window.swipeEndX = 0;
-        window.handleExClick = function(el) {
+        window.handleExClick = function(el, isSuperset) {
             if(Math.abs(window.swipeStartX - (window.swipeEndX || window.swipeStartX)) < 20) {
                 let isDone = el.classList.toggle('item-completed');
-                if(isDone) { window.startTimer(90); }
+                if(isDone && !isSuperset) { window.startTimer(90); }
             }
         }
         
@@ -1028,7 +1051,7 @@
             const d = window.appData.plan[dayKey]; window.appData.activeDay = dayKey;
             
             const titleEl = document.getElementById('m-title');
-            if(titleEl) titleEl.innerHTML = `${d.title} <span style="font-size:12px; color:var(--text-muted); font-weight:600;" id="m-user-badge">👤 ${window.appData.user}</span>`;
+            if(titleEl) titleEl.innerHTML = `${d.title} <span style="font-size:12px; color:var(--text-muted); font-weight:600;">👤 ${window.appData.user}</span>`;
             const subEl = document.getElementById('m-subtitle');
             if(subEl) subEl.innerText = d.sub;
             
@@ -1043,9 +1066,30 @@
             let exHTML = '';
             if(d.exercises && d.exercises.length > 0) {
                 document.getElementById('ex-title').style.display = 'flex';
-                d.exercises.forEach((e, idx) => { 
-                    exHTML += `<div class="exercise-item" ontouchstart="window.swipeStartX = event.changedTouches[0].screenX" ontouchend="window.swipeEndX = event.changedTouches[0].screenX; if(window.swipeStartX - window.swipeEndX > 45) window.handleExSwipe('${dayKey}', ${idx});" onclick="window.handleExClick(this)" style="animation: scaleIn 0.3s ease ${idx*0.05}s backwards;"><div class="ex-name"><div class="ex-icon">${iconDumbbell}</div> ${e.name}</div><div class="ex-sets">${e.sets}</div></div>`; 
-                });
+                for(let i=0; i<d.exercises.length; i++) {
+                    let e = d.exercises[i];
+                    let isLinkedToNext = e.superset === true && i < d.exercises.length - 1;
+                    let isLinkedToPrev = i > 0 && d.exercises[i-1].superset === true;
+                    
+                    if (!isLinkedToPrev && isLinkedToNext) {
+                        exHTML += `<div style="position: relative; margin-bottom: 12px; padding-left: 16px;">
+                                   <div style="position: absolute; left: 0; top: 15px; bottom: 15px; width: 4px; background: var(--primary-orange); border-radius: 4px; box-shadow: 0 0 8px rgba(216, 137, 68, 0.5);"></div>`;
+                    } else if (!isLinkedToPrev && !isLinkedToNext) {
+                        exHTML += `<div style="margin-bottom: 12px;">`;
+                    }
+                    
+                    exHTML += `<div class="exercise-item" style="margin-bottom: ${isLinkedToNext ? '8px' : '0'}; animation: scaleIn 0.3s ease ${i*0.05}s backwards;" 
+                        ontouchstart="window.swipeStartX = event.changedTouches[0].screenX" 
+                        ontouchend="window.swipeEndX = event.changedTouches[0].screenX; if(window.swipeStartX - window.swipeEndX > 45) window.handleExSwipe('${dayKey}', ${i});" 
+                        onclick="window.handleExClick(this, ${isLinkedToNext})">
+                        <div class="ex-name"><div class="ex-icon">${iconDumbbell}</div> ${e.name}</div>
+                        <div class="ex-sets">${e.sets}</div>
+                    </div>`;
+
+                    if (!isLinkedToNext) {
+                        exHTML += `</div>`;
+                    }
+                }
             } else { 
                 document.getElementById('ex-title').style.display = 'none'; 
                 exHTML = `<div style="text-align:center; padding: 20px; color:var(--text-muted); font-weight: 600;">Сьогодні відпочинок. Відновлюйся! 💤</div>`; 
@@ -1087,6 +1131,18 @@
                 alert("✅ Ваші дані успішно обнулено!");
                 window.switchTab('home');
             }
+        }
+        
+        window.shareStreak = function() {
+            let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
+            let streak = 0; daysKeys.forEach(d => { if(myProgress[d]) streak++; });
+            const shareData = {
+                title: 'Gym Go Прогрес',
+                text: `🔥 Мій стрік у Gym Go: ${streak} дні(в) поспіль! Тренуйся зі мною! 🚀`,
+                url: window.location.href
+            };
+            if (navigator.share) { navigator.share(shareData).catch(console.error); } 
+            else { navigator.clipboard.writeText(shareData.text + " " + shareData.url); alert('Текст скопійовано!'); }
         }
         
         window.toggleCalendar = function(el) {
