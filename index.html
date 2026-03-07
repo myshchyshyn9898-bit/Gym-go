@@ -20,6 +20,7 @@
     </script>
 
     <style>
+        /* БАЗОВІ ЗМІННІ (PREMIUM) */
         :root {
             --bg-color: #f4ede4; 
             --card-glass: rgba(255, 255, 255, 0.7); 
@@ -42,6 +43,7 @@
             --orb-2: #4a6cf7;
         }
 
+        /* СВІТЛА ТЕМА */
         :root[data-theme="light"] {
             --bg-color: #f2f2f7; 
             --card-glass: rgba(255, 255, 255, 0.75); 
@@ -60,6 +62,7 @@
             --orb-2: #007aff;
         }
 
+        /* ТЕМНА ТЕМА */
         :root[data-theme="dark"] {
             --bg-color: #000000; 
             --card-glass: rgba(28, 28, 30, 0.65); 
@@ -192,30 +195,6 @@
         .c-orange { stroke: url(#ring-grad-orange); filter: drop-shadow(0 2px 4px rgba(216,137,68,0.4)); }
         .c-red { stroke: url(#ring-grad-red); filter: drop-shadow(0 2px 4px rgba(255,59,48,0.4)); }
 
-        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;}
-        .chart-title { font-size: 18px; font-weight: 800; color: var(--text-main);}
-        .chart-legend { display: flex; gap: 12px; font-size: 11px; font-weight: 700; color: var(--text-muted);}
-        .leg-item { display: flex; align-items: center; gap: 4px;}
-        .leg-dot { width: 8px; height: 8px; border-radius: 50%;}
-        .bg-orange { background: var(--primary-orange); }
-        .bg-red { background: var(--primary-red); }
-
-        .chart-grid { display: flex; height: 160px; position: relative;}
-        .y-axis { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; padding-right: 15px; font-size: 11px; font-weight: 600; color: var(--text-muted); height: 100%; border-right: 1px dashed var(--border-color);}
-        .bars-area { display: flex; justify-content: space-around; align-items: flex-end; flex-grow: 1; height: 100%; padding-left: 5px;}
-        .bar-column { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 10px; position: relative; width: 100%;}
-        .bar-wrapper { position: relative; width: 24px; height: 100%; display: flex; align-items: flex-end; justify-content: center;}
-        .b-bg { position: absolute; bottom: 0; width: 24px; border-radius: 12px; transition: height 0.8s;}
-        .b-bg.orange-light { background: rgba(216, 137, 68, 0.15); }
-        .b-bg.red-light { background: rgba(152, 44, 81, 0.1); }
-        .b-fill { position: absolute; width: 24px; border-radius: 12px; transition: height 0.8s, bottom 0.8s; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 4px; box-sizing: border-box;}
-        .b-fill.orange-solid { background: linear-gradient(to top, var(--primary-orange), #ffb347); }
-        .b-fill.red-solid { background: linear-gradient(to top, var(--primary-red), #ff3b30); }
-        .b-dot { width: 14px; height: 14px; background: var(--text-main); border-radius: 50%; }
-        .b-dot.white { background: var(--card-bg); }
-        .x-axis-labels { display: flex; justify-content: space-around; margin-top: 15px; padding-left: 35px;}
-        .x-label { font-size: 11px; font-weight: 700; color: var(--text-muted); width: 100%; text-align: center;}
-
         .challenge-card { padding: 20px; display: flex; align-items: center; gap: 15px;}
         .ch-icon-wrap { background: rgba(216, 137, 68, 0.1); width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center;}
         .ch-icon-wrap svg { width: 24px; height: 24px; fill: var(--primary-orange); }
@@ -237,10 +216,6 @@
         .tag-fresh { background: rgba(52, 199, 89, 0.85); }
         .tag-worked { background: rgba(216, 137, 68, 0.85); }
         .tag-fatigued { background: rgba(255, 59, 48, 0.85); }
-        .a-right-slider { position: absolute; right: 15px; top: 45%; transform: translateY(-50%); background: var(--surface-1); backdrop-filter: blur(10px); border: 1px solid var(--card-border); border-radius: 20px; width: 36px; height: 160px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 15px 0; box-shadow: var(--shadow); z-index: 2;}
-        .a-rs-btn { color: var(--text-muted); font-size: 18px; font-weight: bold; }
-        .a-rs-track { flex-grow: 1; width: 4px; background: rgba(128,128,128,0.2); margin: 10px 0; border-radius: 2px; position: relative; }
-        .a-rs-thumb { position: absolute; bottom: 30%; left: -2px; width: 8px; height: 30px; background: var(--text-muted); border-radius: 4px; }
 
         .editor-banner { background: linear-gradient(135deg, var(--primary-blue), #2a4bd8); border-radius: 30px; padding: 25px 20px; color: white; margin-bottom: 25px; box-shadow: 0 15px 30px rgba(74, 108, 247, 0.3); display: flex; align-items: center; gap: 15px; animation: slideUp 0.4s ease;}
         .eb-icon { background: rgba(255,255,255,0.2); width: 55px; height: 55px; border-radius: 18px; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px);}
@@ -250,6 +225,7 @@
         
         .add-btn-small { background: var(--card-glass); backdrop-filter: blur(20px); border: 2px dashed rgba(216, 137, 68, 0.4); color: var(--primary-orange); width: 100%; padding: 16px; border-radius: 20px; font-weight: 800; cursor: pointer; margin-bottom: 25px; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s;}
 
+        /* SWIPE-TO-ACTION CSS */
         .swipe-wrapper { position: relative; overflow: hidden; border-radius: 20px; border: 1px solid var(--card-border); margin-bottom: 12px; box-shadow: var(--shadow); background: rgba(255,59,48,0.1); animation: scaleIn 0.3s ease backwards; }
         .swipe-actions-bg { position: absolute; right: 0; top: 0; bottom: 0; width: 120px; display: flex; justify-content: flex-end; align-items: center; padding-right: 15px; gap: 8px; z-index: 1;}
         .swipe-front { background: var(--card-glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); padding: 18px; border-radius: 20px; position: relative; z-index: 2; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; justify-content: space-between; align-items: center;}
@@ -293,6 +269,7 @@
 
         .svg-icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
+        /* Модалки */
         .modal-overlay, .bottom-sheet { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: none; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
         .modal-overlay { align-items: flex-end; }
         .bottom-sheet { align-items: flex-end; z-index: 1001;}
@@ -382,11 +359,12 @@
             <div class="streak-longest" style="margin-bottom: 20px;">Ваші дні цього тижня:</div>
             <div class="streak-days-row" id="streak-days-container"></div>
             <hr class="streak-divider">
-            <div class="streak-desc">Не відставай від напарника! Тренуйся стабільно! 🎉</div>
+            <div class="streak-desc" id="longest-streak" style="display:none;"></div>
+            <div class="streak-desc">Тренуйся стабільно, не відставай! 🎉</div>
         </div>
 
         <button class="complete-btn" style="background: var(--primary-blue); color: white;" onclick="window.shareStreak()">
-            Поділитися результатами
+            Поділитися результатом
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
         </button>
     </div>
@@ -397,6 +375,14 @@
             <div class="tip-content">
                 <div class="tip-header">Порада дня</div>
                 <div class="tip-text" id="tip-text-box">Завантаження...</div>
+            </div>
+        </div>
+
+        <div class="time-toggle-wrap">
+            <div class="time-toggle">
+                <div class="time-btn">Day</div>
+                <div class="time-btn active">Weekly</div>
+                <div class="time-btn">Monthly</div>
             </div>
         </div>
 
@@ -417,17 +403,29 @@
             </div>
         </div>
 
+        <div class="chart-card">
+            <div class="chart-header">
+                <div class="chart-title">Overall Progress</div>
+                <div class="chart-legend"><div class="leg-item"><div class="leg-dot bg-orange"></div> Вправи</div><div class="leg-item"><div class="leg-dot bg-red"></div> Добавки</div></div>
+            </div>
+            <div class="chart-grid">
+                <div class="y-axis"><span>100</span><span>80</span><span>60</span><span>40</span></div>
+                <div class="bars-area" id="chart-bars-container"></div>
+            </div>
+            <div class="x-axis-labels"><div class="x-label">Mon</div><div class="x-label">Tue</div><div class="x-label">Wed</div><div class="x-label">Thu</div><div class="x-label">Fri</div><div class="x-label">Sat</div><div class="x-label">Sun</div></div>
+        </div>
+
         <div class="section-title">Активність</div>
         <div class="challenge-card">
             <div class="ch-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg></div>
             <div class="ch-info"><div class="ch-title" id="dash-title-3">Підходи за тиждень</div><div class="ch-status">Completed</div></div>
-            <div class="ch-val"><span id="val-3-num">0</span> <span style="font-size:12px; color:var(--text-muted)">sets</span></div>
+            <div class="ch-val"><span id="val-3-num">0</span> <span style="font-size:12px; color:var(--text-muted)">&nbsp;sets</span></div>
         </div>
         
         <div class="challenge-card">
             <div class="ch-icon-wrap" style="background: rgba(74, 108, 247, 0.1);"><svg viewBox="0 0 24 24" fill="var(--primary-blue)"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z"/></svg></div>
             <div class="ch-info"><div class="ch-title">Спалено енергії</div><div class="ch-status">Active</div></div>
-            <div class="ch-val"><span id="val-kcal-num">0</span> <span style="font-size:12px; color:var(--text-muted)">ккал</span></div>
+            <div class="ch-val"><span id="val-kcal-num">0</span> <span style="font-size:12px; color:var(--text-muted)">&nbsp;ккал</span></div>
         </div>
 
         <div class="anatomy-ui" style="margin-top: 30px;">
@@ -567,10 +565,10 @@
             <div class="close-btn" onclick="window.closeModal()">✕</div>
             <div id="modal-header"><div class="modal-title" id="m-title">Title <span style="font-size:12px; color:var(--text-muted); font-weight:600;" id="m-user-badge">👤 Тарас</span></div><div class="modal-subtitle" id="m-subtitle">Subtitle</div></div>
             
-            <div class="section-title">Протокол добавок</div>
+            <div class="section-title">Протокол добавок (Тап = Виконано)</div>
             <div id="m-supps" style="margin-top: 15px;"></div>
             
-            <div class="section-title" id="ex-title" style="margin-top: 30px;">Вправи</div>
+            <div class="section-title" id="ex-title" style="margin-top: 30px;">Вправи (Тап = Виконано | Свайп вліво = Вага)</div>
             <div id="m-exercises" style="margin-top: 15px;"></div>
             
             <button id="m-btn" class="complete-btn" onclick="window.markDone()">ЗАВЕРШИТИ ДЕНЬ</button>
@@ -600,6 +598,7 @@
         const daysMap = { 'mon':'ПН', 'tue':'ВТ', 'wed':'СР', 'thu':'ЧТ', 'fri':'ПТ', 'sat':'СБ', 'sun':'НД' };
         const months = ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сер', 'Вер', 'Жов', 'Лис', 'Гру'];
 
+        // Виносимо масиви порад у глобальну область, щоб уникнути ReferenceError
         window.tipsTaras = [
             "М'язи ростуть під час сну. Спи 8 годин!",
             "Профіцит калорій — найкращий друг для набору маси.",
@@ -621,6 +620,7 @@
 
         window.editExIndex = -1; window.editSuppIndex = -1;
 
+        // Плавна анімація чисел
         window.animateValue = function(id, start, end, duration) {
             const obj = document.getElementById(id);
             if (!obj) return;
@@ -635,6 +635,7 @@
             obj.dataset.animId = window.requestAnimationFrame(step);
         }
 
+        // Жести Свайпу (Swipe-to-Action)
         window.swipeState = { startX: 0, currentX: 0, activeEl: null };
         
         window.tsStart = function(e, el) {
@@ -653,12 +654,12 @@
             el.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
             let finalDeltaX = e.changedTouches[0].clientX - window.swipeState.startX;
             if (finalDeltaX < -50) {
-                el.style.transform = `translateX(-110px)`; 
+                el.style.transform = `translateX(-110px)`; // Відкрито
                 document.querySelectorAll('.swipe-front').forEach(other => {
                     if(other !== el) other.style.transform = 'translateX(0)';
                 });
             } else {
-                el.style.transform = `translateX(0)`; 
+                el.style.transform = `translateX(0)`; // Закрито
             }
         };
 
@@ -673,7 +674,7 @@
             
             window.appData.linkingExIndex = -1; 
             if(tabId === 'edit' && window.loadDayForEdit) window.loadDayForEdit();
-            if(tabId === 'stats' && window.calculateAndRenderDashboard) window.calculateAndRenderDashboard(true); 
+            if(tabId === 'stats' && window.calculateAndRenderDashboard) window.calculateAndRenderDashboard(true); // true = з анімацією
             window.scrollTo(0,0);
         }
 
@@ -702,6 +703,7 @@
             window.setTheme(currentT);
             const btn = document.getElementById('prof-' + window.appData.user);
             if(btn) window.switchUser(window.appData.user);
+            
             setTimeout(() => {
                 const s = document.getElementById('splash-screen'); 
                 if(s){ s.style.opacity='0'; setTimeout(()=>{s.style.display='none';},400); }
@@ -1092,10 +1094,13 @@
         window.deleteExercise = function(idx) {
             if(confirm("Видалити цю вправу?")) { 
                 const day = document.getElementById('edit-day-select').value; 
-                let wasLinked = window.appData.plan[day].exercises[idx].superset;
+                
+                // Якщо елемент, який ми видаляємо, мав лінк до наступного
+                let wasLinkedToNext = window.appData.plan[day].exercises[idx].superset;
                 window.appData.plan[day].exercises.splice(idx, 1); 
                 
-                if (idx > 0 && window.appData.plan[day].exercises[idx-1] && window.appData.plan[day].exercises[idx-1].superset && !wasLinked) {
+                // Якщо попередній елемент був прикріплений до цього, який ми видалили
+                if (idx > 0 && window.appData.plan[day].exercises[idx-1]) {
                     window.appData.plan[day].exercises[idx-1].superset = false;
                 }
 
@@ -1161,7 +1166,7 @@
             const d = window.appData.plan[dayKey]; window.appData.activeDay = dayKey;
             
             const titleEl = document.getElementById('m-title');
-            if(titleEl) titleEl.innerHTML = `${d.title} <span style="font-size:12px; color:var(--text-muted); font-weight:600;">👤 ${window.appData.user}</span>`;
+            if(titleEl) titleEl.innerHTML = `${d.title} <span style="font-size:12px; color:var(--text-muted); font-weight:600;" id="m-user-badge">👤 ${window.appData.user}</span>`;
             const subEl = document.getElementById('m-subtitle');
             if(subEl) subEl.innerText = d.sub;
             
@@ -1231,25 +1236,6 @@
             if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
             window.closeModal();
             window.renderAll();
-        }
-
-        window.resetAppData = function() {
-            if(confirm(`🚨 Увага! Видалити тільки статистику користувача ${window.appData.user}? (План тренувань спільний і залишиться)`)) {
-                if(window.appData.user === 'Taras') { window.appData.progTaras = {}; }
-                else { window.appData.progMaks = {}; }
-                if(window.triggerFirebaseSave) window.triggerFirebaseSave();
-                alert("✅ Ваші дані успішно обнулено!");
-                window.switchTab('home');
-            }
-        }
-        
-        window.toggleCalendar = function(el) {
-            if (el.checked) {
-                localStorage.setItem('gymgo_push', 'true');
-                alert("⏳ Функція активована.");
-            } else {
-                localStorage.setItem('gymgo_push', 'false');
-            }
         }
     </script>
 </body>
