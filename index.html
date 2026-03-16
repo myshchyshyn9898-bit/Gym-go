@@ -106,12 +106,21 @@
         .live-dot { width: 8px; height: 8px; background: #FF453A; border-radius: 50%; box-shadow: 0 0 8px #FF453A; animation: pulse 2s infinite; }
 
         /* 🔥 ГРАДІЄНТНІ КІЛЬЦЯ 🔥 */
-        .progress-section { display: flex; justify-content: space-between; margin-bottom: 30px; gap: 5px; animation: slideUp 0.6s ease; }
-        .ring-container { display: flex; flex-direction: column; align-items: center; width: 14%; }
-        .circular-chart { max-width: 40px; max-height: 40px; }
-        .circle-bg { fill: none; stroke: rgba(128,128,128,0.15); stroke-width: 3.8; }
-        .circle { fill: none; stroke-width: 3.2; stroke-linecap: round; transition: stroke-dasharray 1s cubic-bezier(0.175, 0.885, 0.32, 1.275), stroke 0.3s; stroke: url(#ring-grad-orange); filter: drop-shadow(0 2px 4px rgba(216,137,68,0.4)); }
-        .ring-label { font-size: 10px; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
+        .progress-section { display: flex; justify-content: space-between; margin-bottom: 30px; gap: 5px; animation: slideUp 0.6s ease; align-items: center; }
+        .ring-container { display: flex; flex-direction: column; align-items: center; width: 14%; padding: 10px 0; border-radius: 25px; transition: 0.3s; }
+        .ring-container.active-day { background: rgba(255, 255, 255, 0.1); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .circular-chart { max-width: 42px; max-height: 42px; transform: rotate(-90deg); }
+        .circle-bg { fill: none; stroke: rgba(255, 255, 255, 0.08); stroke-width: 3.5; }
+        .circle { fill: none; stroke-width: 3.5; stroke-linecap: round; transition: stroke-dasharray 1s cubic-bezier(0.175, 0.885, 0.32, 1.275), stroke 0.3s; filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.5)); }
+        .ring-label { font-size: 11px; color: var(--text-muted); margin-top: 8px; font-weight: 700; text-transform: uppercase; }
+        .ring-container.active-day .ring-label { color: var(--text-main); font-weight: 800; }
+
+        /* 🔥 КІЛЬЦЯ В КАРТКАХ 🔥 */
+        .card-ring-wrapper { position: relative; width: 48px; height: 48px; margin-left: 10px; flex-shrink: 0; }
+        .card-ring-wrapper svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+        .card-ring-bg { fill: none; stroke: rgba(128,128,128,0.15); stroke-width: 4; }
+        .card-ring-fill { fill: none; stroke-width: 4; stroke-linecap: round; stroke: url(#ring-grad-card); transition: stroke-dasharray 1s ease; filter: drop-shadow(0 0 5px rgba(236, 72, 153, 0.4)); }
+        .card-ring-percent { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 14px; font-weight: 800; color: var(--text-main); }
 
         /* 🔥 СКЛЯНІ КАРТКИ 🔥 */
         .card, .nut-card, .chart-card, .versus-card, .challenge-card, .streak-card, .tip-of-the-day, .settings-list, .anatomy-ui { 
@@ -342,6 +351,14 @@
         <linearGradient id="ring-grad-red" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#ff3b30" />
             <stop offset="100%" stop-color="#bf0000" />
+        </linearGradient>
+        <linearGradient id="ring-grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8b5cf6" />
+            <stop offset="100%" stop-color="#d946ef" />
+        </linearGradient>
+        <linearGradient id="ring-grad-card" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#a855f7" />
+            <stop offset="100%" stop-color="#ec4899" />
         </linearGradient>
     </svg>
 
@@ -835,14 +852,27 @@
                 let todayBadge = (day === window.appData.todayKey) ? `<div class="today-badge">Сьогодні</div>` : '';
                 let delay = index * 0.08;
 
-                let checkHtml = myProgress[day] ? `<div style="position:absolute; right:20px; color:var(--primary-orange);">${iconCheck}</div>` : '';
+                // Визначаємо відсоток виконання (наразі 0 або 100)
+                let isDone = myProgress[day];
+                let percent = isDone ? 100 : 0;
+                let dashArray = `${percent}, 100`;
+
+                // Новий вигляд кільця для карточки
+                let ringHtml = `
+                <div class="card-ring-wrapper">
+                    <svg viewBox="0 0 36 36">
+                        <path class="card-ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="card-ring-fill" stroke-dasharray="${dashArray}" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    </svg>
+                    <div class="card-ring-percent">${percent}</div>
+                </div>`;
 
                 html += `
                 <div class="card ${isTodayClass}" onclick="window.openModal('${day}')" style="animation-delay: ${delay}s">
                     ${todayBadge}
-                    ${checkHtml}
                     <div class="date-col"><div class="day-name">${daysMap[day]}</div><div class="day-num" id="date-${day}">${dt}</div><div class="month-name" id="month-${day}">${mo}</div></div>
                     <div class="info-col"><div class="title">${d.title}</div><div class="subtitle">${d.sub}</div><div class="supps-container">${suppsHTML}</div></div>
+                    ${ringHtml}
                 </div>`;
             });
             container.innerHTML = html;
@@ -852,9 +882,23 @@
             let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
             daysKeys.forEach(day => {
                 const path = document.getElementById(`ring-${day}`);
+                const container = path ? path.closest('.ring-container') : null;
                 if(!path) return;
-                if (myProgress[day]) { path.style.strokeDasharray = `100, 100`; path.style.stroke = 'url(#ring-grad-orange)'; } 
-                else { path.style.strokeDasharray = `0, 100`; path.style.stroke = 'rgba(128,128,128,0.15)'; }
+                
+                // Підсвічуємо "пігулку" для сьогоднішнього дня
+                if(container) {
+                    if(day === window.appData.todayKey) container.classList.add('active-day');
+                    else container.classList.remove('active-day');
+                }
+
+                // Встановлюємо прогрес 100 або 0
+                if (myProgress[day]) { 
+                    path.style.strokeDasharray = `100, 100`; 
+                    path.style.stroke = 'url(#ring-grad-purple)'; 
+                } else { 
+                    path.style.strokeDasharray = `0, 100`; 
+                    path.style.stroke = 'transparent'; // Ховаємо заповнення, якщо 0
+                }
             });
         }
 
