@@ -123,7 +123,7 @@
         .card-ring-percent { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 14px; font-weight: 800; color: var(--text-main); }
 
         /* 🔥 СКЛЯНІ КАРТКИ 🔥 */
-        .card, .nut-card, .chart-card, .versus-card, .challenge-card, .streak-card, .tip-of-the-day, .settings-list, .anatomy-ui { 
+        .card, .versus-card, .streak-card, .settings-list { 
             background: var(--card-glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); 
             border: 1px solid var(--card-border); border-radius: 30px; padding: 25px 20px; margin-bottom: 15px; 
             box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; animation: slideUp 0.5s ease backwards; 
@@ -180,82 +180,33 @@
         .streak-longest { font-size: 16px; font-weight: 800; color: var(--text-main); text-align: center; margin-bottom: 10px;}
         .streak-desc { font-size: 14px; color: var(--text-muted); text-align: center; line-height: 1.5; font-weight: 500;}
 
-        .tip-of-the-day { display: flex; gap: 15px; }
-        .tip-icon { font-size: 28px; }
-        .tip-content { flex-grow: 1;}
-        .tip-header { font-size: 13px; font-weight: 800; color: var(--primary-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;}
-        .tip-text { font-size: 14px; font-weight: 600; color: var(--text-main); line-height: 1.4;}
+        /* 🔥 НОВИЙ ДАШБОРД (NUTRIGO STYLE) 🔥 */
+        .stats-hero { background: var(--card-glass); backdrop-filter: blur(24px); border: 1px solid var(--card-border); border-radius: 30px; padding: 25px; display: flex; flex-direction: column; align-items: center; box-shadow: var(--shadow); margin-bottom: 20px; position: relative; animation: slideUp 0.5s ease backwards;}
+        .hero-top { display: flex; justify-content: space-between; width: 100%; align-items: center; margin-bottom: 20px; }
+        .hero-text { font-size: 14px; color: var(--text-muted); font-weight: 600; line-height: 1.6;}
+        .hero-text span { color: var(--text-main); font-size: 20px; font-weight: 800; display: block;}
+        .big-ring-wrap { width: 130px; height: 130px; position: relative; }
+        .big-ring-val { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+        .big-ring-val .num { font-size: 28px; font-weight: 900; color: var(--text-main); line-height: 1;}
+        .big-ring-val .sub { font-size: 11px; color: var(--text-muted); font-weight: 700; margin-top: 5px;}
+        
+        .macros-row { display: flex; justify-content: space-between; width: 100%; margin-top: 15px; gap: 15px;}
+        .macro-col { flex: 1; }
+        .m-title { font-size: 11px; color: var(--text-muted); font-weight: 700; margin-bottom: 6px; text-align: center;}
+        .m-bar-bg { width: 100%; height: 6px; background: var(--surface-1); border-radius: 3px; overflow: hidden; }
+        .m-bar-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+        .m-text { font-size: 10px; font-weight: 800; color: var(--text-main); text-align: center; margin-top: 6px;}
 
-        .time-toggle-wrap { display: flex; justify-content: center; margin-bottom: 25px; animation: slideUp 0.3s ease;}
-        .time-toggle { background: var(--card-glass); backdrop-filter: blur(20px); border: 1px solid var(--card-border); border-radius: 30px; display: flex; padding: 5px; box-shadow: var(--shadow); width: 100%;}
-        .time-btn { flex: 1; text-align: center; padding: 12px 0; font-size: 14px; font-weight: 700; color: var(--text-muted); border-radius: 25px; transition: 0.3s; cursor: pointer;}
-        .time-btn.active { background: var(--primary-orange); color: white; box-shadow: 0 4px 10px rgba(216, 137, 68, 0.3);}
-
-        .nutrition-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; animation: slideUp 0.4s ease backwards;}
-        .nut-card { padding: 20px; display: flex; flex-direction: column; position: relative; border-radius: 26px;}
-        .nut-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;}
-        .nut-title { font-size: 14px; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 6px;}
-        .nut-icon { width: 24px; height: 24px; color: var(--text-main); }
-        .nut-body { display: flex; justify-content: space-between; align-items: flex-end;}
-        .nut-info { display: flex; flex-direction: column;}
-        .nut-val { font-size: 26px; font-weight: 900; color: var(--text-main); margin-bottom: 2px; display: flex; align-items: baseline; gap: 4px; font-variant-numeric: tabular-nums;}
-        .nut-unit { font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px;}
-        .nut-sub { font-size: 12px; font-weight: 600; color: var(--text-muted);}
-        .nut-circle-wrap { width: 45px; height: 45px; position: relative;}
-        .nut-circle-bg { fill: none; stroke: rgba(128,128,128,0.15); stroke-width: 4; }
-        .nut-circle-fill { fill: none; stroke-width: 4; stroke-linecap: round; transition: stroke-dasharray 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .c-orange { stroke: url(#ring-grad-orange); filter: drop-shadow(0 2px 4px rgba(216,137,68,0.4)); }
-        .c-red { stroke: url(#ring-grad-red); filter: drop-shadow(0 2px 4px rgba(255,59,48,0.4)); }
-
-        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;}
-        .chart-title { font-size: 18px; font-weight: 800; color: var(--text-main);}
-        .chart-legend { display: flex; gap: 12px; font-size: 11px; font-weight: 700; color: var(--text-muted);}
-        .leg-item { display: flex; align-items: center; gap: 4px;}
-        .leg-dot { width: 8px; height: 8px; border-radius: 50%;}
-        .bg-orange { background: var(--primary-orange); }
-        .bg-red { background: var(--primary-red); }
-
-        .chart-grid { display: flex; height: 160px; position: relative;}
-        .y-axis { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; padding-right: 15px; font-size: 11px; font-weight: 600; color: var(--text-muted); height: 100%; border-right: 1px dashed var(--border-color);}
-        .bars-area { display: flex; justify-content: space-around; align-items: flex-end; flex-grow: 1; height: 100%; padding-left: 5px;}
-        .bar-column { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 10px; position: relative; width: 100%;}
-        .bar-wrapper { position: relative; width: 24px; height: 100%; display: flex; align-items: flex-end; justify-content: center;}
-        .b-bg { position: absolute; bottom: 0; width: 24px; border-radius: 12px; transition: height 0.8s;}
-        .b-bg.orange-light { background: rgba(216, 137, 68, 0.15); }
-        .b-bg.red-light { background: rgba(152, 44, 81, 0.1); }
-        .b-fill { position: absolute; width: 24px; border-radius: 12px; transition: height 0.8s, bottom 0.8s; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 4px; box-sizing: border-box;}
-        .b-fill.orange-solid { background: linear-gradient(to top, var(--primary-orange), #ffb347); }
-        .b-fill.red-solid { background: linear-gradient(to top, var(--primary-red), #ff3b30); }
-        .b-dot { width: 14px; height: 14px; background: var(--text-main); border-radius: 50%; }
-        .b-dot.white { background: var(--card-bg); }
-        .x-axis-labels { display: flex; justify-content: space-around; margin-top: 15px; padding-left: 35px;}
-        .x-label { font-size: 11px; font-weight: 700; color: var(--text-muted); width: 100%; text-align: center;}
-
-        .challenge-card { padding: 20px; display: flex; align-items: center; gap: 15px;}
-        .ch-icon-wrap { background: rgba(216, 137, 68, 0.1); width: 50px; height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center;}
-        .ch-icon-wrap svg { width: 24px; height: 24px; fill: var(--primary-orange); }
-        .ch-info { flex-grow: 1;}
-        .ch-title { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;}
-        .ch-status { font-size: 12px; font-weight: 700; color: #34C759; }
-        .ch-val { font-size: 16px; font-weight: 900; color: var(--text-main); display: flex; align-items: center; gap: 4px; font-variant-numeric: tabular-nums;}
-        .ch-val svg { width: 16px; height: 16px; fill: var(--primary-blue);}
-
-        .anatomy-ui { padding: 20px; position: relative; height: 500px; overflow: hidden; margin-bottom: 30px; }
-        .a-header { position: absolute; top: 20px; left: 20px; z-index: 2;}
-        .a-title { font-size: 22px; font-weight: 900; color: var(--text-main); letter-spacing: -0.5px;}
-        .a-sub { font-size: 14px; color: var(--text-muted); font-weight: 600; margin-top: 2px; }
-        .a-image-wrap { position: absolute; top: 5%; left: 0; width: 100%; height: 80%; display: flex; justify-content: center; align-items: center; pointer-events: none; }
-        .a-image { max-height: 100%; max-width: 90%; transition: filter 0.3s;}
-        [data-theme="dark"] .a-image { mix-blend-mode: normal; filter: drop-shadow(0 0 10px rgba(255,255,255,0.05)); }
-        :not([data-theme="dark"]) .a-image { mix-blend-mode: multiply; }
-        .smart-tag { position: absolute; padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 800; color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 2; transition: 0.3s; backdrop-filter: blur(5px); display: flex; align-items: center; gap: 5px; border: 1px solid rgba(255,255,255,0.2);}
-        .tag-fresh { background: rgba(52, 199, 89, 0.85); }
-        .tag-worked { background: rgba(216, 137, 68, 0.85); }
-        .tag-fatigued { background: rgba(255, 59, 48, 0.85); }
-        .a-right-slider { position: absolute; right: 15px; top: 45%; transform: translateY(-50%); background: var(--surface-1); backdrop-filter: blur(10px); border: 1px solid var(--card-border); border-radius: 20px; width: 36px; height: 160px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 15px 0; box-shadow: var(--shadow); z-index: 2;}
-        .a-rs-btn { color: var(--text-muted); font-size: 18px; font-weight: bold; }
-        .a-rs-track { flex-grow: 1; width: 4px; background: rgba(128,128,128,0.2); margin: 10px 0; border-radius: 2px; position: relative; }
-        .a-rs-thumb { position: absolute; bottom: 30%; left: -2px; width: 8px; height: 30px; background: var(--text-muted); border-radius: 4px; }
+        /* 🔥 СПИСОК ЗАВДАНЬ 🔥 */
+        .task-item { background: var(--card-glass); backdrop-filter: blur(24px); border: 1px solid var(--card-border); border-radius: 20px; padding: 15px 20px; display: flex; align-items: center; gap: 15px; margin-bottom: 12px; box-shadow: var(--shadow); transition: 0.3s; animation: slideUp 0.6s ease backwards;}
+        .task-time { font-size: 12px; font-weight: 800; color: var(--primary-orange); background: rgba(216, 137, 68, 0.1); padding: 5px 10px; border-radius: 10px; text-align: center; min-width: 45px;}
+        .task-info { flex-grow: 1; }
+        .task-title { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 4px;}
+        .task-sub { font-size: 11px; font-weight: 600; color: var(--text-muted);}
+        .task-add-btn { width: 40px; height: 40px; border-radius: 12px; background: var(--surface-1); border: 2px dashed var(--text-muted); display: flex; justify-content: center; align-items: center; color: var(--text-main); cursor: pointer; transition: 0.2s;}
+        .task-add-btn:active { transform: scale(0.95); }
+        .task-item.completed { border-color: #34C759; background: rgba(52, 199, 89, 0.05); }
+        .task-item.completed .task-add-btn { background: #34C759; border: none; color: white;}
 
         .editor-banner { background: linear-gradient(135deg, var(--primary-blue), #2a4bd8); border-radius: 30px; padding: 25px 20px; color: white; margin-bottom: 25px; box-shadow: 0 15px 30px rgba(74, 108, 247, 0.3); display: flex; align-items: center; gap: 15px; animation: slideUp 0.4s ease;}
         .eb-icon { background: rgba(255,255,255,0.2); width: 55px; height: 55px; border-radius: 18px; display: flex; justify-content: center; align-items: center; backdrop-filter: blur(5px);}
@@ -333,12 +284,20 @@
 
         .item-completed { opacity: 0.4; transform: scale(0.97); filter: grayscale(100%); }
 
-        .rest-timer { position: fixed; bottom: 120px; left: 50%; transform: translateX(-50%) translateY(200px); background: rgba(28, 28, 30, 0.95); backdrop-filter: blur(10px); color: white; padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; gap: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.3); z-index: 2000; opacity: 0; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); pointer-events: none; border: 1px solid rgba(255,255,255,0.1); }
-        .rest-timer.active { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
-        .rt-time { font-size: 22px; font-weight: 900; font-variant-numeric: tabular-nums; color: var(--primary-orange); display: flex; align-items: center; gap: 6px;}
-        .rt-btn { background: rgba(255,255,255,0.15); border: none; color: white; width: 34px; height: 34px; border-radius: 50%; font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s;}
-        .rt-btn:active { background: rgba(255,255,255,0.3); transform: scale(0.9);}
-        .rt-close { position: absolute; top: -8px; right: -8px; background: var(--primary-red); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(255,59,48,0.4); }
+        /* 🔥 UI СКАНЕРА 🔥 */
+        .scanner-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 9999; display: none; flex-direction: column; opacity: 0; transition: 0.3s; }
+        .scanner-overlay.active { display: flex; opacity: 1; }
+        .scanner-header { position: absolute; top: 40px; left: 0; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; box-sizing: border-box; z-index: 2; color: white;}
+        .scanner-close { width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 18px; backdrop-filter: blur(10px); cursor: pointer;}
+        .video-wrap { position: relative; flex-grow: 1; overflow: hidden; display: flex; justify-content: center; align-items: center;}
+        #camera-feed { min-width: 100%; min-height: 100%; object-fit: cover; }
+        .scan-frame { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 250px; height: 250px; border: 2px solid rgba(255,255,255,0.8); border-radius: 30px; box-shadow: 0 0 0 2000px rgba(0,0,0,0.5); z-index: 1;}
+        .scan-line { position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #34C759; box-shadow: 0 0 10px #34C759; animation: scanAnim 2s infinite linear; }
+        @keyframes scanAnim { 0% { top: 0; } 50% { top: 100%; } 100% { top: 0; } }
+        .scanner-bottom { position: absolute; bottom: 0; width: 100%; padding: 30px 20px 50px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); z-index: 2; display: flex; flex-direction: column; align-items: center;}
+        .capture-btn { width: 70px; height: 70px; border-radius: 50%; background: white; border: 5px solid rgba(255,255,255,0.3); background-clip: padding-box; cursor: pointer; transition: 0.2s;}
+        .capture-btn:active { transform: scale(0.9); }
+        .ai-loading { display: none; color: white; font-weight: 800; font-size: 16px; margin-top: 20px; text-align: center;}
     </style>
 </head>
 <body>
@@ -416,61 +375,41 @@
     </div>
 
     <div id="tab-stats" class="tab-view">
-        <div class="tip-of-the-day">
-            <div class="tip-icon">💡</div>
-            <div class="tip-content">
-                <div class="tip-header">Порада дня</div>
-                <div class="tip-text" id="tip-text-box">Завантаження...</div>
-            </div>
-        </div>
-
-        <div class="nutrition-grid">
-            <div class="nut-card">
-                <div class="nut-header"><div class="nut-title" id="dash-title-1"></div></div>
-                <div class="nut-body">
-                    <div class="nut-info"><div class="nut-val"><span id="val-1-num">0</span> <span class="nut-unit" id="val-1-unit"></span></div><div class="nut-sub">За тиждень</div></div>
-                    <div class="nut-circle-wrap"><svg viewBox="0 0 36 36"><path class="nut-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path id="ring-1" class="nut-circle-fill c-orange" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg></div>
-                </div>
-            </div>
-            <div class="nut-card">
-                <div class="nut-header"><div class="nut-title" id="dash-title-2"></div></div>
-                <div class="nut-body">
-                    <div class="nut-info"><div class="nut-val"><span id="val-2-num">0</span> <span class="nut-unit" id="val-2-unit"></span></div><div class="nut-sub">За тиждень</div></div>
-                    <div class="nut-circle-wrap"><svg viewBox="0 0 36 36"><path class="nut-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /><path id="ring-2" class="nut-circle-fill c-red" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" /></svg></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="chart-card">
-            <div class="chart-header">
-                <div class="chart-title">Overall Progress</div>
-                <div class="chart-legend"><div class="leg-item"><div class="leg-dot bg-orange"></div> Вправи</div><div class="leg-item"><div class="leg-dot bg-red"></div> Добавки</div></div>
-            </div>
-            <div class="chart-grid">
-                <div class="y-axis"><span>100</span><span>80</span><span>60</span><span>40</span></div>
-                <div class="bars-area" id="chart-bars-container"></div>
-            </div>
-            <div class="x-axis-labels"><div class="x-label">Mon</div><div class="x-label">Tue</div><div class="x-label">Wed</div><div class="x-label">Thu</div><div class="x-label">Fri</div><div class="x-label">Sat</div><div class="x-label">Sun</div></div>
-        </div>
-
-        <div class="section-title">Активність</div>
-        <div class="challenge-card">
-            <div class="ch-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.5 12.5l-3-3a1 1 0 0 0-1.4 1.4l1.3 1.3H14v-2.3l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3V14H6.6l1.3-1.3a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 0 1.4 1.4l1.3-1.3h10.8l-1.3 1.3a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 0 0-1.4z"/></svg></div>
-            <div class="ch-info"><div class="ch-title" id="dash-title-3">Підходи за тиждень</div><div class="ch-status">Completed</div></div>
-            <div class="ch-val"><span id="val-3-num">0</span> <span style="font-size:12px; color:var(--text-muted)">&nbsp;sets</span></div>
-        </div>
+        <div class="section-title">Сьогодні</div>
         
-        <div class="challenge-card">
-            <div class="ch-icon-wrap" style="background: rgba(74, 108, 247, 0.1);"><svg viewBox="0 0 24 24" fill="var(--primary-blue)"><path d="M12 2C12 2 17 7 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.5 9 6.5 12 2Z"/></svg></div>
-            <div class="ch-info"><div class="ch-title">Спалено енергії</div><div class="ch-status">Active</div></div>
-            <div class="ch-val"><span id="val-kcal-num">0</span> <span style="font-size:12px; color:var(--text-muted)">&nbsp;ккал</span></div>
+        <div class="stats-hero">
+            <div class="hero-top">
+                <div class="hero-text">З'їдено <span><span id="ui-kcal-eaten">0</span> ккал</span></div>
+                <div class="big-ring-wrap">
+                    <svg viewBox="0 0 36 36" style="width:100%; height:100%; transform: rotate(-90deg);">
+                        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--surface-1)" stroke-width="3" />
+                        <path id="ui-ring-kcal" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="var(--primary-orange)" stroke-width="3" stroke-linecap="round" stroke-dasharray="0, 100" style="transition: 1s ease;" />
+                    </svg>
+                    <div class="big-ring-val"><div class="num" id="ui-kcal-left">2800</div><div class="sub">Залишилось</div></div>
+                </div>
+            </div>
+            
+            <div class="macros-row">
+                <div class="macro-col">
+                    <div class="m-title">Вуглеводи</div>
+                    <div class="m-bar-bg"><div class="m-bar-fill" id="ui-bar-carbs" style="background: var(--primary-blue); width: 0%;"></div></div>
+                    <div class="m-text"><span id="ui-carbs">0</span> / 400г</div>
+                </div>
+                <div class="macro-col">
+                    <div class="m-title">Білок</div>
+                    <div class="m-bar-bg"><div class="m-bar-fill" id="ui-bar-prot" style="background: #34C759; width: 0%;"></div></div>
+                    <div class="m-text"><span id="ui-prot">0</span> / 120г</div>
+                </div>
+                <div class="macro-col">
+                    <div class="m-title">Жири</div>
+                    <div class="m-bar-bg"><div class="m-bar-fill" id="ui-bar-fat" style="background: var(--primary-orange); width: 0%;"></div></div>
+                    <div class="m-text"><span id="ui-fat">0</span> / 70г</div>
+                </div>
+            </div>
         </div>
 
-        <div class="anatomy-ui" style="margin-top: 30px;">
-            <div class="a-header"><div class="a-title">Muscle Heatmap</div><div class="a-sub">Аналіз виконаних вправ</div></div>
-            <div class="a-image-wrap"><img src="https://i.postimg.cc/DzqjKPqL/file.png" alt="Anatomy" class="a-image"></div>
-            <div id="anatomy-tags-container"></div>
-        </div>
+        <div class="section-title" style="margin-top: 25px;">План раціону</div>
+        <div id="daily-tasks-container"></div>
     </div>
 
     <div id="tab-edit" class="tab-view">
@@ -613,12 +552,20 @@
         </div>
     </div>
 
-    <div id="rest-timer" class="rest-timer">
-        <div class="rt-close" onclick="window.stopTimer()">✕</div>
-        <button class="rt-btn" onclick="window.adjustTimer(-15)">-15</button>
-        <div class="rt-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 16 14"></polyline></svg></div>
-        <div class="rt-time" id="rt-display">01:30</div>
-        <button class="rt-btn" onclick="window.adjustTimer(15)">+15</button>
+    <div class="scanner-overlay" id="scanner-modal">
+        <div class="scanner-header">
+            <div style="font-size: 18px; font-weight: 800;">AI Food Scanner</div>
+            <div class="scanner-close" onclick="window.closeScanner()">✕</div>
+        </div>
+        <div class="video-wrap">
+            <video id="camera-feed" autoplay playsinline></video>
+            <div class="scan-frame"><div class="scan-line" id="scan-line" style="display:none;"></div></div>
+        </div>
+        <div class="scanner-bottom">
+            <div class="capture-btn" id="capture-btn" onclick="window.takePhotoAndAnalyze()"></div>
+            <div class="ai-loading" id="ai-loading">✨ Gemini аналізує їжу...</div>
+        </div>
+        <canvas id="photo-canvas" style="display: none;"></canvas>
     </div>
 
     <script>
@@ -636,19 +583,6 @@
         const daysMap = { 'mon':'ПН', 'tue':'ВТ', 'wed':'СР', 'thu':'ЧТ', 'fri':'ПТ', 'sat':'СБ', 'sun':'НД' };
         const months = ['Січ', 'Лют', 'Бер', 'Кві', 'Тра', 'Чер', 'Лип', 'Сер', 'Вер', 'Жов', 'Лис', 'Гру'];
 
-        window.tipsTaras = [
-            "М'язи ростуть під час сну. Спи 8 годин!",
-            "Профіцит калорій — найкращий друг для набору маси.",
-            "Збільшуй робочу вагу хоча б на 1 кг щотижня.",
-            "Не ігноруй базові вправи: присідання, жим, станова."
-        ];
-        window.tipsMaks = [
-            "Дефіцит калорій — єдиний спосіб спалити жир. Тримай дієту!",
-            "Пий більше води, вона пришвидшує метаболізм.",
-            "Кардіо після силової спалює більше жиру.",
-            "Більше повторень і менше відпочинку — ключ до рельєфу."
-        ];
-
         window.appData = {
             user: localStorage.getItem('gymgo_user') || 'Taras',
             plan: {}, progTaras: {}, progMaks: {}, dates: {},
@@ -656,21 +590,6 @@
         };
 
         window.editExIndex = -1; window.editSuppIndex = -1;
-
-        // Безпечна анімація чисел
-        window.animateValue = function(id, start, end, duration) {
-            const obj = document.getElementById(id);
-            if (!obj) return;
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                obj.innerHTML = Math.floor(progress * (end - start) + start);
-                if (progress < 1) { obj.dataset.animId = window.requestAnimationFrame(step); } 
-            };
-            if(obj.dataset.animId) window.cancelAnimationFrame(obj.dataset.animId);
-            obj.dataset.animId = window.requestAnimationFrame(step);
-        }
 
         // SWIPE-TO-ACTION Логіка
         window.swipeState = { startX: 0, currentX: 0, activeEl: null };
@@ -737,12 +656,155 @@
             if(window.appData.initialized && window.renderAll) window.renderAll();
         }
 
+        // 🔥 ЛОГІКА РАЦІОНУ ТА СКАНЕРА 🔥
+        window.dailyTasks = JSON.parse(localStorage.getItem('gymgo_dailyTasks')) || [
+            { id: 't1', time: '09:00', defaultTitle: 'Сніданок', eatenTitle: '', kcal: 0, prot: 0, carbs: 0, fat: 0, done: false },
+            { id: 't2', time: '12:00', defaultTitle: 'Обід', eatenTitle: '', kcal: 0, prot: 0, carbs: 0, fat: 0, done: false },
+            { id: 't3', time: '15:30', defaultTitle: '💊 Креатин (5г)', eatenTitle: 'Креатин випито', kcal: 0, prot: 0, carbs: 0, fat: 0, done: false, isSupp: true },
+            { id: 't4', time: '18:00', defaultTitle: 'Гейнер', eatenTitle: 'Гейнер випито', kcal: 650, prot: 30, carbs: 110, fat: 8, done: false, isSupp: true },
+            { id: 't5', time: '22:00', defaultTitle: 'Вечеря', eatenTitle: '', kcal: 0, prot: 0, carbs: 0, fat: 0, done: false }
+        ];
+
+        window.saveTasksToLocal = function() {
+            localStorage.setItem('gymgo_dailyTasks', JSON.stringify(window.dailyTasks));
+        }
+
+        window.renderDashboard = function() {
+            // Перевірка на новий день (скидання)
+            let today = new Date().toDateString();
+            if(localStorage.getItem('gymgo_last_date') !== today) {
+                localStorage.setItem('gymgo_last_date', today);
+                window.dailyTasks.forEach(t => { 
+                    t.done = false; 
+                    t.eatenTitle = ''; 
+                    if(!t.isSupp) { t.kcal = 0; t.prot = 0; t.carbs = 0; t.fat = 0; } 
+                });
+                window.saveTasksToLocal();
+            }
+
+            let totalKcal = 0, totalProt = 0, totalCarbs = 0, totalFat = 0;
+            let html = '';
+
+            window.dailyTasks.forEach(task => {
+                if(task.done) {
+                    totalKcal += task.kcal; totalProt += task.prot; totalCarbs += task.carbs; totalFat += task.fat;
+                }
+
+                let isDoneClass = task.done ? 'completed' : '';
+                let title = task.done ? (task.eatenTitle || task.defaultTitle) : task.defaultTitle;
+                let subtext = task.done ? (task.isSupp ? '✅ Виконано' : `🔥 ${task.kcal} ккал | 🥩 ${task.prot}г білка`) : 'Натисни +, щоб просканувати';
+                
+                let btnHtml = task.done 
+                    ? `<svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="3" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg>` 
+                    : (task.isSupp ? `<svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>` : `<svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>`);
+
+                html += `
+                <div class="task-item ${isDoneClass}">
+                    <div class="task-time">${task.time}</div>
+                    <div class="task-info">
+                        <div class="task-title">${title}</div>
+                        <div class="task-sub">${subtext}</div>
+                    </div>
+                    <div class="task-add-btn" onclick="window.openScannerOrComplete('${task.id}')">${btnHtml}</div>
+                </div>`;
+            });
+
+            const container = document.getElementById('daily-tasks-container');
+            if(container) container.innerHTML = html;
+
+            const elKcal = document.getElementById('ui-kcal-eaten');
+            if(elKcal) {
+                elKcal.innerText = totalKcal;
+                let left = 2800 - totalKcal;
+                document.getElementById('ui-kcal-left').innerText = left > 0 ? left : 0;
+                document.getElementById('ui-ring-kcal').style.strokeDasharray = `${Math.min((totalKcal / 2800) * 100, 100)}, 100`;
+                
+                document.getElementById('ui-prot').innerText = totalProt;
+                document.getElementById('ui-bar-prot').style.width = `${Math.min((totalProt / 120) * 100, 100)}%`;
+
+                document.getElementById('ui-carbs').innerText = totalCarbs;
+                document.getElementById('ui-bar-carbs').style.width = `${Math.min((totalCarbs / 400) * 100, 100)}%`;
+
+                document.getElementById('ui-fat').innerText = totalFat;
+                document.getElementById('ui-bar-fat').style.width = `${Math.min((totalFat / 70) * 100, 100)}%`;
+            }
+        }
+
+        let currentActiveTaskId = null;
+        let videoStream = null;
+
+        window.openScannerOrComplete = function(taskId) {
+            let task = window.dailyTasks.find(t => t.id === taskId);
+            if(task.done) {
+                // Відміна виконання
+                task.done = false;
+                window.saveTasksToLocal();
+                window.renderDashboard();
+                return;
+            }
+
+            if(task.isSupp) {
+                task.done = true;
+                window.saveTasksToLocal();
+                window.renderDashboard();
+                return;
+            }
+
+            currentActiveTaskId = taskId;
+            const modal = document.getElementById('scanner-modal');
+            modal.classList.add('active');
+            
+            if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+                    .then(stream => {
+                        videoStream = stream;
+                        document.getElementById('camera-feed').srcObject = stream;
+                    })
+                    .catch(err => {
+                        alert("Камера недоступна або немає дозволу.");
+                    });
+            } else {
+                alert("Ваш браузер не підтримує доступ до камери.");
+            }
+        }
+
+        window.closeScanner = function() {
+            document.getElementById('scanner-modal').classList.remove('active');
+            if(videoStream) { videoStream.getTracks().forEach(track => track.stop()); }
+            document.getElementById('scan-line').style.display = 'none';
+            document.getElementById('ai-loading').style.display = 'none';
+            document.getElementById('capture-btn').style.display = 'block';
+        }
+
+        window.takePhotoAndAnalyze = function() {
+            document.getElementById('capture-btn').style.display = 'none';
+            document.getElementById('scan-line').style.display = 'block';
+            document.getElementById('ai-loading').style.display = 'block';
+
+            // Імітація AI сканування на 2.5 секунди (тут буде Gemini)
+            setTimeout(() => {
+                let task = window.dailyTasks.find(t => t.id === currentActiveTaskId);
+                
+                task.eatenTitle = "Гречка та курка";
+                task.kcal = 540;
+                task.prot = 45;
+                task.carbs = 70;
+                task.fat = 12;
+                task.done = true;
+
+                window.saveTasksToLocal();
+                window.closeScanner();
+                window.renderDashboard();
+                
+            }, 2500);
+        }
+
         setTimeout(() => {
             const currentT = localStorage.getItem('gymgo_theme') || 'premium';
             window.setTheme(currentT);
             window.switchUser(window.appData.user);
+            window.renderDashboard();
             
-            // Ховаємо заставку через секунду
             setTimeout(() => {
                 const s = document.getElementById('splash-screen'); 
                 if(s){ s.style.opacity='0'; setTimeout(()=>{s.style.display='none';},400); }
@@ -852,12 +914,10 @@
                 let todayBadge = (day === window.appData.todayKey) ? `<div class="today-badge">Сьогодні</div>` : '';
                 let delay = index * 0.08;
 
-                // Визначаємо відсоток виконання (наразі 0 або 100)
                 let isDone = myProgress[day];
                 let percent = isDone ? 100 : 0;
                 let dashArray = `${percent}, 100`;
 
-                // Новий вигляд кільця для карточки
                 let ringHtml = `
                 <div class="card-ring-wrapper">
                     <svg viewBox="0 0 36 36">
@@ -885,19 +945,17 @@
                 const container = path ? path.closest('.ring-container') : null;
                 if(!path) return;
                 
-                // Підсвічуємо "пігулку" для сьогоднішнього дня
                 if(container) {
                     if(day === window.appData.todayKey) container.classList.add('active-day');
                     else container.classList.remove('active-day');
                 }
 
-                // Встановлюємо прогрес 100 або 0
                 if (myProgress[day]) { 
                     path.style.strokeDasharray = `100, 100`; 
                     path.style.stroke = 'url(#ring-grad-purple)'; 
                 } else { 
                     path.style.strokeDasharray = `0, 100`; 
-                    path.style.stroke = 'transparent'; // Ховаємо заповнення, якщо 0
+                    path.style.stroke = 'transparent'; 
                 }
             });
         }
@@ -910,10 +968,9 @@
             const vMaks = document.getElementById('v-maks'); if(vMaks) vMaks.innerText = sMaks;
 
             let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
-            let currentStreak = 0; let html = '';
+            let html = '';
             daysKeys.forEach((day, idx) => {
                 let isDone = myProgress[day];
-                if(isDone) currentStreak++;
                 let iconHtml = '';
                 if (isDone) { iconHtml = `<div class="s-icon done">${iconFlameCheck}</div>`; } 
                 else if (idx < window.appData.todayIdx) { iconHtml = `<div class="s-icon missed">${iconCross}</div>`; } 
@@ -923,105 +980,9 @@
             const sContainer = document.getElementById('streak-days-container'); if(sContainer) sContainer.innerHTML = html;
         }
 
+        // Замінюємо старий дашборд на новий
         window.calculateAndRenderDashboard = function(doAnimation = false) {
-            let myProgress = window.appData.user === 'Taras' ? window.appData.progTaras : window.appData.progMaks;
-            let dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
-            
-            const tipBox = document.getElementById('tip-text-box');
-            const dash1 = document.getElementById('dash-title-1');
-            const dash2 = document.getElementById('dash-title-2');
-
-            if(tipBox) tipBox.innerText = window.appData.user === 'Taras' ? window.tipsTaras[dayOfYear % window.tipsTaras.length] : window.tipsMaks[dayOfYear % window.tipsMaks.length];
-            
-            if(dash1) dash1.innerHTML = window.appData.user === 'Taras' ? `<svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg> Протеїн` : `🔥 Дефіцит`;
-            if(dash2) dash2.innerHTML = window.appData.user === 'Taras' ? `<svg class="nut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 2v7.31"></path><path d="M14 9.3V1.99"></path><path d="M8.5 2h7"></path><path d="M14 9.3a6.5 6.5 0 1 1-4 0"></path><path d="M5.52 16h12.96"></path></svg> Креатин` : `💧 Вода`;
-            
-            const u1 = document.getElementById('val-1-unit'); if(u1) u1.innerText = window.appData.user === 'Taras' ? 'Грам' : 'Ккал';
-            const u2 = document.getElementById('val-2-unit'); if(u2) u2.innerText = window.appData.user === 'Taras' ? 'Грам' : 'Літрів';
-
-            let val1 = 0; let val2 = 0; let totalSets = 0; let totalWorkouts = 0; let chartHtml = '';
-            let vol = { Chest: 0, Back: 0, Legs: 0, Arms: 0 };
-            
-            const kwChest = ['жим', 'chest', 'груд', 'віджим'];
-            const kwBack = ['тяга', 'back', 'спuн', 'підтяг'];
-            const kwLegs = ['присід', 'legs', 'ног', 'випад', 'станова'];
-            const kwArms = ['біцепс', 'тріцепс', 'bicep', 'tricep', 'махи', 'руки', 'curl', 'французький'];
-
-            daysKeys.forEach((day) => {
-                let d = window.appData.plan[day]; let isDone = myProgress[day];
-                let dailyWorkoutVal = 0; let suppVal = 10;
-
-                if(d && d.supps && isDone) {
-                    d.supps.forEach(s => {
-                        let text = s.text.toLowerCase();
-                        if(window.appData.user === 'Taras') {
-                            if (text.includes("протеїн")) val1 += 25; 
-                            if (text.includes("креатин")) val2 += 5;
-                        }
-                    });
-                }
-                
-                if (d && d.exercises && d.exercises.length > 0 && isDone) {
-                    totalWorkouts++;
-                    if(window.appData.user === 'Maks') { val1 += 400; val2 += 1.5; }
-
-                    d.exercises.forEach(e => { 
-                        let setsNum = parseInt(e.sets.charAt(0)); 
-                        if(!isNaN(setsNum)) {
-                            totalSets += setsNum; 
-                            let name = e.name.toLowerCase();
-                            if (kwChest.some(k => name.includes(k))) vol.Chest += setsNum;
-                            else if (kwBack.some(k => name.includes(k))) vol.Back += setsNum;
-                            else if (kwLegs.some(k => name.includes(k))) vol.Legs += setsNum;
-                            else if (kwArms.some(k => name.includes(k))) vol.Arms += setsNum;
-                        }
-                    });
-                    dailyWorkoutVal = 80; 
-                } else if (d && d.exercises && d.exercises.length > 0) {
-                    dailyWorkoutVal = 20;
-                }
-
-                if (isDone && (val1 > 0 || val2 > 0)) suppVal = 60;
-
-                chartHtml += `<div class="bar-column"><div class="bar-wrapper"><div class="b-bg orange-light" style="height: 100%;"></div><div class="b-fill orange-solid" style="height: ${dailyWorkoutVal}%;"><div class="b-dot"></div></div></div><div class="bar-wrapper" style="position: absolute; left: 10px;"><div class="b-bg red-light" style="height: 80%;"></div><div class="b-fill red-solid" style="height: ${suppVal}%;"><div class="b-dot white"></div></div></div></div>`;
-            });
-
-            if (doAnimation) {
-                window.animateValue('val-1-num', 0, val1, 800);
-                if (window.appData.user === 'Taras') window.animateValue('val-2-num', 0, val2, 800);
-                else { const v2 = document.getElementById('val-2-num'); if(v2) v2.innerHTML = val2; }
-                window.animateValue('val-3-num', 0, totalSets, 800);
-                window.animateValue('val-kcal-num', 0, totalWorkouts * 400, 800);
-            } else {
-                const v1 = document.getElementById('val-1-num'); if(v1) v1.innerHTML = val1;
-                const v2 = document.getElementById('val-2-num'); if(v2) v2.innerHTML = val2;
-                const v3 = document.getElementById('val-3-num'); if(v3) v3.innerHTML = totalSets;
-                const vk = document.getElementById('val-kcal-num'); if(vk) vk.innerHTML = totalWorkouts * 400;
-            }
-
-            const r1 = document.getElementById('ring-1');
-            if(r1) r1.style.strokeDasharray = window.appData.user === 'Taras' ? `${Math.min(val1/1.5, 100)}, 100` : `${Math.min(val1/20, 100)}, 100`;
-            
-            const r2 = document.getElementById('ring-2');
-            if(r2) r2.style.strokeDasharray = window.appData.user === 'Taras' ? `${Math.min(val2/0.3, 100)}, 100` : `${Math.min(val2/0.05, 100)}, 100`;
-            
-            const cb = document.getElementById('chart-bars-container');
-            if(cb) cb.innerHTML = chartHtml;
-
-            function getTagData(name, sets) {
-                if (sets === 0) return { class: 'tag-fresh', text: `🟢 ${name}: Відновився` };
-                if (sets <= 10) return { class: 'tag-worked', text: `🟠 ${name}: У тонусі` };
-                return { class: 'tag-fatigued', text: `🔴 ${name}: Знищено` };
-            }
-            
-            let tagsHtml = `
-                <div class="smart-tag ${getTagData('Груди', vol.Chest).class}" style="top: 28%; left: 12%;">${getTagData('Груди', vol.Chest).text}</div>
-                <div class="smart-tag ${getTagData('Спина', vol.Back).class}" style="top: 35%; right: 8%;">${getTagData('Спина', vol.Back).text}</div>
-                <div class="smart-tag ${getTagData('Руки', vol.Arms).class}" style="top: 42%; left: 5%;">${getTagData('Руки', vol.Arms).text}</div>
-                <div class="smart-tag ${getTagData('Ноги', vol.Legs).class}" style="top: 75%; left: 15%;">${getTagData('Ноги', vol.Legs).text}</div>
-            `;
-            const atc = document.getElementById('anatomy-tags-container');
-            if(atc) atc.innerHTML = tagsHtml;
+            window.renderDashboard();
         }
 
         window.loadDayForEdit = function() {
